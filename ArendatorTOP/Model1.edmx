@@ -15,6 +15,7 @@
           <Property Name="Domophone" Type="text" />
           <Property Name="Floor" Type="int" Nullable="false" />
           <Property Name="Office" Type="text" Nullable="false" />
+          <Property Name="IdClient" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ApplicationToReception">
           <Key>
@@ -45,7 +46,6 @@
           <Property Name="OGRN" Type="text" Nullable="false" />
           <Property Name="KPP" Type="text" Nullable="false" />
           <Property Name="Mail" Type="text" />
-          <Property Name="IdAddess" Type="int" Nullable="false" />
           <Property Name="PathToCopyPassport" Type="text" Nullable="false" />
           <Property Name="PathToCopyContractOfDirector" Type="text" Nullable="false" />
           <Property Name="PathToCopyCertificateOfRegistrationOfaLegalEntity" Type="text" Nullable="false" />
@@ -82,6 +82,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdTypeOfDocument" Type="int" Nullable="false" />
           <Property Name="NumDocument" Type="text" Nullable="false" />
+          <Property Name="IdRent" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -95,6 +96,7 @@
           <Property Name="ContractNumber" Type="text" Nullable="false" />
           <Property Name="IdPost" Type="int" Nullable="false" />
           <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="PhotoPath" Type="text" />
         </EntityType>
         <EntityType Name="FormOfPayment">
           <Key>
@@ -123,10 +125,15 @@
           <Property Name="Square" Type="float" Nullable="false" />
           <Property Name="PriceForOneMeter" Type="decimal" Precision="6" Scale="3" Nullable="false" />
           <Property Name="Floor" Type="int" Nullable="false" />
-          <Property Name="IsConditioner" Type="bit" />
-          <Property Name="IsActual" Type="bit" Nullable="false" />
           <Property Name="IdStatement" Type="int" Nullable="false" />
-          <Property Name="PhotoPath" Type="text" />
+          <Property Name="IdPhoto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PhotoOR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Path" Type="text" Nullable="false" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -144,7 +151,6 @@
           <Property Name="IdClient" Type="int" Nullable="false" />
           <Property Name="IdObjectRent" Type="int" Nullable="false" />
           <Property Name="IdTypeOfPayment" Type="int" Nullable="false" />
-          <Property Name="IdDocument" Type="int" Nullable="false" />
           <Property Name="OwnerOfObjectRent" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Deposit" Type="decimal" Precision="6" Scale="3" Nullable="false" />
           <Property Name="Bet" Type="decimal" Precision="6" Scale="3" Nullable="false" />
@@ -252,17 +258,17 @@
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Client_Addresses">
-          <End Role="Addresses" Type="Self.Addresses" Multiplicity="1">
+        <Association Name="FK_Addresses_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Addresses">
+            <Principal Role="Client">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Client">
-              <PropertyRef Name="IdAddess" />
+            <Dependent Role="Addresses">
+              <PropertyRef Name="IdClient" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -336,6 +342,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Document_Rent">
+          <End Role="Rent" Type="Self.Rent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="IdRent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Document_TypeOfDocument">
           <End Role="TypeOfDocument" Type="Self.TypeOfDocument" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -406,6 +426,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ObjectRent_PhotoOR">
+          <End Role="PhotoOR" Type="Self.PhotoOR" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhotoOR">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ObjectRent">
+              <PropertyRef Name="IdPhoto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ObjectRent_Statement">
           <End Role="Statement" Type="Self.Statement" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -431,20 +465,6 @@
             </Principal>
             <Dependent Role="Rent">
               <PropertyRef Name="IdClient" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Rent_Document">
-          <End Role="Document" Type="Self.Document" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Document">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Rent">
-              <PropertyRef Name="IdDocument" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -628,6 +648,7 @@
           <EntitySet Name="FormOfPayment" EntityType="Self.FormOfPayment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Materials" EntityType="Self.Materials" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ObjectRent" EntityType="Self.ObjectRent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhotoOR" EntityType="Self.PhotoOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rent" EntityType="Self.Rent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
@@ -648,9 +669,9 @@
     [SupplyMaterial].[Count] AS [Count]
     FROM [dbo].[SupplyMaterial] AS [SupplyMaterial]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_Client_Addresses" Association="Self.FK_Client_Addresses">
-            <End Role="Addresses" EntitySet="Addresses" />
+          <AssociationSet Name="FK_Addresses_Client" Association="Self.FK_Addresses_Client">
             <End Role="Client" EntitySet="Client" />
+            <End Role="Addresses" EntitySet="Addresses" />
           </AssociationSet>
           <AssociationSet Name="FK_DecommissionedMaterial_Employee" Association="Self.FK_DecommissionedMaterial_Employee">
             <End Role="Employee" EntitySet="Employee" />
@@ -672,6 +693,10 @@
             <End Role="ObjectRent" EntitySet="ObjectRent" />
             <End Role="Demonstration" EntitySet="Demonstration" />
           </AssociationSet>
+          <AssociationSet Name="FK_Document_Rent" Association="Self.FK_Document_Rent">
+            <End Role="Rent" EntitySet="Rent" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
           <AssociationSet Name="FK_Document_TypeOfDocument" Association="Self.FK_Document_TypeOfDocument">
             <End Role="TypeOfDocument" EntitySet="TypeOfDocument" />
             <End Role="Document" EntitySet="Document" />
@@ -692,16 +717,16 @@
             <End Role="Appointment" EntitySet="Appointment" />
             <End Role="ObjectRent" EntitySet="ObjectRent" />
           </AssociationSet>
+          <AssociationSet Name="FK_ObjectRent_PhotoOR" Association="Self.FK_ObjectRent_PhotoOR">
+            <End Role="PhotoOR" EntitySet="PhotoOR" />
+            <End Role="ObjectRent" EntitySet="ObjectRent" />
+          </AssociationSet>
           <AssociationSet Name="FK_ObjectRent_Statement" Association="Self.FK_ObjectRent_Statement">
             <End Role="Statement" EntitySet="Statement" />
             <End Role="ObjectRent" EntitySet="ObjectRent" />
           </AssociationSet>
           <AssociationSet Name="FK_Rent_Client" Association="Self.FK_Rent_Client">
             <End Role="Client" EntitySet="Client" />
-            <End Role="Rent" EntitySet="Rent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Rent_Document" Association="Self.FK_Rent_Document">
-            <End Role="Document" EntitySet="Document" />
             <End Role="Rent" EntitySet="Rent" />
           </AssociationSet>
           <AssociationSet Name="FK_Rent_Employee" Association="Self.FK_Rent_Employee">
@@ -768,7 +793,8 @@
           <Property Name="Domophone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Floor" Type="Int32" Nullable="false" />
           <Property Name="Office" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Addresses" FromRole="Addresses" ToRole="Client" />
+          <Property Name="IdClient" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Addresses_Client" FromRole="Addresses" ToRole="Client" />
         </EntityType>
         <EntityType Name="ApplicationToReception">
           <Key>
@@ -801,11 +827,10 @@
           <Property Name="OGRN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="KPP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="IdAddess" Type="Int32" Nullable="false" />
           <Property Name="PathToCopyPassport" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PathToCopyContractOfDirector" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PathToCopyCertificateOfRegistrationOfaLegalEntity" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Addresses" Relationship="Self.FK_Client_Addresses" FromRole="Client" ToRole="Addresses" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Addresses_Client" FromRole="Client" ToRole="Addresses" />
           <NavigationProperty Name="Demonstration" Relationship="Self.FK_Demonstration_Client" FromRole="Client" ToRole="Demonstration" />
           <NavigationProperty Name="Rent" Relationship="Self.FK_Rent_Client" FromRole="Client" ToRole="Rent" />
         </EntityType>
@@ -846,8 +871,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdTypeOfDocument" Type="Int32" Nullable="false" />
           <Property Name="NumDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdRent" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rent" Relationship="Self.FK_Document_Rent" FromRole="Document" ToRole="Rent" />
           <NavigationProperty Name="TypeOfDocument" Relationship="Self.FK_Document_TypeOfDocument" FromRole="Document" ToRole="TypeOfDocument" />
-          <NavigationProperty Name="Rent" Relationship="Self.FK_Rent_Document" FromRole="Document" ToRole="Rent" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -861,6 +887,7 @@
           <Property Name="ContractNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdPost" Type="Int32" Nullable="false" />
           <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DecommissionedMaterial" Relationship="Self.FK_DecommissionedMaterial_Employee" FromRole="Employee" ToRole="DecommissionedMaterial" />
           <NavigationProperty Name="Demonstration" Relationship="Self.FK_Demonstration_Employee" FromRole="Employee" ToRole="Demonstration" />
           <NavigationProperty Name="Post" Relationship="Self.FK_Employee_Post" FromRole="Employee" ToRole="Post" />
@@ -901,15 +928,22 @@
           <Property Name="Square" Type="Double" Nullable="false" />
           <Property Name="PriceForOneMeter" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
           <Property Name="Floor" Type="Int32" Nullable="false" />
-          <Property Name="IsConditioner" Type="Boolean" />
-          <Property Name="IsActual" Type="Boolean" Nullable="false" />
           <Property Name="IdStatement" Type="Int32" Nullable="false" />
-          <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdPhoto" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Appointment" Relationship="Self.FK_ObjectRent_Appointment" FromRole="ObjectRent" ToRole="Appointment" />
           <NavigationProperty Name="Demonstration" Relationship="Self.FK_Demonstration_ObjectRent" FromRole="ObjectRent" ToRole="Demonstration" />
+          <NavigationProperty Name="PhotoOR" Relationship="Self.FK_ObjectRent_PhotoOR" FromRole="ObjectRent" ToRole="PhotoOR" />
           <NavigationProperty Name="Statement" Relationship="Self.FK_ObjectRent_Statement" FromRole="ObjectRent" ToRole="Statement" />
           <NavigationProperty Name="Rent" Relationship="Self.FK_Rent_ObjectRent" FromRole="ObjectRent" ToRole="Rent" />
           <NavigationProperty Name="SentMaterials" Relationship="Self.FK_SentMaterials_ObjectRent" FromRole="ObjectRent" ToRole="SentMaterials" />
+        </EntityType>
+        <EntityType Name="PhotoOR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ObjectRent" Relationship="Self.FK_ObjectRent_PhotoOR" FromRole="PhotoOR" ToRole="ObjectRent" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -928,14 +962,13 @@
           <Property Name="IdClient" Type="Int32" Nullable="false" />
           <Property Name="IdObjectRent" Type="Int32" Nullable="false" />
           <Property Name="IdTypeOfPayment" Type="Int32" Nullable="false" />
-          <Property Name="IdDocument" Type="Int32" Nullable="false" />
           <Property Name="OwnerOfObjectRent" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Deposit" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
           <Property Name="Bet" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
           <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Client" Relationship="Self.FK_Rent_Client" FromRole="Rent" ToRole="Client" />
-          <NavigationProperty Name="Document" Relationship="Self.FK_Rent_Document" FromRole="Rent" ToRole="Document" />
+          <NavigationProperty Name="Document" Relationship="Self.FK_Document_Rent" FromRole="Rent" ToRole="Document" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Rent_Employee" FromRole="Rent" ToRole="Employee" />
           <NavigationProperty Name="FormOfPayment" Relationship="Self.FK_Rent_FormOfPayment" FromRole="Rent" ToRole="FormOfPayment" />
           <NavigationProperty Name="ObjectRent" Relationship="Self.FK_Rent_ObjectRent" FromRole="Rent" ToRole="ObjectRent" />
@@ -1055,17 +1088,17 @@
           <NavigationProperty Name="Materials" Relationship="Self.FK_SupplyMaterial_Materials" FromRole="SupplyMaterial" ToRole="Materials" />
           <NavigationProperty Name="Supply" Relationship="Self.FK_SupplyMaterial_Supply" FromRole="SupplyMaterial" ToRole="Supply" />
         </EntityType>
-        <Association Name="FK_Client_Addresses">
-          <End Role="Addresses" Type="Self.Addresses" Multiplicity="1">
+        <Association Name="FK_Addresses_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Addresses">
+            <Principal Role="Client">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Client">
-              <PropertyRef Name="IdAddess" />
+            <Dependent Role="Addresses">
+              <PropertyRef Name="IdClient" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1181,6 +1214,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Document_Rent">
+          <End Role="Rent" Type="Self.Rent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="IdRent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Document_TypeOfDocument">
           <End Role="TypeOfDocument" Type="Self.TypeOfDocument" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1192,20 +1239,6 @@
             </Principal>
             <Dependent Role="Document">
               <PropertyRef Name="IdTypeOfDocument" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Rent_Document">
-          <End Role="Document" Type="Self.Document" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Document">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Rent">
-              <PropertyRef Name="IdDocument" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1335,6 +1368,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ObjectRent_PhotoOR">
+          <End Role="PhotoOR" Type="Self.PhotoOR" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhotoOR">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ObjectRent">
+              <PropertyRef Name="IdPhoto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ObjectRent_Statement">
           <End Role="Statement" Type="Self.Statement" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1431,6 +1478,7 @@
           <EntitySet Name="FormOfPayment" EntityType="Self.FormOfPayment" />
           <EntitySet Name="Materials" EntityType="Self.Materials" />
           <EntitySet Name="ObjectRent" EntityType="Self.ObjectRent" />
+          <EntitySet Name="PhotoOR" EntityType="Self.PhotoOR" />
           <EntitySet Name="Post" EntityType="Self.Post" />
           <EntitySet Name="Rent" EntityType="Self.Rent" />
           <EntitySet Name="Report" EntityType="Self.Report" />
@@ -1443,9 +1491,9 @@
           <EntitySet Name="TypeOfReport" EntityType="Self.TypeOfReport" />
           <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="SupplyMaterial" EntityType="Self.SupplyMaterial" />
-          <AssociationSet Name="FK_Client_Addresses" Association="Self.FK_Client_Addresses">
-            <End Role="Addresses" EntitySet="Addresses" />
+          <AssociationSet Name="FK_Addresses_Client" Association="Self.FK_Addresses_Client">
             <End Role="Client" EntitySet="Client" />
+            <End Role="Addresses" EntitySet="Addresses" />
           </AssociationSet>
           <AssociationSet Name="FK_Supply_ApplicationToReception" Association="Self.FK_Supply_ApplicationToReception">
             <End Role="ApplicationToReception" EntitySet="ApplicationToReception" />
@@ -1479,13 +1527,13 @@
             <End Role="ObjectRent" EntitySet="ObjectRent" />
             <End Role="Demonstration" EntitySet="Demonstration" />
           </AssociationSet>
+          <AssociationSet Name="FK_Document_Rent" Association="Self.FK_Document_Rent">
+            <End Role="Rent" EntitySet="Rent" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
           <AssociationSet Name="FK_Document_TypeOfDocument" Association="Self.FK_Document_TypeOfDocument">
             <End Role="TypeOfDocument" EntitySet="TypeOfDocument" />
             <End Role="Document" EntitySet="Document" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Rent_Document" Association="Self.FK_Rent_Document">
-            <End Role="Document" EntitySet="Document" />
-            <End Role="Rent" EntitySet="Rent" />
           </AssociationSet>
           <AssociationSet Name="FK_Employee_Post" Association="Self.FK_Employee_Post">
             <End Role="Post" EntitySet="Post" />
@@ -1522,6 +1570,10 @@
           <AssociationSet Name="FK_SupplyMaterial_Materials" Association="Self.FK_SupplyMaterial_Materials">
             <End Role="Materials" EntitySet="Materials" />
             <End Role="SupplyMaterial" EntitySet="SupplyMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ObjectRent_PhotoOR" Association="Self.FK_ObjectRent_PhotoOR">
+            <End Role="PhotoOR" EntitySet="PhotoOR" />
+            <End Role="ObjectRent" EntitySet="ObjectRent" />
           </AssociationSet>
           <AssociationSet Name="FK_ObjectRent_Statement" Association="Self.FK_ObjectRent_Statement">
             <End Role="Statement" EntitySet="Statement" />
@@ -1563,6 +1615,7 @@
                 <ScalarProperty Name="Domophone" ColumnName="Domophone" />
                 <ScalarProperty Name="Floor" ColumnName="Floor" />
                 <ScalarProperty Name="Office" ColumnName="Office" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1596,7 +1649,6 @@
                 <ScalarProperty Name="OGRN" ColumnName="OGRN" />
                 <ScalarProperty Name="KPP" ColumnName="KPP" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="IdAddess" ColumnName="IdAddess" />
                 <ScalarProperty Name="PathToCopyPassport" ColumnName="PathToCopyPassport" />
                 <ScalarProperty Name="PathToCopyContractOfDirector" ColumnName="PathToCopyContractOfDirector" />
                 <ScalarProperty Name="PathToCopyCertificateOfRegistrationOfaLegalEntity" ColumnName="PathToCopyCertificateOfRegistrationOfaLegalEntity" />
@@ -1636,6 +1688,7 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdTypeOfDocument" ColumnName="IdTypeOfDocument" />
                 <ScalarProperty Name="NumDocument" ColumnName="NumDocument" />
+                <ScalarProperty Name="IdRent" ColumnName="IdRent" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1650,6 +1703,7 @@
                 <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
                 <ScalarProperty Name="IdPost" ColumnName="IdPost" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1681,10 +1735,16 @@
                 <ScalarProperty Name="Square" ColumnName="Square" />
                 <ScalarProperty Name="PriceForOneMeter" ColumnName="PriceForOneMeter" />
                 <ScalarProperty Name="Floor" ColumnName="Floor" />
-                <ScalarProperty Name="IsConditioner" ColumnName="IsConditioner" />
-                <ScalarProperty Name="IsActual" ColumnName="IsActual" />
                 <ScalarProperty Name="IdStatement" ColumnName="IdStatement" />
-                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="IdPhoto" ColumnName="IdPhoto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhotoOR">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.PhotoOR">
+              <MappingFragment StoreEntitySet="PhotoOR">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1704,7 +1764,6 @@
                 <ScalarProperty Name="IdClient" ColumnName="IdClient" />
                 <ScalarProperty Name="IdObjectRent" ColumnName="IdObjectRent" />
                 <ScalarProperty Name="IdTypeOfPayment" ColumnName="IdTypeOfPayment" />
-                <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
                 <ScalarProperty Name="OwnerOfObjectRent" ColumnName="OwnerOfObjectRent" />
                 <ScalarProperty Name="Deposit" ColumnName="Deposit" />
                 <ScalarProperty Name="Bet" ColumnName="Bet" />

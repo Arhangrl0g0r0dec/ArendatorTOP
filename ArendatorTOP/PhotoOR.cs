@@ -12,14 +12,18 @@ namespace ArendatorTOP
     using System;
     using System.Collections.Generic;
     
-    public partial class Document
+    public partial class PhotoOR
     {
-        public int Id { get; set; }
-        public int IdTypeOfDocument { get; set; }
-        public string NumDocument { get; set; }
-        public int IdRent { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PhotoOR()
+        {
+            this.ObjectRent = new HashSet<ObjectRent>();
+        }
     
-        public virtual Rent Rent { get; set; }
-        public virtual TypeOfDocument TypeOfDocument { get; set; }
+        public int Id { get; set; }
+        public string Path { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ObjectRent> ObjectRent { get; set; }
     }
 }

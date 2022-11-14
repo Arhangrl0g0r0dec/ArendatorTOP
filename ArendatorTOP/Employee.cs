@@ -32,6 +32,7 @@ namespace ArendatorTOP
         public string ContractNumber { get; set; }
         public int IdPost { get; set; }
         public int IdUser { get; set; }
+        public string PhotoPath { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DecommissionedMaterial> DecommissionedMaterial { get; set; }

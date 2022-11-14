@@ -14,20 +14,14 @@ namespace ArendatorTOP
     
     public partial class Addresses
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Addresses()
-        {
-            this.Client = new HashSet<Client>();
-        }
-    
         public int Id { get; set; }
         public string Street { get; set; }
         public string Home { get; set; }
         public string Domophone { get; set; }
         public int Floor { get; set; }
         public string Office { get; set; }
+        public int IdClient { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Client> Client { get; set; }
+        public virtual Client Client { get; set; }
     }
 }

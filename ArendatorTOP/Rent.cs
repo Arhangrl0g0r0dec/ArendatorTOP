@@ -14,12 +14,17 @@ namespace ArendatorTOP
     
     public partial class Rent
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Rent()
+        {
+            this.Document = new HashSet<Document>();
+        }
+    
         public int Id { get; set; }
         public int IdEmployee { get; set; }
         public int IdClient { get; set; }
         public int IdObjectRent { get; set; }
         public int IdTypeOfPayment { get; set; }
-        public int IdDocument { get; set; }
         public string OwnerOfObjectRent { get; set; }
         public decimal Deposit { get; set; }
         public decimal Bet { get; set; }
@@ -27,7 +32,8 @@ namespace ArendatorTOP
         public System.DateTime DateEnd { get; set; }
     
         public virtual Client Client { get; set; }
-        public virtual Document Document { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Document> Document { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual FormOfPayment FormOfPayment { get; set; }
         public virtual ObjectRent ObjectRent { get; set; }

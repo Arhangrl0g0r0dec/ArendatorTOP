@@ -36,6 +36,7 @@ namespace ArendatorTOP
         public virtual DbSet<FormOfPayment> FormOfPayment { get; set; }
         public virtual DbSet<Materials> Materials { get; set; }
         public virtual DbSet<ObjectRent> ObjectRent { get; set; }
+        public virtual DbSet<PhotoOR> PhotoOR { get; set; }
         public virtual DbSet<Post> Post { get; set; }
         public virtual DbSet<Rent> Rent { get; set; }
         public virtual DbSet<Report> Report { get; set; }

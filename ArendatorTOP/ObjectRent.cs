@@ -27,14 +27,13 @@ namespace ArendatorTOP
         public double Square { get; set; }
         public decimal PriceForOneMeter { get; set; }
         public int Floor { get; set; }
-        public Nullable<bool> IsConditioner { get; set; }
-        public bool IsActual { get; set; }
         public int IdStatement { get; set; }
-        public string PhotoPath { get; set; }
+        public int IdPhoto { get; set; }
     
         public virtual Appointment Appointment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Demonstration> Demonstration { get; set; }
+        public virtual PhotoOR PhotoOR { get; set; }
         public virtual Statement Statement { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rent> Rent { get; set; }
