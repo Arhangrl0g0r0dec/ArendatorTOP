@@ -1,0 +1,1844 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ArendatorTOPModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Street" Type="text" Nullable="false" />
+          <Property Name="Home" Type="text" Nullable="false" />
+          <Property Name="Domophone" Type="text" />
+          <Property Name="Floor" Type="int" Nullable="false" />
+          <Property Name="Office" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplicationToReception">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMaterial" Type="int" Nullable="false" />
+          <Property Name="IdEmployee" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="DateFormed" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronimic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="INN" Type="text" Nullable="false" />
+          <Property Name="OGRN" Type="text" Nullable="false" />
+          <Property Name="KPP" Type="text" Nullable="false" />
+          <Property Name="Mail" Type="text" />
+          <Property Name="IdAddess" Type="int" Nullable="false" />
+          <Property Name="PathToCopyPassport" Type="text" Nullable="false" />
+          <Property Name="PathToCopyContractOfDirector" Type="text" Nullable="false" />
+          <Property Name="PathToCopyCertificateOfRegistrationOfaLegalEntity" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DecommissionedMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMaterial" Type="int" Nullable="false" />
+          <Property Name="IdEmployee" Type="int" Nullable="false" />
+          <Property Name="PathToDocument16" Type="text" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Demonstration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdClient" Type="int" />
+          <Property Name="IdObjectRent" Type="int" Nullable="false" />
+          <Property Name="IdEmployee" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Patronimic" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="text" />
+          <Property Name="DateOfDemonstration" Type="date" Nullable="false" />
+          <Property Name="TimeOfDemonstration" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTypeOfDocument" Type="int" Nullable="false" />
+          <Property Name="NumDocument" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronimic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="text" Nullable="false" />
+          <Property Name="ContractNumber" Type="text" Nullable="false" />
+          <Property Name="IdPost" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FormOfPayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Materials">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="text" Nullable="false" />
+          <Property Name="IdType" Type="int" Nullable="false" />
+          <Property Name="Weight" Type="float" />
+          <Property Name="Fragility" Type="bit" />
+          <Property Name="Sizes" Type="text" />
+        </EntityType>
+        <EntityType Name="ObjectRent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdAppointment" Type="int" Nullable="false" />
+          <Property Name="Square" Type="float" Nullable="false" />
+          <Property Name="PriceForOneMeter" Type="decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="Floor" Type="int" Nullable="false" />
+          <Property Name="IsConditioner" Type="bit" />
+          <Property Name="IsActual" Type="bit" Nullable="false" />
+          <Property Name="IdStatement" Type="int" Nullable="false" />
+          <Property Name="PhotoPath" Type="text" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEmployee" Type="int" Nullable="false" />
+          <Property Name="IdClient" Type="int" Nullable="false" />
+          <Property Name="IdObjectRent" Type="int" Nullable="false" />
+          <Property Name="IdTypeOfPayment" Type="int" Nullable="false" />
+          <Property Name="IdDocument" Type="int" Nullable="false" />
+          <Property Name="OwnerOfObjectRent" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Deposit" Type="decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="Bet" Type="decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="DateStart" Type="date" Nullable="false" />
+          <Property Name="DateEnd" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEmployee" Type="int" Nullable="false" />
+          <Property Name="IdTypeReport" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="date" Nullable="false" />
+          <Property Name="TimeCreated" Type="time" Precision="7" Nullable="false" />
+          <Property Name="PathToReport" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SentMaterials">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMaterial" Type="int" Nullable="false" />
+          <Property Name="IdObjectRent" Type="int" Nullable="false" />
+          <Property Name="IdEmployee" Type="int" Nullable="false" />
+          <Property Name="PathToDocument13" Type="text" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="DateSent" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Statement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronimic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="House" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mail" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSuppler" Type="int" Nullable="false" />
+          <Property Name="IdApplicationOnReciption" Type="int" Nullable="false" />
+          <Property Name="Formed" Type="bit" Nullable="false" />
+          <Property Name="PathToDocument" Type="text" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "ArendatorTOP.dbo.SupplyMaterial" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="SupplyMaterial">
+          <Key>
+            <PropertyRef Name="IdSupply" />
+            <PropertyRef Name="IdMaterial" />
+            <PropertyRef Name="PriceDilivery" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Count" />
+          </Key>
+          <Property Name="IdSupply" Type="int" Nullable="false" />
+          <Property Name="IdMaterial" Type="int" Nullable="false" />
+          <Property Name="PriceDilivery" Type="decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOfDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOfMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOfReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Client_Addresses">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdAddess" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DecommissionedMaterial_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DecommissionedMaterial" Type="Self.DecommissionedMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DecommissionedMaterial">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DecommissionedMaterial_Materials">
+          <End Role="Materials" Type="Self.Materials" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DecommissionedMaterial" Type="Self.DecommissionedMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DecommissionedMaterial">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Demonstration_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Demonstration" Type="Self.Demonstration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Demonstration">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Demonstration_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Demonstration" Type="Self.Demonstration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Demonstration">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Demonstration_ObjectRent">
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Demonstration" Type="Self.Demonstration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ObjectRent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Demonstration">
+              <PropertyRef Name="IdObjectRent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_TypeOfDocument">
+          <End Role="TypeOfDocument" Type="Self.TypeOfDocument" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfDocument">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="IdTypeOfDocument" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="IdPost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materials_TypeOfMaterial">
+          <End Role="TypeOfMaterial" Type="Self.TypeOfMaterial" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Materials" Type="Self.Materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfMaterial">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Materials">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ObjectRent_Appointment">
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ObjectRent">
+              <PropertyRef Name="IdAppointment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ObjectRent_Statement">
+          <End Role="Statement" Type="Self.Statement" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ObjectRent">
+              <PropertyRef Name="IdStatement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rent_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rent_Document">
+          <End Role="Document" Type="Self.Document" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="IdDocument" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rent_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rent_FormOfPayment">
+          <End Role="FormOfPayment" Type="Self.FormOfPayment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormOfPayment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="IdTypeOfPayment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rent_ObjectRent">
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ObjectRent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="IdObjectRent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_TypeOfReport">
+          <End Role="TypeOfReport" Type="Self.TypeOfReport" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfReport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="IdTypeReport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SentMaterials_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SentMaterials" Type="Self.SentMaterials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SentMaterials">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SentMaterials_Materials">
+          <End Role="Materials" Type="Self.Materials" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SentMaterials" Type="Self.SentMaterials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SentMaterials">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SentMaterials_ObjectRent">
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SentMaterials" Type="Self.SentMaterials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ObjectRent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SentMaterials">
+              <PropertyRef Name="IdObjectRent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supply_ApplicationToReception">
+          <End Role="ApplicationToReception" Type="Self.ApplicationToReception" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Supply" Type="Self.Supply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationToReception">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Supply">
+              <PropertyRef Name="IdApplicationOnReciption" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supply_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Supply" Type="Self.Supply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Supply">
+              <PropertyRef Name="IdSuppler" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyMaterial_Materials">
+          <End Role="Materials" Type="Self.Materials" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SupplyMaterial" Type="Self.SupplyMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplyMaterial">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyMaterial_Supply">
+          <End Role="Supply" Type="Self.Supply" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SupplyMaterial" Type="Self.SupplyMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supply">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplyMaterial">
+              <PropertyRef Name="IdSupply" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ArendatorTOPModelContainer">
+          <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplicationToReception" EntityType="Self.ApplicationToReception" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DecommissionedMaterial" EntityType="Self.DecommissionedMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Demonstration" EntityType="Self.Demonstration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormOfPayment" EntityType="Self.FormOfPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materials" EntityType="Self.Materials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ObjectRent" EntityType="Self.ObjectRent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rent" EntityType="Self.Rent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SentMaterials" EntityType="Self.SentMaterials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statement" EntityType="Self.Statement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supply" EntityType="Self.Supply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfDocument" EntityType="Self.TypeOfDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfMaterial" EntityType="Self.TypeOfMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfReport" EntityType="Self.TypeOfReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupplyMaterial" EntityType="Self.SupplyMaterial" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SupplyMaterial].[IdSupply] AS [IdSupply], 
+    [SupplyMaterial].[IdMaterial] AS [IdMaterial], 
+    [SupplyMaterial].[PriceDilivery] AS [PriceDilivery], 
+    [SupplyMaterial].[Price] AS [Price], 
+    [SupplyMaterial].[Count] AS [Count]
+    FROM [dbo].[SupplyMaterial] AS [SupplyMaterial]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Client_Addresses" Association="Self.FK_Client_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DecommissionedMaterial_Employee" Association="Self.FK_DecommissionedMaterial_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="DecommissionedMaterial" EntitySet="DecommissionedMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DecommissionedMaterial_Materials" Association="Self.FK_DecommissionedMaterial_Materials">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="DecommissionedMaterial" EntitySet="DecommissionedMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Demonstration_Client" Association="Self.FK_Demonstration_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Demonstration" EntitySet="Demonstration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Demonstration_Employee" Association="Self.FK_Demonstration_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Demonstration" EntitySet="Demonstration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Demonstration_ObjectRent" Association="Self.FK_Demonstration_ObjectRent">
+            <End Role="ObjectRent" EntitySet="ObjectRent" />
+            <End Role="Demonstration" EntitySet="Demonstration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_TypeOfDocument" Association="Self.FK_Document_TypeOfDocument">
+            <End Role="TypeOfDocument" EntitySet="TypeOfDocument" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Post" Association="Self.FK_Employee_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_User" Association="Self.FK_Employee_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materials_TypeOfMaterial" Association="Self.FK_Materials_TypeOfMaterial">
+            <End Role="TypeOfMaterial" EntitySet="TypeOfMaterial" />
+            <End Role="Materials" EntitySet="Materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ObjectRent_Appointment" Association="Self.FK_ObjectRent_Appointment">
+            <End Role="Appointment" EntitySet="Appointment" />
+            <End Role="ObjectRent" EntitySet="ObjectRent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ObjectRent_Statement" Association="Self.FK_ObjectRent_Statement">
+            <End Role="Statement" EntitySet="Statement" />
+            <End Role="ObjectRent" EntitySet="ObjectRent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rent_Client" Association="Self.FK_Rent_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rent_Document" Association="Self.FK_Rent_Document">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rent_Employee" Association="Self.FK_Rent_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rent_FormOfPayment" Association="Self.FK_Rent_FormOfPayment">
+            <End Role="FormOfPayment" EntitySet="FormOfPayment" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rent_ObjectRent" Association="Self.FK_Rent_ObjectRent">
+            <End Role="ObjectRent" EntitySet="ObjectRent" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_Employee" Association="Self.FK_Report_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_TypeOfReport" Association="Self.FK_Report_TypeOfReport">
+            <End Role="TypeOfReport" EntitySet="TypeOfReport" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SentMaterials_Employee" Association="Self.FK_SentMaterials_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="SentMaterials" EntitySet="SentMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SentMaterials_Materials" Association="Self.FK_SentMaterials_Materials">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="SentMaterials" EntitySet="SentMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SentMaterials_ObjectRent" Association="Self.FK_SentMaterials_ObjectRent">
+            <End Role="ObjectRent" EntitySet="ObjectRent" />
+            <End Role="SentMaterials" EntitySet="SentMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supply_ApplicationToReception" Association="Self.FK_Supply_ApplicationToReception">
+            <End Role="ApplicationToReception" EntitySet="ApplicationToReception" />
+            <End Role="Supply" EntitySet="Supply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supply_Supplier" Association="Self.FK_Supply_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Supply" EntitySet="Supply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyMaterial_Materials" Association="Self.FK_SupplyMaterial_Materials">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="SupplyMaterial" EntitySet="SupplyMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyMaterial_Supply" Association="Self.FK_SupplyMaterial_Supply">
+            <End Role="Supply" EntitySet="Supply" />
+            <End Role="SupplyMaterial" EntitySet="SupplyMaterial" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ArendatorTOPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Street" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Home" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Domophone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <Property Name="Office" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Addresses" FromRole="Addresses" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="ApplicationToReception">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" />
+          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="DateFormed" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Supply" Relationship="Self.FK_Supply_ApplicationToReception" FromRole="ApplicationToReception" ToRole="Supply" />
+        </EntityType>
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ObjectRent" Relationship="Self.FK_ObjectRent_Appointment" FromRole="Appointment" ToRole="ObjectRent" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="INN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OGRN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KPP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdAddess" Type="Int32" Nullable="false" />
+          <Property Name="PathToCopyPassport" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PathToCopyContractOfDirector" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PathToCopyCertificateOfRegistrationOfaLegalEntity" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Client_Addresses" FromRole="Client" ToRole="Addresses" />
+          <NavigationProperty Name="Demonstration" Relationship="Self.FK_Demonstration_Client" FromRole="Client" ToRole="Demonstration" />
+          <NavigationProperty Name="Rent" Relationship="Self.FK_Rent_Client" FromRole="Client" ToRole="Rent" />
+        </EntityType>
+        <EntityType Name="DecommissionedMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" />
+          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+          <Property Name="PathToDocument16" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_DecommissionedMaterial_Employee" FromRole="DecommissionedMaterial" ToRole="Employee" />
+          <NavigationProperty Name="Materials" Relationship="Self.FK_DecommissionedMaterial_Materials" FromRole="DecommissionedMaterial" ToRole="Materials" />
+        </EntityType>
+        <EntityType Name="Demonstration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdClient" Type="Int32" />
+          <Property Name="IdObjectRent" Type="Int32" Nullable="false" />
+          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfDemonstration" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TimeOfDemonstration" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Demonstration_Client" FromRole="Demonstration" ToRole="Client" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Demonstration_Employee" FromRole="Demonstration" ToRole="Employee" />
+          <NavigationProperty Name="ObjectRent" Relationship="Self.FK_Demonstration_ObjectRent" FromRole="Demonstration" ToRole="ObjectRent" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTypeOfDocument" Type="Int32" Nullable="false" />
+          <Property Name="NumDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TypeOfDocument" Relationship="Self.FK_Document_TypeOfDocument" FromRole="Document" ToRole="TypeOfDocument" />
+          <NavigationProperty Name="Rent" Relationship="Self.FK_Rent_Document" FromRole="Document" ToRole="Rent" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContractNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdPost" Type="Int32" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DecommissionedMaterial" Relationship="Self.FK_DecommissionedMaterial_Employee" FromRole="Employee" ToRole="DecommissionedMaterial" />
+          <NavigationProperty Name="Demonstration" Relationship="Self.FK_Demonstration_Employee" FromRole="Employee" ToRole="Demonstration" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_Employee_Post" FromRole="Employee" ToRole="Post" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Employee_User" FromRole="Employee" ToRole="User" />
+          <NavigationProperty Name="Rent" Relationship="Self.FK_Rent_Employee" FromRole="Employee" ToRole="Rent" />
+          <NavigationProperty Name="Report" Relationship="Self.FK_Report_Employee" FromRole="Employee" ToRole="Report" />
+          <NavigationProperty Name="SentMaterials" Relationship="Self.FK_SentMaterials_Employee" FromRole="Employee" ToRole="SentMaterials" />
+        </EntityType>
+        <EntityType Name="FormOfPayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Rent" Relationship="Self.FK_Rent_FormOfPayment" FromRole="FormOfPayment" ToRole="Rent" />
+        </EntityType>
+        <EntityType Name="Materials">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdType" Type="Int32" Nullable="false" />
+          <Property Name="Weight" Type="Double" />
+          <Property Name="Fragility" Type="Boolean" />
+          <Property Name="Sizes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DecommissionedMaterial" Relationship="Self.FK_DecommissionedMaterial_Materials" FromRole="Materials" ToRole="DecommissionedMaterial" />
+          <NavigationProperty Name="TypeOfMaterial" Relationship="Self.FK_Materials_TypeOfMaterial" FromRole="Materials" ToRole="TypeOfMaterial" />
+          <NavigationProperty Name="SentMaterials" Relationship="Self.FK_SentMaterials_Materials" FromRole="Materials" ToRole="SentMaterials" />
+          <NavigationProperty Name="SupplyMaterial" Relationship="Self.FK_SupplyMaterial_Materials" FromRole="Materials" ToRole="SupplyMaterial" />
+        </EntityType>
+        <EntityType Name="ObjectRent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdAppointment" Type="Int32" Nullable="false" />
+          <Property Name="Square" Type="Double" Nullable="false" />
+          <Property Name="PriceForOneMeter" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <Property Name="IsConditioner" Type="Boolean" />
+          <Property Name="IsActual" Type="Boolean" Nullable="false" />
+          <Property Name="IdStatement" Type="Int32" Nullable="false" />
+          <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Appointment" Relationship="Self.FK_ObjectRent_Appointment" FromRole="ObjectRent" ToRole="Appointment" />
+          <NavigationProperty Name="Demonstration" Relationship="Self.FK_Demonstration_ObjectRent" FromRole="ObjectRent" ToRole="Demonstration" />
+          <NavigationProperty Name="Statement" Relationship="Self.FK_ObjectRent_Statement" FromRole="ObjectRent" ToRole="Statement" />
+          <NavigationProperty Name="Rent" Relationship="Self.FK_Rent_ObjectRent" FromRole="ObjectRent" ToRole="Rent" />
+          <NavigationProperty Name="SentMaterials" Relationship="Self.FK_SentMaterials_ObjectRent" FromRole="ObjectRent" ToRole="SentMaterials" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Post" FromRole="Post" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Rent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+          <Property Name="IdClient" Type="Int32" Nullable="false" />
+          <Property Name="IdObjectRent" Type="Int32" Nullable="false" />
+          <Property Name="IdTypeOfPayment" Type="Int32" Nullable="false" />
+          <Property Name="IdDocument" Type="Int32" Nullable="false" />
+          <Property Name="OwnerOfObjectRent" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Deposit" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="Bet" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Rent_Client" FromRole="Rent" ToRole="Client" />
+          <NavigationProperty Name="Document" Relationship="Self.FK_Rent_Document" FromRole="Rent" ToRole="Document" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Rent_Employee" FromRole="Rent" ToRole="Employee" />
+          <NavigationProperty Name="FormOfPayment" Relationship="Self.FK_Rent_FormOfPayment" FromRole="Rent" ToRole="FormOfPayment" />
+          <NavigationProperty Name="ObjectRent" Relationship="Self.FK_Rent_ObjectRent" FromRole="Rent" ToRole="ObjectRent" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+          <Property Name="IdTypeReport" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TimeCreated" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="PathToReport" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Report_Employee" FromRole="Report" ToRole="Employee" />
+          <NavigationProperty Name="TypeOfReport" Relationship="Self.FK_Report_TypeOfReport" FromRole="Report" ToRole="TypeOfReport" />
+        </EntityType>
+        <EntityType Name="SentMaterials">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" />
+          <Property Name="IdObjectRent" Type="Int32" Nullable="false" />
+          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+          <Property Name="PathToDocument13" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="DateSent" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_SentMaterials_Employee" FromRole="SentMaterials" ToRole="Employee" />
+          <NavigationProperty Name="Materials" Relationship="Self.FK_SentMaterials_Materials" FromRole="SentMaterials" ToRole="Materials" />
+          <NavigationProperty Name="ObjectRent" Relationship="Self.FK_SentMaterials_ObjectRent" FromRole="SentMaterials" ToRole="ObjectRent" />
+        </EntityType>
+        <EntityType Name="Statement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ObjectRent" Relationship="Self.FK_ObjectRent_Statement" FromRole="Statement" ToRole="ObjectRent" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="House" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Supply" Relationship="Self.FK_Supply_Supplier" FromRole="Supplier" ToRole="Supply" />
+        </EntityType>
+        <EntityType Name="Supply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSuppler" Type="Int32" Nullable="false" />
+          <Property Name="IdApplicationOnReciption" Type="Int32" Nullable="false" />
+          <Property Name="Formed" Type="Boolean" Nullable="false" />
+          <Property Name="PathToDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ApplicationToReception" Relationship="Self.FK_Supply_ApplicationToReception" FromRole="Supply" ToRole="ApplicationToReception" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Supply_Supplier" FromRole="Supply" ToRole="Supplier" />
+          <NavigationProperty Name="SupplyMaterial" Relationship="Self.FK_SupplyMaterial_Supply" FromRole="Supply" ToRole="SupplyMaterial" />
+        </EntityType>
+        <EntityType Name="TypeOfDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Document" Relationship="Self.FK_Document_TypeOfDocument" FromRole="TypeOfDocument" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="TypeOfMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Materials" Relationship="Self.FK_Materials_TypeOfMaterial" FromRole="TypeOfMaterial" ToRole="Materials" />
+        </EntityType>
+        <EntityType Name="TypeOfReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Report" Relationship="Self.FK_Report_TypeOfReport" FromRole="TypeOfReport" ToRole="Report" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_User" FromRole="User" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="SupplyMaterial">
+          <Key>
+            <PropertyRef Name="IdSupply" />
+            <PropertyRef Name="IdMaterial" />
+            <PropertyRef Name="PriceDilivery" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Count" />
+          </Key>
+          <Property Name="IdSupply" Type="Int32" Nullable="false" />
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" />
+          <Property Name="PriceDilivery" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Materials" Relationship="Self.FK_SupplyMaterial_Materials" FromRole="SupplyMaterial" ToRole="Materials" />
+          <NavigationProperty Name="Supply" Relationship="Self.FK_SupplyMaterial_Supply" FromRole="SupplyMaterial" ToRole="Supply" />
+        </EntityType>
+        <Association Name="FK_Client_Addresses">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdAddess" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supply_ApplicationToReception">
+          <End Role="ApplicationToReception" Type="Self.ApplicationToReception" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Supply" Type="Self.Supply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationToReception">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Supply">
+              <PropertyRef Name="IdApplicationOnReciption" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ObjectRent_Appointment">
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ObjectRent">
+              <PropertyRef Name="IdAppointment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Demonstration_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Demonstration" Type="Self.Demonstration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Demonstration">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rent_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DecommissionedMaterial_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DecommissionedMaterial" Type="Self.DecommissionedMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DecommissionedMaterial">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DecommissionedMaterial_Materials">
+          <End Role="Materials" Type="Self.Materials" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DecommissionedMaterial" Type="Self.DecommissionedMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DecommissionedMaterial">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Demonstration_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Demonstration" Type="Self.Demonstration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Demonstration">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Demonstration_ObjectRent">
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Demonstration" Type="Self.Demonstration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ObjectRent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Demonstration">
+              <PropertyRef Name="IdObjectRent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_TypeOfDocument">
+          <End Role="TypeOfDocument" Type="Self.TypeOfDocument" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfDocument">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="IdTypeOfDocument" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rent_Document">
+          <End Role="Document" Type="Self.Document" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="IdDocument" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="IdPost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rent_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SentMaterials_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SentMaterials" Type="Self.SentMaterials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SentMaterials">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rent_FormOfPayment">
+          <End Role="FormOfPayment" Type="Self.FormOfPayment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormOfPayment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="IdTypeOfPayment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materials_TypeOfMaterial">
+          <End Role="TypeOfMaterial" Type="Self.TypeOfMaterial" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Materials" Type="Self.Materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfMaterial">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Materials">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SentMaterials_Materials">
+          <End Role="Materials" Type="Self.Materials" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SentMaterials" Type="Self.SentMaterials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SentMaterials">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyMaterial_Materials">
+          <End Role="Materials" Type="Self.Materials" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SupplyMaterial" Type="Self.SupplyMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplyMaterial">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ObjectRent_Statement">
+          <End Role="Statement" Type="Self.Statement" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ObjectRent">
+              <PropertyRef Name="IdStatement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rent_ObjectRent">
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ObjectRent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="IdObjectRent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SentMaterials_ObjectRent">
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SentMaterials" Type="Self.SentMaterials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ObjectRent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SentMaterials">
+              <PropertyRef Name="IdObjectRent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_TypeOfReport">
+          <End Role="TypeOfReport" Type="Self.TypeOfReport" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfReport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="IdTypeReport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supply_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Supply" Type="Self.Supply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Supply">
+              <PropertyRef Name="IdSuppler" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyMaterial_Supply">
+          <End Role="Supply" Type="Self.Supply" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SupplyMaterial" Type="Self.SupplyMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supply">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplyMaterial">
+              <PropertyRef Name="IdSupply" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ArendatorTOPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="Self.Addresses" />
+          <EntitySet Name="ApplicationToReception" EntityType="Self.ApplicationToReception" />
+          <EntitySet Name="Appointment" EntityType="Self.Appointment" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="DecommissionedMaterial" EntityType="Self.DecommissionedMaterial" />
+          <EntitySet Name="Demonstration" EntityType="Self.Demonstration" />
+          <EntitySet Name="Document" EntityType="Self.Document" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="FormOfPayment" EntityType="Self.FormOfPayment" />
+          <EntitySet Name="Materials" EntityType="Self.Materials" />
+          <EntitySet Name="ObjectRent" EntityType="Self.ObjectRent" />
+          <EntitySet Name="Post" EntityType="Self.Post" />
+          <EntitySet Name="Rent" EntityType="Self.Rent" />
+          <EntitySet Name="Report" EntityType="Self.Report" />
+          <EntitySet Name="SentMaterials" EntityType="Self.SentMaterials" />
+          <EntitySet Name="Statement" EntityType="Self.Statement" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" />
+          <EntitySet Name="Supply" EntityType="Self.Supply" />
+          <EntitySet Name="TypeOfDocument" EntityType="Self.TypeOfDocument" />
+          <EntitySet Name="TypeOfMaterial" EntityType="Self.TypeOfMaterial" />
+          <EntitySet Name="TypeOfReport" EntityType="Self.TypeOfReport" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="SupplyMaterial" EntityType="Self.SupplyMaterial" />
+          <AssociationSet Name="FK_Client_Addresses" Association="Self.FK_Client_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supply_ApplicationToReception" Association="Self.FK_Supply_ApplicationToReception">
+            <End Role="ApplicationToReception" EntitySet="ApplicationToReception" />
+            <End Role="Supply" EntitySet="Supply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ObjectRent_Appointment" Association="Self.FK_ObjectRent_Appointment">
+            <End Role="Appointment" EntitySet="Appointment" />
+            <End Role="ObjectRent" EntitySet="ObjectRent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Demonstration_Client" Association="Self.FK_Demonstration_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Demonstration" EntitySet="Demonstration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rent_Client" Association="Self.FK_Rent_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DecommissionedMaterial_Employee" Association="Self.FK_DecommissionedMaterial_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="DecommissionedMaterial" EntitySet="DecommissionedMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DecommissionedMaterial_Materials" Association="Self.FK_DecommissionedMaterial_Materials">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="DecommissionedMaterial" EntitySet="DecommissionedMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Demonstration_Employee" Association="Self.FK_Demonstration_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Demonstration" EntitySet="Demonstration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Demonstration_ObjectRent" Association="Self.FK_Demonstration_ObjectRent">
+            <End Role="ObjectRent" EntitySet="ObjectRent" />
+            <End Role="Demonstration" EntitySet="Demonstration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_TypeOfDocument" Association="Self.FK_Document_TypeOfDocument">
+            <End Role="TypeOfDocument" EntitySet="TypeOfDocument" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rent_Document" Association="Self.FK_Rent_Document">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Post" Association="Self.FK_Employee_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_User" Association="Self.FK_Employee_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rent_Employee" Association="Self.FK_Rent_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_Employee" Association="Self.FK_Report_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SentMaterials_Employee" Association="Self.FK_SentMaterials_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="SentMaterials" EntitySet="SentMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rent_FormOfPayment" Association="Self.FK_Rent_FormOfPayment">
+            <End Role="FormOfPayment" EntitySet="FormOfPayment" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materials_TypeOfMaterial" Association="Self.FK_Materials_TypeOfMaterial">
+            <End Role="TypeOfMaterial" EntitySet="TypeOfMaterial" />
+            <End Role="Materials" EntitySet="Materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SentMaterials_Materials" Association="Self.FK_SentMaterials_Materials">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="SentMaterials" EntitySet="SentMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyMaterial_Materials" Association="Self.FK_SupplyMaterial_Materials">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="SupplyMaterial" EntitySet="SupplyMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ObjectRent_Statement" Association="Self.FK_ObjectRent_Statement">
+            <End Role="Statement" EntitySet="Statement" />
+            <End Role="ObjectRent" EntitySet="ObjectRent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rent_ObjectRent" Association="Self.FK_Rent_ObjectRent">
+            <End Role="ObjectRent" EntitySet="ObjectRent" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SentMaterials_ObjectRent" Association="Self.FK_SentMaterials_ObjectRent">
+            <End Role="ObjectRent" EntitySet="ObjectRent" />
+            <End Role="SentMaterials" EntitySet="SentMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_TypeOfReport" Association="Self.FK_Report_TypeOfReport">
+            <End Role="TypeOfReport" EntitySet="TypeOfReport" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supply_Supplier" Association="Self.FK_Supply_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Supply" EntitySet="Supply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyMaterial_Supply" Association="Self.FK_SupplyMaterial_Supply">
+            <End Role="Supply" EntitySet="Supply" />
+            <End Role="SupplyMaterial" EntitySet="SupplyMaterial" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ArendatorTOPModelContainer" CdmEntityContainer="ArendatorTOPEntities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.Addresses">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Home" ColumnName="Home" />
+                <ScalarProperty Name="Domophone" ColumnName="Domophone" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="Office" ColumnName="Office" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationToReception">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.ApplicationToReception">
+              <MappingFragment StoreEntitySet="ApplicationToReception">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="DateFormed" ColumnName="DateFormed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Appointment">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.Appointment">
+              <MappingFragment StoreEntitySet="Appointment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronimic" ColumnName="Patronimic" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+                <ScalarProperty Name="OGRN" ColumnName="OGRN" />
+                <ScalarProperty Name="KPP" ColumnName="KPP" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="IdAddess" ColumnName="IdAddess" />
+                <ScalarProperty Name="PathToCopyPassport" ColumnName="PathToCopyPassport" />
+                <ScalarProperty Name="PathToCopyContractOfDirector" ColumnName="PathToCopyContractOfDirector" />
+                <ScalarProperty Name="PathToCopyCertificateOfRegistrationOfaLegalEntity" ColumnName="PathToCopyCertificateOfRegistrationOfaLegalEntity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DecommissionedMaterial">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.DecommissionedMaterial">
+              <MappingFragment StoreEntitySet="DecommissionedMaterial">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+                <ScalarProperty Name="PathToDocument16" ColumnName="PathToDocument16" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Demonstration">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.Demonstration">
+              <MappingFragment StoreEntitySet="Demonstration">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="IdObjectRent" ColumnName="IdObjectRent" />
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronimic" ColumnName="Patronimic" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DateOfDemonstration" ColumnName="DateOfDemonstration" />
+                <ScalarProperty Name="TimeOfDemonstration" ColumnName="TimeOfDemonstration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Document">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdTypeOfDocument" ColumnName="IdTypeOfDocument" />
+                <ScalarProperty Name="NumDocument" ColumnName="NumDocument" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronimic" ColumnName="Patronimic" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
+                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormOfPayment">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.FormOfPayment">
+              <MappingFragment StoreEntitySet="FormOfPayment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materials">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.Materials">
+              <MappingFragment StoreEntitySet="Materials">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Fragility" ColumnName="Fragility" />
+                <ScalarProperty Name="Sizes" ColumnName="Sizes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObjectRent">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.ObjectRent">
+              <MappingFragment StoreEntitySet="ObjectRent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdAppointment" ColumnName="IdAppointment" />
+                <ScalarProperty Name="Square" ColumnName="Square" />
+                <ScalarProperty Name="PriceForOneMeter" ColumnName="PriceForOneMeter" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="IsConditioner" ColumnName="IsConditioner" />
+                <ScalarProperty Name="IsActual" ColumnName="IsActual" />
+                <ScalarProperty Name="IdStatement" ColumnName="IdStatement" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rent">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.Rent">
+              <MappingFragment StoreEntitySet="Rent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="IdObjectRent" ColumnName="IdObjectRent" />
+                <ScalarProperty Name="IdTypeOfPayment" ColumnName="IdTypeOfPayment" />
+                <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
+                <ScalarProperty Name="OwnerOfObjectRent" ColumnName="OwnerOfObjectRent" />
+                <ScalarProperty Name="Deposit" ColumnName="Deposit" />
+                <ScalarProperty Name="Bet" ColumnName="Bet" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Report">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.Report">
+              <MappingFragment StoreEntitySet="Report">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+                <ScalarProperty Name="IdTypeReport" ColumnName="IdTypeReport" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="TimeCreated" ColumnName="TimeCreated" />
+                <ScalarProperty Name="PathToReport" ColumnName="PathToReport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SentMaterials">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.SentMaterials">
+              <MappingFragment StoreEntitySet="SentMaterials">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="IdObjectRent" ColumnName="IdObjectRent" />
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+                <ScalarProperty Name="PathToDocument13" ColumnName="PathToDocument13" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="DateSent" ColumnName="DateSent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statement">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.Statement">
+              <MappingFragment StoreEntitySet="Statement">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supplier">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Patronimic" ColumnName="Patronimic" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="House" ColumnName="House" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supply">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.Supply">
+              <MappingFragment StoreEntitySet="Supply">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdSuppler" ColumnName="IdSuppler" />
+                <ScalarProperty Name="IdApplicationOnReciption" ColumnName="IdApplicationOnReciption" />
+                <ScalarProperty Name="Formed" ColumnName="Formed" />
+                <ScalarProperty Name="PathToDocument" ColumnName="PathToDocument" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfDocument">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.TypeOfDocument">
+              <MappingFragment StoreEntitySet="TypeOfDocument">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfMaterial">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.TypeOfMaterial">
+              <MappingFragment StoreEntitySet="TypeOfMaterial">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfReport">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.TypeOfReport">
+              <MappingFragment StoreEntitySet="TypeOfReport">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupplyMaterial">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.SupplyMaterial">
+              <MappingFragment StoreEntitySet="SupplyMaterial">
+                <ScalarProperty Name="IdSupply" ColumnName="IdSupply" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="PriceDilivery" ColumnName="PriceDilivery" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
