@@ -17,7 +17,6 @@ namespace ArendatorTOP
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Client()
         {
-            this.Addresses = new HashSet<Addresses>();
             this.Demonstration = new HashSet<Demonstration>();
             this.Rent = new HashSet<Rent>();
         }
@@ -34,8 +33,7 @@ namespace ArendatorTOP
         public string PathToCopyContractOfDirector { get; set; }
         public string PathToCopyCertificateOfRegistrationOfaLegalEntity { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Addresses> Addresses { get; set; }
+        public virtual Addresses Addresses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Demonstration> Demonstration { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

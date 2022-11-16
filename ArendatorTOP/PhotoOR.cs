@@ -14,16 +14,10 @@ namespace ArendatorTOP
     
     public partial class PhotoOR
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PhotoOR()
-        {
-            this.ObjectRent = new HashSet<ObjectRent>();
-        }
-    
         public int Id { get; set; }
+        public int IdObject { get; set; }
         public string Path { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ObjectRent> ObjectRent { get; set; }
+        public virtual ObjectRent ObjectRent { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace ArendatorTOP
         public ObjectRent()
         {
             this.Demonstration = new HashSet<Demonstration>();
+            this.PhotoOR = new HashSet<PhotoOR>();
             this.Rent = new HashSet<Rent>();
             this.SentMaterials = new HashSet<SentMaterials>();
         }
@@ -28,13 +29,13 @@ namespace ArendatorTOP
         public decimal PriceForOneMeter { get; set; }
         public int Floor { get; set; }
         public int IdStatement { get; set; }
-        public int IdPhoto { get; set; }
     
         public virtual Appointment Appointment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Demonstration> Demonstration { get; set; }
-        public virtual PhotoOR PhotoOR { get; set; }
         public virtual Statement Statement { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhotoOR> PhotoOR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rent> Rent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

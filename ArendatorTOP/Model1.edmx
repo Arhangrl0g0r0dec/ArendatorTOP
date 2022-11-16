@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Street" Type="text" Nullable="false" />
           <Property Name="Home" Type="text" Nullable="false" />
           <Property Name="Domophone" Type="text" />
@@ -38,7 +38,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Patronimic" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -126,13 +126,13 @@
           <Property Name="PriceForOneMeter" Type="decimal" Precision="6" Scale="3" Nullable="false" />
           <Property Name="Floor" Type="int" Nullable="false" />
           <Property Name="IdStatement" Type="int" Nullable="false" />
-          <Property Name="IdPhoto" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PhotoOR">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdObject" Type="int" Nullable="false" />
           <Property Name="Path" Type="text" Nullable="false" />
         </EntityType>
         <EntityType Name="Post">
@@ -262,13 +262,13 @@
           <End Role="Client" Type="Self.Client" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Addresses">
-              <PropertyRef Name="IdClient" />
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -426,20 +426,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ObjectRent_PhotoOR">
-          <End Role="PhotoOR" Type="Self.PhotoOR" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PhotoOR">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ObjectRent">
-              <PropertyRef Name="IdPhoto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ObjectRent_Statement">
           <End Role="Statement" Type="Self.Statement" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -451,6 +437,20 @@
             </Principal>
             <Dependent Role="ObjectRent">
               <PropertyRef Name="IdStatement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhotoOR_ObjectRent">
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PhotoOR" Type="Self.PhotoOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ObjectRent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhotoOR">
+              <PropertyRef Name="IdObject" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -717,13 +717,13 @@
             <End Role="Appointment" EntitySet="Appointment" />
             <End Role="ObjectRent" EntitySet="ObjectRent" />
           </AssociationSet>
-          <AssociationSet Name="FK_ObjectRent_PhotoOR" Association="Self.FK_ObjectRent_PhotoOR">
-            <End Role="PhotoOR" EntitySet="PhotoOR" />
-            <End Role="ObjectRent" EntitySet="ObjectRent" />
-          </AssociationSet>
           <AssociationSet Name="FK_ObjectRent_Statement" Association="Self.FK_ObjectRent_Statement">
             <End Role="Statement" EntitySet="Statement" />
             <End Role="ObjectRent" EntitySet="ObjectRent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhotoOR_ObjectRent" Association="Self.FK_PhotoOR_ObjectRent">
+            <End Role="ObjectRent" EntitySet="ObjectRent" />
+            <End Role="PhotoOR" EntitySet="PhotoOR" />
           </AssociationSet>
           <AssociationSet Name="FK_Rent_Client" Association="Self.FK_Rent_Client">
             <End Role="Client" EntitySet="Client" />
@@ -787,7 +787,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Street" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Home" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Domophone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -819,7 +819,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -929,11 +929,10 @@
           <Property Name="PriceForOneMeter" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
           <Property Name="Floor" Type="Int32" Nullable="false" />
           <Property Name="IdStatement" Type="Int32" Nullable="false" />
-          <Property Name="IdPhoto" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Appointment" Relationship="Self.FK_ObjectRent_Appointment" FromRole="ObjectRent" ToRole="Appointment" />
           <NavigationProperty Name="Demonstration" Relationship="Self.FK_Demonstration_ObjectRent" FromRole="ObjectRent" ToRole="Demonstration" />
-          <NavigationProperty Name="PhotoOR" Relationship="Self.FK_ObjectRent_PhotoOR" FromRole="ObjectRent" ToRole="PhotoOR" />
           <NavigationProperty Name="Statement" Relationship="Self.FK_ObjectRent_Statement" FromRole="ObjectRent" ToRole="Statement" />
+          <NavigationProperty Name="PhotoOR" Relationship="Self.FK_PhotoOR_ObjectRent" FromRole="ObjectRent" ToRole="PhotoOR" />
           <NavigationProperty Name="Rent" Relationship="Self.FK_Rent_ObjectRent" FromRole="ObjectRent" ToRole="Rent" />
           <NavigationProperty Name="SentMaterials" Relationship="Self.FK_SentMaterials_ObjectRent" FromRole="ObjectRent" ToRole="SentMaterials" />
         </EntityType>
@@ -942,8 +941,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdObject" Type="Int32" Nullable="false" />
           <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ObjectRent" Relationship="Self.FK_ObjectRent_PhotoOR" FromRole="PhotoOR" ToRole="ObjectRent" />
+          <NavigationProperty Name="ObjectRent" Relationship="Self.FK_PhotoOR_ObjectRent" FromRole="PhotoOR" ToRole="ObjectRent" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -1092,13 +1092,13 @@
           <End Role="Client" Type="Self.Client" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Addresses">
-              <PropertyRef Name="IdClient" />
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1368,20 +1368,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ObjectRent_PhotoOR">
-          <End Role="PhotoOR" Type="Self.PhotoOR" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PhotoOR">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ObjectRent">
-              <PropertyRef Name="IdPhoto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ObjectRent_Statement">
           <End Role="Statement" Type="Self.Statement" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1393,6 +1379,20 @@
             </Principal>
             <Dependent Role="ObjectRent">
               <PropertyRef Name="IdStatement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhotoOR_ObjectRent">
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PhotoOR" Type="Self.PhotoOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ObjectRent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhotoOR">
+              <PropertyRef Name="IdObject" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1571,13 +1571,13 @@
             <End Role="Materials" EntitySet="Materials" />
             <End Role="SupplyMaterial" EntitySet="SupplyMaterial" />
           </AssociationSet>
-          <AssociationSet Name="FK_ObjectRent_PhotoOR" Association="Self.FK_ObjectRent_PhotoOR">
-            <End Role="PhotoOR" EntitySet="PhotoOR" />
-            <End Role="ObjectRent" EntitySet="ObjectRent" />
-          </AssociationSet>
           <AssociationSet Name="FK_ObjectRent_Statement" Association="Self.FK_ObjectRent_Statement">
             <End Role="Statement" EntitySet="Statement" />
             <End Role="ObjectRent" EntitySet="ObjectRent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhotoOR_ObjectRent" Association="Self.FK_PhotoOR_ObjectRent">
+            <End Role="ObjectRent" EntitySet="ObjectRent" />
+            <End Role="PhotoOR" EntitySet="PhotoOR" />
           </AssociationSet>
           <AssociationSet Name="FK_Rent_ObjectRent" Association="Self.FK_Rent_ObjectRent">
             <End Role="ObjectRent" EntitySet="ObjectRent" />
@@ -1736,7 +1736,6 @@
                 <ScalarProperty Name="PriceForOneMeter" ColumnName="PriceForOneMeter" />
                 <ScalarProperty Name="Floor" ColumnName="Floor" />
                 <ScalarProperty Name="IdStatement" ColumnName="IdStatement" />
-                <ScalarProperty Name="IdPhoto" ColumnName="IdPhoto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1744,6 +1743,7 @@
             <EntityTypeMapping TypeName="ArendatorTOPModel.PhotoOR">
               <MappingFragment StoreEntitySet="PhotoOR">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdObject" ColumnName="IdObject" />
                 <ScalarProperty Name="Path" ColumnName="Path" />
               </MappingFragment>
             </EntityTypeMapping>
