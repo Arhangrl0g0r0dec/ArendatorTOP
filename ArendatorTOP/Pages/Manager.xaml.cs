@@ -1,4 +1,4 @@
-﻿using ArendatorTOP.Pages;
+﻿using ArendatorTOP.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,17 +14,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ArendatorTOP
+namespace ArendatorTOP.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Manager.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Manager : Page
     {
-        public MainWindow()
+        public Manager()
         {
             InitializeComponent();
-            Container.Navigate(new Autorisation(this));
+        }
+
+        private void btnClient_Click(object sender, RoutedEventArgs e)
+        {
+            ContainerFrame.Navigate(new ClientsForEditPage());
         }
     }
 }

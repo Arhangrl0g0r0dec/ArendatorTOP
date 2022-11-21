@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArendatorTOP"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="1200" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,21 +18,25 @@
             <RowDefinition Height="80"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Style="{DynamicResource Header}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="35"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="203"/>
-                <ColumnDefinition Width="166"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="256"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Welcome to!" FontFamily="Corbel" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="43" Width="187"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="ArendatorTOP"  FontFamily="Corbel" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="43" Width="219"/>
-            <Image Source="Resource\Images\logo.png" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Margin="0,0,5,0"/>
-        </Grid>
+        <Border Background="Transparent" BorderThickness="0,0,0,1" BorderBrush="#463F3F">
+            <Grid Style="{DynamicResource Header}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="203"/>
+                    <ColumnDefinition Width="166"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="256"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Welcome to!" FontFamily="Corbel" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="43" Width="187"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="ArendatorTOP"  FontFamily="Corbel" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="43" Width="219"/>
+                <Image Source="Resource\Images\logo.png" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Margin="0,0,5,0"/>
+
+            </Grid>
+        </Border>
+        
         <Frame x:Name="Container" NavigationUIVisibility="Hidden" Grid.Row="1"/>
     </Grid>
 </Window>

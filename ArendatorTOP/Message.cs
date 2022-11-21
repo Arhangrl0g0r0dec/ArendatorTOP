@@ -12,16 +12,13 @@ namespace ArendatorTOP
     using System;
     using System.Collections.Generic;
     
-    public partial class Addresses
+    public partial class Message
     {
-        public int Id { get; set; }
-        public string Street { get; set; }
-        public string Home { get; set; }
-        public string Domophone { get; set; }
-        public int Floor { get; set; }
-        public string Office { get; set; }
-        public int IdClient { get; set; }
+        public int IdSender { get; set; }
+        public int IdRecipient { get; set; }
+        public string ContentMessage { get; set; }
     
-        public virtual Client Client { get; set; }
+        public virtual Employee Employee { get; set; }
+        public virtual Employee Employee1 { get; set; }
     }
 }

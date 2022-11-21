@@ -19,6 +19,8 @@ namespace ArendatorTOP
         {
             this.DecommissionedMaterial = new HashSet<DecommissionedMaterial>();
             this.Demonstration = new HashSet<Demonstration>();
+            this.Message = new HashSet<Message>();
+            this.Message1 = new HashSet<Message>();
             this.Rent = new HashSet<Rent>();
             this.Report = new HashSet<Report>();
             this.SentMaterials = new HashSet<SentMaterials>();
@@ -31,7 +33,6 @@ namespace ArendatorTOP
         public string PhoneNumber { get; set; }
         public string ContractNumber { get; set; }
         public int IdPost { get; set; }
-        public int IdUser { get; set; }
         public string PhotoPath { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -39,12 +40,16 @@ namespace ArendatorTOP
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Demonstration> Demonstration { get; set; }
         public virtual Post Post { get; set; }
-        public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Message> Message { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Message> Message1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rent> Rent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Report> Report { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SentMaterials> SentMaterials { get; set; }
+        public virtual User User { get; set; }
     }
 }

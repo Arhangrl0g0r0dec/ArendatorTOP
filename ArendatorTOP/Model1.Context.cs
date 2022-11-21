@@ -25,7 +25,6 @@ namespace ArendatorTOP
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Addresses> Addresses { get; set; }
         public virtual DbSet<ApplicationToReception> ApplicationToReception { get; set; }
         public virtual DbSet<Appointment> Appointment { get; set; }
         public virtual DbSet<Client> Client { get; set; }
@@ -48,6 +47,7 @@ namespace ArendatorTOP
         public virtual DbSet<TypeOfMaterial> TypeOfMaterial { get; set; }
         public virtual DbSet<TypeOfReport> TypeOfReport { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Message> Message { get; set; }
         public virtual DbSet<SupplyMaterial> SupplyMaterial { get; set; }
     }
 }

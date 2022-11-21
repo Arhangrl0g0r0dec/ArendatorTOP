@@ -1,16 +1,26 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:ArendatorTOP.Converters">
+    <converters:RelativeToFullPathConverter x:Key="relativToFullPathConverter">
+    </converters:RelativeToFullPathConverter>
+    <converters:GetAddressesConverter x:Key="getAddressConverter">
+    </converters:GetAddressesConverter>
     <Style x:Key="Header">
-        <Style.Resources>
-            <Style  TargetType="Border">
-                <Setter Property="BorderThickness" Value="1"/>
-            </Style>
-        </Style.Resources>
         <Setter Property="Control.Background" Value="#FBEBEB"/>
     </Style>
     <Style x:Key="MainBack">
         <Setter Property="ItemsControl.Background" Value="#FBEBEB"/>
         <Setter Property="Control.FontFamily" Value="Corbel"/>
+    </Style>
+
+    <Style TargetType="DataGrid">
+        <Setter Property="FontFamily" Value="Corbel"/>
+        <Setter Property="Background" Value="#FBEBEB"/>
+    </Style>
+
+    <Style TargetType="DataGridRow">
+        <Setter Property="Background" Value="#FBEBEB"/>
+        <Setter Property="BorderThickness" Value="0"/>
     </Style>
 
     <Style x:Key="PanelAuto">
@@ -24,6 +34,30 @@
         </Style.Resources>
     </Style>
 
+    <Style TargetType="ComboBox">
+        <Setter Property="Background" Value="#B2463F3F"/>
+    </Style>
+
+    <Style TargetType="DataGridCell">
+        <Style.Setters>
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style.Setters>
+    </Style>
+
+    <Style TargetType="DataGridColumnHeader">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridColumnHeader">
+                    <Border Height="40" Background="#B2463F3F">
+                        <TextBlock VerticalAlignment="Center" Foreground="White" TextAlignment="Center" FontWeight="Bold">
+                            <ContentPresenter></ContentPresenter>
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="RadiusText">
         <Style.Resources>
             <Style TargetType="Border">
@@ -32,17 +66,101 @@
         </Style.Resources>
     </Style>
 
-    <Style TargetType="Button">
+    <Style x:Key="Button" TargetType="Button">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="borderButton" Background="#463F3F" BorderThickness="1" CornerRadius="5">
+                    <Border x:Name="borderButton" Background="#463F3F" BorderThickness="2" CornerRadius="5">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="borderButton" Property="BorderBrush" Value="#C67803"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="borderButton" Property="BorderBrush" Value="Black"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonDelete" TargetType="Button">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="borderButton" Background="Transparent" BorderThickness="2" CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="borderButton" Property="BorderBrush" Value="#FF0000"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="borderButton" Property="BorderBrush" Value="Black"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button2" TargetType="Button">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="borderButton" Background="#463F3F" BorderThickness="2" CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="borderButton" Property="BorderBrush" Value="#CEBD22"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="borderButton" Property="BorderBrush" Value="Black"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button3" TargetType="Button">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="borderButton" Background="#463F3F" BorderThickness="2" CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="borderButton" Property="BorderBrush" Value="#ADFF00"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="borderButton" Property="BorderBrush" Value="Black"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button4" TargetType="Button">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="borderButton" Background="#463F3F" BorderThickness="2" CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="borderButton" Property="BorderBrush" Value="#FF0000"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="False">
                             <Setter TargetName="borderButton" Property="BorderBrush" Value="Black"/>
