@@ -21,14 +21,26 @@ namespace ArendatorTOP.Pages
     /// </summary>
     public partial class Manager : Page
     {
-        public Manager()
+        MainWindow mainWindow;
+        public Manager(MainWindow main)
         {
             InitializeComponent();
+            mainWindow = main;
         }
 
         private void btnClient_Click(object sender, RoutedEventArgs e)
         {
-            ContainerFrame.Navigate(new ClientsForEditPage());
+            ContainerFrame.Navigate(new ClientsForEditPage(mainWindow));
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Container.Navigate(new Autorisation(mainWindow));
+        }
+
+        private void btnObjectRent_Click(object sender, RoutedEventArgs e)
+        {
+            ContainerFrame.Navigate(new ObjectRent());
         }
     }
 }

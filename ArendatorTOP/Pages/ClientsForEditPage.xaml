@@ -23,19 +23,23 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="25"/>
-            <RowDefinition/>
+            <RowDefinition Height="331*"/>
+            <RowDefinition Height="34*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0">
-            <TextBlock Text="Поиск" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Text="" MaxLength="14" x:Name="searchBox" Style="{DynamicResource RadiusText}" Grid.Row="0" Width="200" Height="24" HorizontalAlignment="Left" Margin="20,0,0,0" TextChanged="searchBox_TextChanged"/>
-            <Button Width="24" Height="24"  Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Margin="20,0,0,0">
-                <Button.Content>
-                    <Image Source="/Resource/Images/Filter.png"/>
-                </Button.Content>
-            </Button>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" HorizontalAlignment="Left">
+                <TextBlock Text="Поиск" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Text="" MaxLength="14" x:Name="searchBox" Style="{DynamicResource RadiusText}" Grid.Row="0" Width="200" Height="24" HorizontalAlignment="Left" Margin="20,0,0,0" TextChanged="searchBox_TextChanged"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <CheckBox x:Name="chekBoxRent"  Content="Арендуют сейчас" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" Click="chekBoxRent_Click"/>
+            </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="380,0,0,0">
             <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0">
+            <Button Style="{DynamicResource Button3}" x:Name="btnAdd" Content="Добавить" Click="btnAdd_Click"/>
         </StackPanel>
         <Border Grid.Row="2" CornerRadius="10">
             <DataGrid IsReadOnly="True" CanUserSortColumns="False" ItemsSource="{Binding Clients}" x:Name="dataClients" MinRowHeight="20" AutoGenerateColumns="False">
@@ -43,7 +47,7 @@
                     <DataGridTemplateColumn Width="50" MaxWidth="50">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Style="{DynamicResource ButtonDelete}" x:Name="btnEdit" Width="20" Height="25" Margin="5,5,5,5">
+                                <Button Style="{DynamicResource ButtonDelete}" x:Name="btnEdit" Width="20" Height="25" Margin="5,5,5,5" Click="btnEdit_Click">
                                     <Image Source="\Resource\Images\DELETE.png"/>
                                 </Button>
                             </DataTemplate>

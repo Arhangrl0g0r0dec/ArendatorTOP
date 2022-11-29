@@ -10,6 +10,7 @@ namespace ArendatorTOP.ViewModel
 {
     class ClientsViewModel : ViewModelBase
     {
+        public Client client { get; set; }
         public string Address { get; private set; }
         public ObservableCollection<Client> Clients { get; set; }
         public List<Client> clients { get; set; }
@@ -22,7 +23,6 @@ namespace ArendatorTOP.ViewModel
             try 
             {
                 Clients = new ObservableCollection<Client>(DBModel.GetContext().Client);
-                GetAddress();
             }
             catch(Exception ex) 
             {
@@ -31,9 +31,25 @@ namespace ArendatorTOP.ViewModel
             return Clients;
         }
 
-        public void GetAddress()
+        public bool CheckClient(Client SelectedClient)
         {
+            client = SelectedClient;
+            var r = DBModel.GetContext().Rent.Where(p => p.IdClient == SelectedClient.Id && p.DateEnd > DateTime.Now).ToList();
+            
+            if(r.Count != 0) 
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
+        }
 
+        public void DeleteClient() 
+        {
+            DBModel.GetContext().Client.Remove(client);
+            DBModel.GetContext().SaveChanges();
         }
 
         public List<Client> Search(string text)
@@ -59,6 +75,12 @@ namespace ArendatorTOP.ViewModel
                 clients = DBModel.GetContext().Client.ToList();
                 return clients;
             }
+        }
+
+        public List<Client> ActiveClients() 
+        {
+            var Client = DBModel.GetContext().Rent.Where(p => p.DateEnd > DateTime.Now).Select(p=>p.Client).ToList();
+            return Client;
         }
     }
 }

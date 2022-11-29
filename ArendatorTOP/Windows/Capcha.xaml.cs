@@ -33,7 +33,7 @@ namespace ArendatorTOP
         {
             if ((DataContext as AutorizationViewModel).CheckCapcha(textBoxCapcha.Text)) 
             {
-                mainWindow.Container.Navigate(new Manager());
+                mainWindow.Container.Navigate(new Manager(mainWindow));
                 Close();
             }
             else

@@ -1,0 +1,110 @@
+﻿<Window x:Class="ArendatorTOP.Windows.AddClient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArendatorTOP.Windows"
+        mc:Ignorable="d"
+        Title="AddClient" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen"
+        xmlns:viewModel="clr-namespace:ArendatorTOP.ViewModel">
+    <Window.DataContext>
+        <viewModel:AddClientViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resource/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Style="{DynamicResource MainBack}" HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="49"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock FontSize="28" Text="{Binding Title}" TextAlignment="Center" TextWrapping="NoWrap" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock FontSize="20" Text="Юридический адрес" TextAlignment="Center" TextWrapping="NoWrap" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="375">
+            <TextBlock Text="Имя" Margin="20,0,5,0" Width="50"/>
+            <TextBox Style="{DynamicResource RadiusText}" x:Name="textName" Width="300"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="375">
+            <TextBlock Text="Фамилия" Margin="20,0,5,0" Width="50"/>
+            <TextBox x:Name="textSurname" Width="300" Style="{DynamicResource RadiusText}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="375">
+            <TextBlock Text="Отчество" Margin="20,0,5,0" Width="50"/>
+            <TextBox x:Name="textPatronimic" Width="300" Style="{DynamicResource RadiusText}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="375">
+            <TextBlock Text="ИНН" Margin="20,0,5,0" Width="50"/>
+            <TextBox x:Name="textINN" Width="300" Style="{DynamicResource RadiusText}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="375">
+            <TextBlock Text="ОГРН" Margin="20,0,5,0" Width="50"/>
+            <TextBox x:Name="textOGRN" Width="300" Style="{DynamicResource RadiusText}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="375">
+            <TextBlock Text="КПП" Margin="20,0,5,0" Width="50"/>
+            <TextBox x:Name="textKPP" Width="300" Style="{DynamicResource RadiusText}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="375">
+            <TextBlock Text="E-mail" Margin="20,0,5,0" Width="50"/>
+            <TextBox x:Name="textEmail" Width="300" Style="{DynamicResource RadiusText}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="375">
+            <TextBlock Text="Телефон" Margin="20,0,5,0" Width="50"/>
+            <TextBox x:Name="textPhone" Width="300" Style="{DynamicResource RadiusText}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="375">
+            <TextBlock Text="Улица" Margin="20,0,5,0" Width="50"/>
+            <TextBox x:Name="textStreet" Width="300" Style="{DynamicResource RadiusText}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="375">
+            <TextBlock Text="Дом" Margin="20,0,5,0" Width="50"/>
+            <TextBox x:Name="textHome" Width="300" Style="{DynamicResource RadiusText}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="375">
+            <TextBlock Text="Этаж" Margin="20,0,5,0" Width="50"/>
+            <TextBox x:Name="textFloor" Width="300" Style="{DynamicResource RadiusText}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="375">
+            <TextBlock Text="Офис" Margin="20,0,5,0" Width="50"/>
+            <TextBox x:Name="textOffice" Width="300" Style="{DynamicResource RadiusText}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="375">
+            <TextBlock Text="Домофон" Margin="20,0,5,0" Width="50"/>
+            <TextBox x:Name="textDomophone" Width="300" Style="{DynamicResource RadiusText}"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="7" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Left" Width="250">
+            <Button Style="{DynamicResource Button}" Content="Фото паспорта" Width="250" Height="20" HorizontalAlignment="Left" x:Name="btnAddPassport" Click="btnAddPassport_Click"/>
+            <Button x:Name="btnAddRegistrationSertificate" Style="{DynamicResource Button}" Content="Фото свидетельтсва регистрации юр. лица" Width="250" Height="20" Margin="0,5,0,0" Click="btnAddRegistrationSertificate_Click"/>
+            <Button x:Name="btnAddSertificateOfDirector" Width="250" Height="34" Style="{DynamicResource Button}" Margin="0,5,0,0" Click="btnAddSertificateOfDirector_Click">
+                <TextBlock TextWrapping="Wrap" Text="Фото свидетельства подтверждающего полномочия руководителя" TextAlignment="Center">
+                </TextBlock>
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Style="{DynamicResource Button3}" Content="Сохранить" Width="80" x:Name="btnSave" Click="btnSave_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center">
+            <Button Style="{DynamicResource Button4}" Content="Отмена" Width="80" Margin="20,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
