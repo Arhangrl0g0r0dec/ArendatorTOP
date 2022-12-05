@@ -1,4 +1,5 @@
-﻿using BitMiracle.Docotic.Pdf;
+﻿using ArendatorTOP.Windows;
+using BitMiracle.Docotic.Pdf;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace ArendatorTOP.ViewModel
 {
      class AddClientViewModel : ViewModelBase
     {
+        public bool IsEdit { get; set; }
         public string FilePath { get; set; }
         public string Path { get; set; }
         public string FileName { get; set; }
@@ -23,13 +25,15 @@ namespace ArendatorTOP.ViewModel
         public const string PassportDir = "Архив/Документы клиента/Паспорт/";
         public const string CertificateDir = "Архив/Документы клиента/Свидетельства/";
         public const string AttorneyDir = "Архив/Документы клиента/Доверенности/";
-        public AddClientViewModel() 
+
+        public AddClientViewModel()
         {
-            Title = "Добавление клиента";
+            
         }
         /// <summary>
-        /// Сделать сохранение файла в формате pdf по указанному пути
+        /// Открытие диалогового окна для выбора изображения, которое после будет передаваться на конвертацию в PDF-файл
         /// </summary>
+        /// <param name="selectedButton">Выбранная кнопка, на основе которой программа понимает в какую папку сохранить файл</param>
         /// <returns></returns>
         public bool FileDialog(string selectedButton)
         {
@@ -41,16 +45,6 @@ namespace ArendatorTOP.ViewModel
             FileName = ofd.SafeFileName;
             return ConverterToPDF(selectedButton, FilePath, FileName);
         }
-
-        /// <summary>
-        /// Метод конвертации изображения документа в PDF-file
-        /// необходимо додумать проверку на событие когда файл не был выбран
-        /// </summary>
-        /// <param name="selectedButton"></param>
-        /// <param name="images"></param>
-        /// <param name="pdfName"></param>
-        /// <returns></returns>
-        /// 
 
         public bool ConverterToPDF(string selectedButton, string images, string pdfName)
         {
@@ -127,6 +121,17 @@ namespace ArendatorTOP.ViewModel
             }
             catch (Exception ex) 
             { 
+            }
+        }
+
+        public void EditClient(Client client)
+        {
+            try
+            {
+                DBModel.GetContext().SaveChanges();
+            }
+            catch (Exception ex)
+            {
             }
         }
     }

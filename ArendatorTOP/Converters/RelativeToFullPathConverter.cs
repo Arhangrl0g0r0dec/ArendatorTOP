@@ -16,7 +16,6 @@ namespace ArendatorTOP.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string path = value as string;
-            Console.WriteLine(path);
             if (String.IsNullOrWhiteSpace(path)) return "/Resource/Images/no_foto.jpg";
             try 
             {

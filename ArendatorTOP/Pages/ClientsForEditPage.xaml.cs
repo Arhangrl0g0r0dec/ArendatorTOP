@@ -35,10 +35,33 @@ namespace ArendatorTOP.Pages
             dataClients.ItemsSource = (DataContext as ClientsViewModel).Search(searchBox.Text);
         }
 
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            AddClient addClient = new AddClient(this, null);
+            addClient.Owner = mainWindow;
+            addClient.Show();
+        }
+
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            var client = (Client)dataClients.SelectedItem;
+            AddClient addClient = new AddClient(this, client);
+            addClient.Owner = mainWindow;
+            addClient.Show();
+        }
+
+        private void chekBoxRent_Click(object sender, RoutedEventArgs e)
+        {
+            if ((bool)chekBoxRent.IsChecked)
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).ActiveClients();
+            else if (!(bool)chekBoxRent.IsChecked)
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
             var SelectedClients = (Client)dataClients.SelectedItem;
-            
+
             MessageBoxResult boxResult = new MessageBoxResult();
 
             if ((DataContext as ClientsViewModel).CheckClient(SelectedClients))
@@ -49,36 +72,32 @@ namespace ArendatorTOP.Pages
             {
                 boxResult = MessageBox.Show($"Вы уверены что хотите удалить клиента {SelectedClients.Name + " " + SelectedClients.Surname + " " + SelectedClients.Patronimic}", "Удалить?", MessageBoxButton.YesNo);
             }
-            
-            if(boxResult == MessageBoxResult.Yes)
+
+            if (boxResult == MessageBoxResult.Yes)
             {
                 (DataContext as ClientsViewModel).DeleteClient();
-            
+
                 MessageBox.Show("Клиент успешно удален!");
-                
+
                 dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
             }
-            else if(boxResult == MessageBoxResult.No)
+            else if (boxResult == MessageBoxResult.No)
             {
                 SelectedClients = null;
                 dataClients.SelectedItem = null;
             }
         }
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            AddClient addClient = new AddClient(this);
-            addClient.Owner = mainWindow;
-            addClient.Show();
-        }
+        
 
-
-        private void chekBoxRent_Click(object sender, RoutedEventArgs e)
+        private void comboBoxDoc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if ((bool)chekBoxRent.IsChecked)
-                dataClients.ItemsSource = (DataContext as ClientsViewModel).ActiveClients();
-            else if (!(bool)chekBoxRent.IsChecked)
-                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+        //    int index = (sender as ComboBox).SelectedIndex;
+
+        //    if((DataContext as ClientsViewModel).OpenDoc((sender as ComboBox).DataContext as Client, index) != null) 
+        //    {
+        //        MessageBox.Show((DataContext as ClientsViewModel).OpenDoc((sender as ComboBox).DataContext as Client, index));
+        //    }
         }
     }
 }

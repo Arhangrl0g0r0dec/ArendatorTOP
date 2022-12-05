@@ -10,16 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ArendatorTOP.Windows
+namespace ArendatorTOP.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для EditClient.xaml
+    /// Логика взаимодействия для PdfPage.xaml
     /// </summary>
-    public partial class EditClient : Window
+    public partial class PdfPage : Page
     {
-        public EditClient()
+        //https://blogs.u2u.be/lander/post/2018/01/23/Creating-a-PDF-Viewer-in-WPF-using-Windows-10-APIs как сделать средство просмотра pdf в программе
+        public PdfPage()
         {
             InitializeComponent();
         }

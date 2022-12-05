@@ -25,12 +25,11 @@ namespace ArendatorTOP.Pages
         {
             if ((DataContext as AutorizationViewModel).LogIn()) 
             {
-                //capcha = new Capcha(window);
-                //capcha.Owner = window;
-                //capcha.Show();
-                //capcha.DataContext = DataContext;
-                //(DataContext as AutorizationViewModel).GetCapcha();
-                window.Container.Navigate(new Manager(window));
+                capcha = new Capcha(window);
+                capcha.Owner = window;
+                capcha.Show();
+                capcha.DataContext = DataContext;
+                (DataContext as AutorizationViewModel).GetCapcha();
             }
             else
             {

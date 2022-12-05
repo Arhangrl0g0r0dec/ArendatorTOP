@@ -30,18 +30,6 @@
             <ColumnDefinition Width="340"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <!--<Border Name="_dqw" Background="Black" Grid.Column="0" Grid.Row="1" Width="100">
-            <Border.Triggers>
-                <EventTrigger RoutedEvent="Loaded">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="Width" From="100" To="150" Duration="0:0:5"></DoubleAnimation>
-                            <ColorAnimation Storyboard.TargetProperty="Background.Color" From="Black" To="Red" Duration="0:0:10"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Border.Triggers>
-        </Border>-->
         <Border Grid.Column="1" Grid.Row="1" CornerRadius="20" Style="{DynamicResource PanelAuto}">
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" Margin="0,15,0,0" FontSize="16" />

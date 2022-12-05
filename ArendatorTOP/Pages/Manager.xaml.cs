@@ -40,7 +40,12 @@ namespace ArendatorTOP.Pages
 
         private void btnObjectRent_Click(object sender, RoutedEventArgs e)
         {
-            ContainerFrame.Navigate(new ObjectRent());
+            ContainerFrame.Navigate(new ObjectRents());
+        }
+
+        private void btnRent_Click(object sender, RoutedEventArgs e)
+        {
+            ContainerFrame.Navigate(new Reports());
         }
     }
 }

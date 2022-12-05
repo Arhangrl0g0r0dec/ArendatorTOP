@@ -1,6 +1,7 @@
 ﻿using ArendatorTOP.Pages;
 using ArendatorTOP.ViewModel;
 using System;
+using System.Linq;
 using System.Text;
 using System.Windows;
 
@@ -12,10 +13,31 @@ namespace ArendatorTOP.Windows
     public partial class AddClient : Window
     {
         ClientsForEditPage ClientEditPage;
-        public AddClient(ClientsForEditPage clientsForEditPage)
+        Client SelectedClient { get; set; }
+        /// <summary>
+        /// Узнать как передать DataContext AddClientViewModel после того как данные для редактироваиня заполнены
+        /// </summary>
+        /// <param name="clientsForEditPage"></param>
+        /// <param name="client"></param>
+        public AddClient(ClientsForEditPage clientsForEditPage, Client client)
         {
             InitializeComponent();
+
             ClientEditPage = clientsForEditPage;
+
+            SelectedClient = client;
+
+            if(SelectedClient != null) 
+            {
+                textTitle.Text = "Редактировать";
+                DataContext = SelectedClient;
+            }
+            else 
+            {
+                textTitle.Text = "Добавить";
+                DataContext = new AddClientViewModel();
+            }
+            
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -46,37 +68,47 @@ namespace ArendatorTOP.Windows
             if (String.IsNullOrEmpty(textPhone.Text))
                 errors.AppendLine("Заполните номер телефона!");
 
-            if(errors.Length > 0) 
+            
+            
+            if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
             }
-            else if (errors.Length == 0) 
+            else if (errors.Length == 0)
             {
-                Client client = new Client()
+                if (DataContext == SelectedClient)
                 {
-                    Name = textName.Text,
-                    Surname = textSurname.Text,
-                    Patronimic = textPatronimic.Text,
-                    INN = textINN.Text,
-                    OGRN = textOGRN.Text,
-                    KPP = textKPP.Text,
-                    Mail = textEmail.Text,
-                    PathToCopyPassport = (DataContext as AddClientViewModel).GetPath(),
-                    PathToCopyCertificateOfRegistrationOfaLegalEntity = (DataContext as AddClientViewModel).GetPath(),
-                    PathToCopyContractOfDirector = (DataContext as AddClientViewModel).GetPath(),
-                    Street = textStreet.Text,
-                    Home = textHome.Text,
-                    Floor = textFloor.Text,
-                    Office = textOffice.Text,
-                    Domophone = textDomophone.Text,
-                    PhoneNumber = textPhone.Text
-                };
+                    DataContext = new AddClientViewModel();
+                    (DataContext as AddClientViewModel).EditClient(SelectedClient);
+                    this.Close();
+                }
+                else 
+                {
+                    Client client = new Client()
+                    {
+                        Name = textName.Text,
+                        Surname = textSurname.Text,
+                        Patronimic = textPatronimic.Text,
+                        INN = textINN.Text,
+                        OGRN = textOGRN.Text,
+                        KPP = textKPP.Text,
+                        Mail = textEmail.Text,
+                        PathToCopyPassport = (DataContext as AddClientViewModel).GetPath(),
+                        PathToCopyCertificateOfRegistrationOfaLegalEntity = (DataContext as AddClientViewModel).GetPath(),
+                        PathToCopyContractOfDirector = (DataContext as AddClientViewModel).GetPath(),
+                        Street = textStreet.Text,
+                        Home = textHome.Text,
+                        Floor = textFloor.Text,
+                        Office = textOffice.Text,
+                        Domophone = textDomophone.Text,
+                        PhoneNumber = textPhone.Text
+                    };
 
-                (DataContext as AddClientViewModel).AddClient(client);
-                this.Close();
-
-                ClientEditPage.dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
-                
+                    (DataContext as AddClientViewModel).AddClient(client);
+                    this.Close();
+                }
+                ClientEditPage.dataClients.ItemsSource = DBModel.GetContext().Client.ToList();
+                MessageBox.Show("Информация сохранена!");
             }
         }
 
@@ -98,7 +130,7 @@ namespace ArendatorTOP.Windows
 
         private void btnAddSertificateOfDirector_Click(object sender, RoutedEventArgs e)
         {
-            if ((DataContext as AddClientViewModel).FileDialog(btnAddSertificateOfDirector.Content.ToString()))
+            if ((DataContext as AddClientViewModel).FileDialog(text.Text.ToString()))
                 MessageBox.Show("Файл успешно сохранен!");
             else
                 MessageBox.Show("Не удалось сохранить файл, либо он не был выбран!");

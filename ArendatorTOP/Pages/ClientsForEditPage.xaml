@@ -47,7 +47,7 @@
                     <DataGridTemplateColumn Width="50" MaxWidth="50">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Style="{DynamicResource ButtonDelete}" x:Name="btnEdit" Width="20" Height="25" Margin="5,5,5,5" Click="btnEdit_Click">
+                                <Button Style="{DynamicResource ButtonDelete}" x:Name="btnDelete" Width="20" Height="25" Margin="5,5,5,5" Click="btnDelete_Click">
                                     <Image Source="\Resource\Images\DELETE.png"/>
                                 </Button>
                             </DataTemplate>
@@ -80,7 +80,7 @@
                     <DataGridTemplateColumn Header="Редактировать" MaxWidth="150" MinWidth="150">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Style="{DynamicResource Button}" x:Name="btnEdit" Width="120" Height="25" Content="Редактировать"/>
+                                <Button Style="{DynamicResource Button}" x:Name="btnEdit" Width="120" Height="25" Content="Редактировать" Click="btnEdit_Click"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -95,7 +95,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Border BorderThickness="2" CornerRadius="5">
-                                    <ComboBox x:Name="comboBoxDoc" Width="300" Height="25" Foreground="White">
+                                    <ComboBox x:Name="comboBoxDoc" Width="300" Height="25" Foreground="White" Style="{DynamicResource myComboBoxStyle}" SelectionChanged="comboBoxDoc_SelectionChanged">
                                         <ComboBoxItem Content="Ничего">
                                         </ComboBoxItem>
                                         <ComboBoxItem Content="Копия паспорта">

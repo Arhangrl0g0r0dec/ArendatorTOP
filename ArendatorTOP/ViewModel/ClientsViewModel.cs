@@ -1,6 +1,8 @@
-﻿using System;
+﻿using ArendatorTOP.Windows;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +11,8 @@ using System.Windows;
 namespace ArendatorTOP.ViewModel
 {
     class ClientsViewModel : ViewModelBase
-    {
-        public Client client { get; set; }
-        public string Address { get; private set; }
+    { 
+        public static Client client { get; set; }
         public ObservableCollection<Client> Clients { get; set; }
         public List<Client> clients { get; set; }
         public ClientsViewModel()
@@ -82,5 +83,39 @@ namespace ArendatorTOP.ViewModel
             var Client = DBModel.GetContext().Rent.Where(p => p.DateEnd > DateTime.Now).Select(p=>p.Client).ToList();
             return Client;
         }
+
+        //public string OpenDoc(Client client, int index)
+        //{
+        //    string path = "";
+
+        //    switch (index)
+        //    {
+        //        case 0:
+        //            break;
+        //        case 1:
+        //            path = client.PathToCopyPassport;
+        //            break;
+        //        case 2:
+        //            path = client.PathToCopyCertificateOfRegistrationOfaLegalEntity;
+        //            break;
+        //        case 3:
+        //            path = client.PathToCopyContractOfDirector;
+        //            break;
+        //    }
+
+        //    //if(path != "") 
+        //    //{
+        //    //    try 
+        //    //    {
+        //    //        St file = new File();
+        //    //    }
+        //    //    catch(Exception ex) 
+        //    //    {
+        //    //        return $"Ошибка! {ex}";
+        //    //    }
+        //    //}
+        //    //return null;
+        //}
+
     }
 }

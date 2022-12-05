@@ -6,7 +6,8 @@
     </converters:RelativeToFullPathConverter>
     <converters:GetAddressesConverter x:Key="getAddressConverter">
     </converters:GetAddressesConverter>
-    <viewModel:AddClientViewModel x:Key="viewModelAddClient"/>
+    <converters:GetAddressesConverter x:Key="getPhotoPath"/>
+    <converters:ReportConverter x:Key="repConverter"/>
     <Style x:Key="Header">
         <Setter Property="Control.Background" Value="#FBEBEB"/>
     </Style>
@@ -66,6 +67,20 @@
                                     <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="-90" RenderingBias="Performance" ShadowDepth="1"/>
                                 </Setter.Value>
                             </Setter>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter TargetName="_border" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="20" Opacity="0.5" Direction="-90" RenderingBias="Performance" ShadowDepth="1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="BorderBrush" Value="#B2463F3F"/>
+                            <Setter Property="BorderThickness" Value="1"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
