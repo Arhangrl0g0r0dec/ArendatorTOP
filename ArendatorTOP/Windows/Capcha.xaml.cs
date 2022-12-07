@@ -31,7 +31,7 @@ namespace ArendatorTOP
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
-            if ((DataContext as AutorizationViewModel).CheckCapcha(textBoxCapcha.Text)) 
+            if ((DataContext as AutorizationViewModel).CheckCapcha(textBoxCapcha.Text))
             {
                 mainWindow.Container.Navigate(new Manager(mainWindow));
                 Close();
@@ -41,7 +41,6 @@ namespace ArendatorTOP
                 MessageBox.Show("Неверный код!");
                 (DataContext as AutorizationViewModel).GetCapcha();
             }
-                
         }
     }
 }
