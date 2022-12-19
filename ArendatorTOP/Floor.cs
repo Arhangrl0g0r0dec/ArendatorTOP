@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ArendatorTOP
 {
     /// <summary>
-    /// Класс для удлбства фильтрации помещений по этажам
+    /// Класс этаж, для удобства фильтрации помещений по этажам
     /// </summary>
     class Floor
     {
