@@ -138,19 +138,19 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Width="380" Height="600">
+                        <Grid Width="380" Height="520">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="280">
+                                <RowDefinition Height="290">
                                 </RowDefinition>
-                                <RowDefinition Height="40">
+                                <RowDefinition Height="30">
                                 </RowDefinition>
-                                <RowDefinition Height="40">
+                                <RowDefinition Height="30">
                                 </RowDefinition>
-                                <RowDefinition Height="40">
+                                <RowDefinition Height="30">
                                 </RowDefinition>
-                                <RowDefinition Height="40">
+                                <RowDefinition Height="30">
                                 </RowDefinition>
-                                <RowDefinition Height="40">
+                                <RowDefinition Height="30">
                                 </RowDefinition>
                                 <RowDefinition Height="40">
                                 </RowDefinition>
@@ -169,9 +169,9 @@
                                     </Button.Content>
                                 </Button>
                             </StackPanel>
-                            <StackPanel Orientation="Vertical" Width="380" Height="280" Margin="20">
+                            <StackPanel Orientation="Vertical" Width="380" Height="280" Margin="5,20,5,5" >
                                 <!--Область отображения изображений-->
-                                <ListBox x:Name="test" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Padding="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalContentAlignment="Stretch" ItemsSource="{Binding PhotoOR}" SelectedIndex="0" Width="380" Height="250" MouseMove="test_MouseMove" MouseLeave="test_MouseLeave">
+                                <ListBox x:Name="test" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Padding="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalContentAlignment="Stretch" ItemsSource="{Binding PhotoOR}" SelectedIndex="0" Width="380" Height="250" MouseMove="test_MouseMove" MouseLeave="test_MouseLeave" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <Grid></Grid>
@@ -200,7 +200,7 @@
                                     </ListBox.ItemContainerStyle>
                                 </ListBox>
                                 <!--Область отображения кружочков-->
-                                <ListBox SelectedIndex="{Binding ElementName=test, Path=SelectedIndex}" BorderThickness="0" ItemsSource="{Binding PhotoOR}" Width="auto" Height="24">
+                                <ListBox SelectedIndex="{Binding ElementName=test, Path=SelectedIndex}" BorderThickness="0" ItemsSource="{Binding PhotoOR}" Width="auto" Height="12">
                                     <!--Значение SelectedIndex будем брать у ListBox с изображениями.-->
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
@@ -240,8 +240,8 @@
                             <TextBlock Grid.Row="3" Text="{Binding PriceForOneMeter, StringFormat=Стоимость за кв.метр: {0} руб.}" FontSize="16" Margin="5,0,0,0"/>
                             <TextBlock Grid.Row="4" Text="{Binding Floor, StringFormat=Этаж: {0}}" FontSize="16" Margin="5,0,0,0"/>
                             <TextBlock Grid.Row="5" Text="{Binding Statement.Title, StringFormat=Состояние: {0}}" FontSize="16" Margin="5,0,0,0"/>
-                            <Button Grid.Row="6" x:Name="btnDetail" Content="Подробнее" FontSize="16" Style="{DynamicResource Button}" Width="100" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <Button Grid.Row="7" x:Name="btnSheme" Content="Посмотреть на схеме" FontSize="16" Style="{DynamicResource Button}" Width="100" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Button Grid.Row="6" x:Name="btnDetail" Content="Подробнее" FontSize="16" Style="{DynamicResource Button}" Width="180" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Button Grid.Row="7" x:Name="btnSheme" Content="Посмотреть на схеме" FontSize="16" Style="{DynamicResource Button}" Width="180" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

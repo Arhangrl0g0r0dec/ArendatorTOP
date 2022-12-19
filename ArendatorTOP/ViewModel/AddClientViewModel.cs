@@ -26,9 +26,11 @@ namespace ArendatorTOP.ViewModel
         public const string CertificateDir = "Архив/Документы клиента/Свидетельства/";
         public const string AttorneyDir = "Архив/Документы клиента/Доверенности/";
 
+        public string[] PathToFiles { get; set;}
+
         public AddClientViewModel()
         {
-            
+            PathToFiles = new string[3] { "", "", "" };
         }
         /// <summary>
         /// Открытие диалогового окна для выбора изображения, которое после будет передаваться на конвертацию в PDF-файл
@@ -43,10 +45,10 @@ namespace ArendatorTOP.ViewModel
             ofd.ShowDialog();
             FilePath = ofd.FileName;
             FileName = ofd.SafeFileName;
-            return ConverterToPDF(selectedButton, FilePath, FileName);
+            return ConverterToPDF(selectedButton, FilePath);
         }
 
-        public bool ConverterToPDF(string selectedButton, string images, string pdfName)
+        public bool ConverterToPDF(string selectedButton, string images)
         {
             using (PdfDocument pdf = new PdfDocument())
             {
@@ -75,14 +77,17 @@ namespace ArendatorTOP.ViewModel
                     if (selectedButton == "Фото паспорта")
                     {
                         Path = PassportDir + hashDate + ".pdf";
+                        PathToFiles[0] = Path;
                     }
                     else if (selectedButton == "Фото свидетельтсва регистрации юр. лица")
                     {
                         Path = CertificateDir + hashDate + ".pdf";
+                        PathToFiles[1] = Path;
                     }
                     else if (selectedButton == "Фото свидетельства подтверждающего полномочия руководителя")
                     {
                         Path = AttorneyDir + hashDate + ".pdf";
+                        PathToFiles[2] = Path;
                     }
 
                     pdf.Save(Path);
@@ -99,11 +104,16 @@ namespace ArendatorTOP.ViewModel
             }
         }
 
-        public string GetPath() 
+        public string GetPath(int i) 
         {
-            return Path;
+            return PathToFiles[i];
         }
-
+        
+        /// <summary>
+        /// В данный момент этот метод не испоьзуется, его суть заключается в получении хеша от зрначения времени сохранения файла
+        /// </summary>
+        /// <param name="value">Параметр для получения данных о времени сохранения, который преобразуется в уникальное значение имени</param>
+        /// <returns></returns>
         public static String GetSha256Hash(string value)
         {
             using(SHA256 sha256 = SHA256.Create())

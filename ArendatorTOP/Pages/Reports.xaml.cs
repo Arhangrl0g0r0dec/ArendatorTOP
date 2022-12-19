@@ -38,8 +38,6 @@ namespace ArendatorTOP.Pages
             
                 await Task.Run(() =>
                 {
-
-
                     Word.Application application = new Word.Application();
 
                     try

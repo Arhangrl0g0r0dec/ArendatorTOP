@@ -70,7 +70,7 @@
                 <Button Content="Клиенты" x:Name="btnClient" Style="{DynamicResource Button}" Width="140" FontSize="14" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnClient_Click" />
                 <Button x:Name="btnObjectRent" Content="Помещения" Style="{DynamicResource Button2}" Width="140" Height="20" FontSize="14" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Click="btnObjectRent_Click"/>
                 <Button Content="Отчетность аренды" Style="{DynamicResource Button3}" Width="140" Height="20" FontSize="14" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" x:Name="btnRent" Click="btnRent_Click"/>
-                <Button Content="Демонстрации" Style="{DynamicResource Button4}" Width="140" Height="20" FontSize="14" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3"/>
+                <Button Content="Демонстрации" Style="{DynamicResource Button4}" Width="140" Height="20" FontSize="14" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Click="Button_Click"/>
             </Grid>
         </StackPanel>
         <Frame Grid.Row="0" Grid.Column="1" x:Name="ContainerFrame"/>

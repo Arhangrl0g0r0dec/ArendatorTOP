@@ -70,7 +70,7 @@ namespace ArendatorTOP.Pages
             }
             else
             {
-                boxResult = MessageBox.Show($"Вы уверены что хотите удалить клиента {SelectedClients.Name + " " + SelectedClients.Surname + " " + SelectedClients.Patronimic}", "Удалить?", MessageBoxButton.YesNo);
+                boxResult = MessageBox.Show($"Вы уверены что хотите удалить клиента {SelectedClients.Name + " " + SelectedClients.Surname + " " + SelectedClients.Patronimic} Вместе с клиентом удалятся все связанные с ним данные об аренде!", "Удалить?", MessageBoxButton.YesNo);
             }
 
             if (boxResult == MessageBoxResult.Yes)

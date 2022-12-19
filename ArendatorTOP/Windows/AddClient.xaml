@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArendatorTOP.Windows"
         mc:Ignorable="d"
-        Title="AddClient" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen"
-        xmlns:viewModel="clr-namespace:ArendatorTOP.ViewModel">
+        Title="" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"
+        xmlns:viewModel="clr-namespace:ArendatorTOP.ViewModel"
+        xmlns:control="clr-namespace:ArendatorTOP.UC" x:Name="AddClientWindow">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -89,19 +90,31 @@
             <TextBlock Text="Домофон" Margin="20,0,5,0" Width="50"/>
             <TextBox x:Name="textDomophone" Width="300" Style="{DynamicResource RadiusText}" Text="{Binding Domophone}"/>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Row="7" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Left" Width="250">
-            <Button Style="{DynamicResource Button}" Content="Фото паспорта" Width="250" Height="20" HorizontalAlignment="Left" x:Name="btnAddPassport" Click="btnAddPassport_Click"/>
-            <Button x:Name="btnAddRegistrationSertificate" Style="{DynamicResource Button}" Content="Фото свидетельтсва регистрации юр. лица" Width="250" Height="20" Margin="0,5,0,0" Click="btnAddRegistrationSertificate_Click"/>
-            <Button x:Name="btnAddSertificateOfDirector" Width="250" Height="34" Style="{DynamicResource Button}" Margin="0,5,0,0" Click="btnAddSertificateOfDirector_Click">
-                <TextBlock x:Name="text" TextWrapping="Wrap" Text="Фото свидетельства подтверждающего полномочия руководителя" TextAlignment="Center">
-                </TextBlock>
-            </Button>
+        <StackPanel Orientation="Vertical" Grid.Row="7" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{DynamicResource Button}" Content="Фото паспорта" Width="250" Height="20" HorizontalAlignment="Left" x:Name="btnAddPassport" Click="btnAddPassport_Click"/>
+                <control:LoadingControl x:Name="controlLoadingOne" Width="0" Height="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,15" Visibility="Hidden"/>
+                <Image x:Name="CheckMark1" Source="\Resource\Images\GreenCheckMark.png" Width="20" Height="20" Visibility="Hidden"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btnAddRegistrationSertificate" Style="{DynamicResource Button}" Content="Фото свидетельтсва регистрации юр. лица" Width="250" Height="20" Margin="0,5,0,0" Click="btnAddRegistrationSertificate_Click"/>
+                <control:LoadingControl x:Name="controlLoadingTwo" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,15" Visibility="Hidden" Width="0" Height="0"/>
+                <Image x:Name="CheckMark2" Source="\Resource\Images\GreenCheckMark.png" Width="20" Height="20" Visibility="Hidden"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btnAddSertificateOfDirector" Width="250" Height="34" Style="{DynamicResource Button}" Margin="0,5,0,0" Click="btnAddSertificateOfDirector_Click">
+                    <TextBlock x:Name="text" TextWrapping="Wrap" Text="Фото свидетельства подтверждающего полномочия руководителя" TextAlignment="Center">
+                    </TextBlock>
+                </Button>
+                <control:LoadingControl x:Name="controlLoadingThree" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,15" Visibility="Hidden" Width="0" Height="0"/>
+                <Image x:Name="CheckMark3" Source="\Resource\Images\GreenCheckMark.png" Width="20" Height="20" Visibility="Hidden"/>
+            </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Style="{DynamicResource Button3}" Content="Сохранить" Width="80" x:Name="btnSave" Click="btnSave_Click"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center">
-            <Button Style="{DynamicResource Button4}" Content="Отмена" Width="80" Margin="20,0,0,0"/>
+            <Button Style="{DynamicResource Button4}" Content="Отмена" Width="80" Margin="20,0,0,0" x:Name="btnCanpel" Click="btnCanpel_Click"/>
         </StackPanel>
     </Grid>
 </Window>

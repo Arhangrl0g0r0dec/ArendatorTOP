@@ -47,5 +47,10 @@ namespace ArendatorTOP.Pages
         {
             ContainerFrame.Navigate(new Reports());
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ContainerFrame.Navigate(new ClientsPage());
+        }
     }
 }

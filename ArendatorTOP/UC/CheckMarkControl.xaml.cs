@@ -1,5 +1,4 @@
-﻿using Svg2Xaml;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ArendatorTOP.Pages
+namespace ArendatorTOP.UC
 {
     /// <summary>
-    /// Логика взаимодействия для ClientsPage.xaml
+    /// Логика взаимодействия для CheckMarkControl.xaml
     /// </summary>
-    public partial class ClientsPage : Page
+    public partial class CheckMarkControl : UserControl
     {
-        public ClientsPage()
+        public CheckMarkControl()
         {
             InitializeComponent();
         }
-
-        
     }
 }
