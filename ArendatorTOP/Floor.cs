@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ArendatorTOP
 {
+    /// <summary>
+    /// Класс для удлбства фильтрации помещений по этажам
+    /// </summary>
     class Floor
     {
         public int floor { get; set; }
