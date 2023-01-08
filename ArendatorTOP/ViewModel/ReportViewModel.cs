@@ -8,7 +8,9 @@ namespace ArendatorTOP.ViewModel
 {
     class ReportViewModel:ViewModelBase
     {
-        public ObjectRent PopularObjectRent { get; set; }
+        public DateTime DateStartRent { get; set; }
+        public DateTime DateEndRent { get; set; }
+        public ObjectRent NoPopularObjectRent { get; set; }
         public List<int> ObjectRentId { get; set; }
         public List<double> CountRents { get; set; } 
         public List<string> ObjectRentTitle { get; set; }
@@ -26,14 +28,14 @@ namespace ArendatorTOP.ViewModel
                 CountRents.Add(DBModel.GetContext().Rent.Where(n => n.IdObjectRent == p.Id).Count()); 
             });
 
-            PopularObjectRent = objectRents.FirstOrDefault(p => p.Rent.Count() == CountRents.Max());
+            NoPopularObjectRent = objectRents.FirstOrDefault(p => p.Rent.Count() == CountRents.Min());
 
             InfoObjectRent();
         }
 
         public void InfoObjectRent() 
         {
-            FullTitle = "№" + PopularObjectRent.Id.ToString() + " " + PopularObjectRent.Appointment.Title;
+            FullTitle = "№" + NoPopularObjectRent.Id.ToString() + " " + NoPopularObjectRent.Appointment.Title;
         }
     }
 }

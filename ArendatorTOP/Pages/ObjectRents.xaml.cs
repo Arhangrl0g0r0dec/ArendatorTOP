@@ -132,24 +132,48 @@ namespace ArendatorTOP.Pages
 
             if ((DataContext as ObjectRentViewModel).CheckObjectRent(item))
             {
-                boxResult = MessageBox.Show($"Вы уверены что хотите удалить помещение № {item.Id.ToString() + " " + item.Appointment.Title}, у него еще есть незавершенная аренда! Вместе с помещением удалятся все связанные с ним данные об аренде!", "Удалить?", MessageBoxButton.YesNo);
+                boxResult = MessageBox.Show($"Вы уверены что хотите убрать помещение № {item.Id.ToString() + " " + item.Appointment.Title} из списка, у него еще есть незавершенная аренда! Вместе с помещением уберутся все связанные с ним данные об аренде!", "Убрать?", MessageBoxButton.YesNo);
             }
             else
             {
-                boxResult = MessageBox.Show($"Вы уверены что хотите удалить помещение № {item.Id.ToString() + " " + item.Appointment.Title}", "Удалить?", MessageBoxButton.YesNo);
+                boxResult = MessageBox.Show($"Вы уверены что хотите убрать помещение № {item.Id.ToString() + " " + item.Appointment.Title} из списка", "Убрать?", MessageBoxButton.YesNo);
             }
 
             if (boxResult == MessageBoxResult.Yes)
             {
                 (DataContext as ObjectRentViewModel).Delete(item);
 
-                MessageBox.Show("Помещение успешно удалено!");
+                MessageBox.Show("Помещение успешно убрано из списка!");
 
                 (DataContext as ObjectRentViewModel).ObjectRentList();
             }
             else if (boxResult == MessageBoxResult.No)
             {
                 listObjectRent.SelectedItem = null;
+            }
+        }
+
+        private void appointmentBox_Checked(object sender, RoutedEventArgs e)
+        {
+            (DataContext as ObjectRentViewModel).ObjectRentList();
+        }
+
+        private void appointmentBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            (DataContext as ObjectRentViewModel).ObjectRentList();
+        }
+
+        private void checkDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if(checkDelete.IsChecked == true) 
+            {
+                (DataContext as ObjectRentViewModel).IsCheking = true;
+                (DataContext as ObjectRentViewModel).ObjectRentList();
+            }
+            else if(checkDelete.IsChecked!= true) 
+            {
+                (DataContext as ObjectRentViewModel).IsCheking = false;
+                (DataContext as ObjectRentViewModel).ObjectRentList();
             }
         }
     }

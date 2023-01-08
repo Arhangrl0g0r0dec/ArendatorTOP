@@ -7,6 +7,15 @@
         xmlns:viewMode="clr-namespace:ArendatorTOP.ViewModel"
         mc:Ignorable="d"
         Title="Капча" Height="200" Width="300" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resource\Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>

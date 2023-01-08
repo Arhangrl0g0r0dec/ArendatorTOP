@@ -37,6 +37,10 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BitMiracle.Docotic.Pdf, Version=8.7.13981.0, Culture=neutral, PublicKeyToken=221650e173990c07, processorArchitecture=MSIL">
       <HintPath>..\packages\BitMiracle.Docotic.Pdf.8.7.13981-dev\lib\net46\BitMiracle.Docotic.Pdf.dll</HintPath>
@@ -85,49 +89,15 @@
     <Compile Include="Appointment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Converters\ReportConverter.cs" />
-    <Compile Include="Floor.cs" />
-    <Compile Include="Interfaces\IMessageShow.cs" />
-    <Compile Include="Pages\ObjectRents.xaml.cs">
-      <DependentUpon>ObjectRents.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\PdfPage.xaml.cs">
-      <DependentUpon>PdfPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Reports.xaml.cs">
-      <DependentUpon>Reports.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UC\CheckMarkControl.xaml.cs">
-      <DependentUpon>CheckMarkControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UC\LoadingControl.xaml.cs">
-      <DependentUpon>LoadingControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\AddClientViewModel.cs" />
-    <Compile Include="ViewModel\ObjectRentViewModel.cs" />
-    <Compile Include="ViewModel\ReportViewModel.cs" />
-    <Compile Include="ViewModel\SelectionFilter.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="Windows\AddClient.xaml.cs">
-      <DependentUpon>AddClient.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Capcha.xaml.cs">
-      <DependentUpon>Capcha.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Client.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Converters\GetAddressesConverter.cs" />
-    <Compile Include="Converters\RelativeToFullPathConverter.cs" />
-    <Compile Include="DBModel.cs" />
+    <Compile Include="Converters\ReportConverter.cs" />
     <Compile Include="DecommissionedMaterial.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Demonstration.cs">
       <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Dialog.xaml.cs">
-      <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Document.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -135,10 +105,11 @@
     <Compile Include="Employee.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Floor.cs" />
     <Compile Include="FormOfPayment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\IGettingPassword.cs" />
+    <Compile Include="Interfaces\IMessageShow.cs" />
     <Compile Include="Materials.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -163,17 +134,17 @@
     <Compile Include="ObjectRent.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Autorisation.xaml.cs">
-      <DependentUpon>Autorisation.xaml</DependentUpon>
+    <Compile Include="Pages\Director.xaml.cs">
+      <DependentUpon>Director.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ClientsForEditPage.xaml.cs">
-      <DependentUpon>ClientsForEditPage.xaml</DependentUpon>
+    <Compile Include="Pages\ObjectRents.xaml.cs">
+      <DependentUpon>ObjectRents.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ClientsPage.xaml.cs">
-      <DependentUpon>ClientsPage.xaml</DependentUpon>
+    <Compile Include="Pages\PdfPage.xaml.cs">
+      <DependentUpon>PdfPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Manager.xaml.cs">
-      <DependentUpon>Manager.xaml</DependentUpon>
+    <Compile Include="Pages\Reports.xaml.cs">
+      <DependentUpon>Reports.xaml</DependentUpon>
     </Compile>
     <Compile Include="PhotoOR.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -202,6 +173,9 @@
     <Compile Include="SupplyMaterial.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="TypeOfDocument.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -211,12 +185,52 @@
     <Compile Include="TypeOfReport.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="UC\CheckMarkControl.xaml.cs">
+      <DependentUpon>CheckMarkControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\LoadingControl.xaml.cs">
+      <DependentUpon>LoadingControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AddClientViewModel.cs" />
+    <Compile Include="ViewModel\ObjectRentViewModel.cs" />
+    <Compile Include="ViewModel\ReportViewModel.cs" />
+    <Compile Include="ViewModel\SelectionFilter.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="Windows\AddClient.xaml.cs">
+      <DependentUpon>AddClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Capcha.xaml.cs">
+      <DependentUpon>Capcha.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\GetAddressesConverter.cs" />
+    <Compile Include="Converters\RelativeToFullPathConverter.cs" />
+    <Compile Include="DBModel.cs" />
+    <Compile Include="Windows\Dialog.xaml.cs">
+      <DependentUpon>Dialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\IGettingPassword.cs" />
+    <Compile Include="Pages\Autorisation.xaml.cs">
+      <DependentUpon>Autorisation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ClientsForEditPage.xaml.cs">
+      <DependentUpon>ClientsForEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ClientsPage.xaml.cs">
+      <DependentUpon>ClientsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Manager.xaml.cs">
+      <DependentUpon>Manager.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AutorizationViewModel.cs" />
     <Compile Include="ViewModel\ClientsViewModel.cs" />
     <Compile Include="ViewModel\ManagerCabinetViewModel.cs" />
+    <Page Include="Pages\Director.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ObjectRents.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -226,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Reports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\PlanDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -300,11 +318,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="app.manifest" />
     <None Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
@@ -342,6 +360,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Resource\Images\lCON.ico" />
     <Resource Include="Resource\Images\GreenCheckMark.png" />
     <Resource Include="Resource\Images\nextImage.png" />
     <Resource Include="Resource\Images\lastImage.png" />

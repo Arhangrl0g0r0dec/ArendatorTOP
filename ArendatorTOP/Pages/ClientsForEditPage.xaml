@@ -32,7 +32,8 @@
                 <TextBox Text="" MaxLength="14" x:Name="searchBox" Style="{DynamicResource RadiusText}" Grid.Row="0" Width="200" Height="24" HorizontalAlignment="Left" Margin="20,0,0,0" TextChanged="searchBox_TextChanged"/>
             </StackPanel>
             <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <CheckBox x:Name="chekBoxRent"  Content="Арендуют сейчас" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" Click="chekBoxRent_Click"/>
+                <CheckBox x:Name="chekBoxRent" Content="Арендуют сейчас" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" Click="chekBoxRent_Click"/>
+                <CheckBox x:Name="chekBoxActive"  Content="Скрытые" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" Click="chekBoxActive_Click"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="380,0,0,0">

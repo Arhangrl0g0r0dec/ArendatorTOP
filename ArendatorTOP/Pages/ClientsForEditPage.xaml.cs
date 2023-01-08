@@ -52,10 +52,16 @@ namespace ArendatorTOP.Pages
 
         private void chekBoxRent_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)chekBoxRent.IsChecked)
-                dataClients.ItemsSource = (DataContext as ClientsViewModel).ActiveClients();
-            else if (!(bool)chekBoxRent.IsChecked)
+            if (chekBoxRent.IsChecked == true) 
+            {
+                (DataContext as ClientsViewModel).IsChecedActive = true;
                 dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+            }
+            else if (chekBoxRent.IsChecked != true) 
+            {
+                (DataContext as ClientsViewModel).IsChecedActive = false;
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -77,7 +83,7 @@ namespace ArendatorTOP.Pages
             {
                 (DataContext as ClientsViewModel).DeleteClient();
 
-                MessageBox.Show("Клиент успешно удален!");
+                MessageBox.Show("Клиент успешно убран из списка!");
 
                 dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
             }
@@ -98,6 +104,20 @@ namespace ArendatorTOP.Pages
         //    {
         //        MessageBox.Show((DataContext as ClientsViewModel).OpenDoc((sender as ComboBox).DataContext as Client, index));
         //    }
+        }
+
+        private void chekBoxActive_Click(object sender, RoutedEventArgs e)
+        {
+            if (chekBoxActive.IsChecked == true)
+            {
+                (DataContext as ClientsViewModel).IsChecedDelete = true;
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+            }
+            else if (chekBoxActive.IsChecked != true)
+            {
+                (DataContext as ClientsViewModel).IsChecedDelete = false;
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+            }
         }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cbcf797c9ce94b0b9baa7cd39778126c" Name="Diagram1" ZoomLevel="10">
+      <Diagram DiagramId="a0e8dbe2acb540ee8f82b7c2f2146c1d" Name="Diagram1">
         <EntityTypeShape EntityType="ArendatorTOPModel.ApplicationToReception" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ArendatorTOPModel.Appointment" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ArendatorTOPModel.Client" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
@@ -12,17 +12,18 @@
         <EntityTypeShape EntityType="ArendatorTOPModel.Demonstration" Width="1.5" PointX="8.25" PointY="12" IsExpanded="true" />
         <EntityTypeShape EntityType="ArendatorTOPModel.Document" Width="1.5" PointX="10.5" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ArendatorTOPModel.Employee" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ArendatorTOPModel.FormOfPayment" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.FormOfPayment" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ArendatorTOPModel.Materials" Width="1.5" PointX="6" PointY="21.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ArendatorTOPModel.ObjectRent" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
-        <EntityTypeShape EntityType="ArendatorTOPModel.PhotoOR" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.PhotoOR" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ArendatorTOPModel.Post" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="ArendatorTOPModel.Rent" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ArendatorTOPModel.Report" Width="1.5" PointX="5.25" PointY="16.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ArendatorTOPModel.SentMaterials" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ArendatorTOPModel.Statement" Width="1.5" PointX="0.75" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.Statement" Width="1.5" PointX="0.75" PointY="19.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ArendatorTOPModel.Supplier" Width="1.5" PointX="5.75" PointY="25.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ArendatorTOPModel.Supply" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ArendatorTOPModel.TypeOfDocument" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="ArendatorTOPModel.TypeOfMaterial" Width="1.5" PointX="3.75" PointY="22" IsExpanded="true" />
         <EntityTypeShape EntityType="ArendatorTOPModel.TypeOfReport" Width="1.5" PointX="3" PointY="25" IsExpanded="true" />

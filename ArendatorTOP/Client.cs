@@ -38,6 +38,7 @@ namespace ArendatorTOP
         public string Floor { get; set; }
         public string Office { get; set; }
         public string PhoneNumber { get; set; }
+        public Nullable<bool> Del { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Demonstration> Demonstration { get; set; }

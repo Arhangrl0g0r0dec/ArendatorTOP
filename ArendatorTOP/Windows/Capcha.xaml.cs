@@ -23,18 +23,27 @@ namespace ArendatorTOP
     {
         MainWindow mainWindow;
         public bool IsCapcha = false;
-        public Capcha(MainWindow Window)
+        public User user { get; set; }
+        public Capcha(MainWindow Window, User AutoUser)
         {
             InitializeComponent();
             mainWindow = Window;
+            user = AutoUser;
         }
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
             if ((DataContext as AutorizationViewModel).CheckCapcha(textBoxCapcha.Text))
             {
-                mainWindow.Container.Navigate(new Manager(mainWindow));
-                Close();
+                if(user.Employee.Post.Id == 1)
+                {
+                    mainWindow.Container.Navigate(new Manager(mainWindow));
+                    Close();
+                }
+                else if(user.Employee.Post.Id == 2) 
+                {
+                
+                }
             }
             else
             {

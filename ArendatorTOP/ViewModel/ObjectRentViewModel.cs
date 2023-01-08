@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,9 +14,10 @@ namespace ArendatorTOP.ViewModel
 {
     class ObjectRentViewModel : ViewModelBase
     {
-
         ObjectRent Objrent;
         public int selectedSortIndex { get; set; } = 0;
+        public int selectedStateIndex { get; set; } = 0;
+        public bool IsCheking { get; set; }
         public string StartPrice { get; set; }
         public string EndPrice { get; set; }
         public string StartSquare { get; set; }
@@ -24,6 +26,7 @@ namespace ArendatorTOP.ViewModel
         public ObservableCollection<SelectionFilter> SelectionFiltersState { get; set; }
         public ObservableCollection<SelectionFilter> SelectionFiltersFloor { get; set; }
         public ObservableCollection<SelectionFilter> SelectionFiltersSort { get; set; }
+        public ObservableCollection<SelectionFilter> SelectionFiltersActive { get; set; }
         public ObservableCollection<ObjectRent> ObjectRents { get; set; }
 
         public ObjectRentViewModel()
@@ -56,6 +59,7 @@ namespace ArendatorTOP.ViewModel
                 List<Appointment> appointments = SelectionFiltersApp.Where(p => p.IsChecked).Select(p => p.Appointments).ToList();
                 List<ObjectRent> objectRents = DBModel.GetContext().ObjectRent.ToList();
                 List<Statement> statements = SelectionFiltersState.Where(p => p.IsChecked).Select(p => p.Statements).ToList();
+
                 //Фильтрация
                 if (!String.IsNullOrWhiteSpace(StartPrice))
                 {
@@ -103,6 +107,16 @@ namespace ArendatorTOP.ViewModel
                         break;
                 }
 
+                if (IsCheking == true) 
+                {
+                    objectRents = objectRents.Where(p => p.Del == true).ToList();
+                }
+
+                if (IsCheking != true)
+                {
+                    objectRents = objectRents.Where(p => p.Del != true).ToList();
+                }
+
                 foreach(var objectRent in objectRents)
                 {
                     ObjectRents.Add(objectRent);
@@ -115,7 +129,8 @@ namespace ArendatorTOP.ViewModel
 
         public void Delete(ObjectRent objectRent) 
         {
-            DBModel.GetContext().ObjectRent.Remove(objectRent);
+            Objrent = objectRent;
+            Objrent.Del = true;
             DBModel.GetContext().SaveChanges();
         }
 

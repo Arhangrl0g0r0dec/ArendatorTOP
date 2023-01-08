@@ -102,8 +102,8 @@ namespace ArendatorTOP.Pages
                         //Информация о самом популярном объекте аренды
                         paragraph.Range.InsertParagraphAfter();
                         paragraph.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
-                        paragraph.Range.Text = $"Самая поаулярная книга: {reportViewModel.FullTitle}" +
-                        $"(колличество аренд {reportViewModel.PopularObjectRent.Rent.Count})";
+                        paragraph.Range.Text = $"Самое поаулярное помещение: {reportViewModel.FullTitle} " +
+                        $"(колличество аренд {reportViewModel.NoPopularObjectRent.Rent.Count})";
 
                         //Сохранение
                         document.SaveAs2(savePath, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing

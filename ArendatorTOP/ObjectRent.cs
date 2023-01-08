@@ -29,6 +29,7 @@ namespace ArendatorTOP
         public decimal PriceForOneMeter { get; set; }
         public int Floor { get; set; }
         public int IdStatement { get; set; }
+        public Nullable<bool> Del { get; set; }
     
         public virtual Appointment Appointment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -23,9 +23,9 @@ namespace ArendatorTOP.Pages
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
-            if ((DataContext as AutorizationViewModel).LogIn()) 
+            if ((DataContext as AutorizationViewModel).LogIn())
             {
-                capcha = new Capcha(window);
+                capcha = new Capcha(window, (DataContext as AutorizationViewModel).GetUser());
                 capcha.Owner = window;
                 capcha.Show();
                 capcha.DataContext = DataContext;

@@ -49,7 +49,17 @@ namespace ArendatorTOP.ViewModel
             return user != null;
         }
 
-        public string GetCapcha() 
+        public User GetUser() 
+        {
+            if(user != null) 
+            {
+                return user;
+            }
+            else
+                return null;
+        }
+
+        public string GetCapcha()
         {
             Random random = new Random(); // Random для генерации случайных чисел
 
@@ -75,7 +85,7 @@ namespace ArendatorTOP.ViewModel
             return Code;
         }
 
-        public bool CheckCapcha(string _code) 
+        public bool CheckCapcha(string _code)
         {
             if (Code == _code)
                 IsCapcha = true;

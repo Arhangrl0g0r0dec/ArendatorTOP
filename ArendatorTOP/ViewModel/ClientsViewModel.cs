@@ -11,7 +11,9 @@ using System.Windows;
 namespace ArendatorTOP.ViewModel
 {
     class ClientsViewModel : ViewModelBase
-    { 
+    {
+        public bool IsChecedDelete { get; set; }
+        public bool IsChecedActive { get; set; }
         public static Client client { get; set; }
         public ObservableCollection<Client> Clients { get; set; }
         public List<Client> clients { get; set; }
@@ -19,17 +21,36 @@ namespace ArendatorTOP.ViewModel
         {
             Title = "Клинеты";
         }
-        public ObservableCollection<Client> UpdateClientList()
+        public List<Client> UpdateClientList()
         {
+            List<Client> clientList = DBModel.GetContext().Client.ToList();
             try 
             {
-                Clients = new ObservableCollection<Client>(DBModel.GetContext().Client);
+                if (IsChecedDelete == true)
+                {
+                    clientList = clientList.Where(p => p.Del == true).ToList();
+                }
+
+                if (IsChecedDelete == false)
+                {
+                    clientList = clientList.Where(p => p.Del != true).ToList();
+                }
+
+                if (IsChecedActive == true) 
+                {
+                    
+                }
+
+                if (IsChecedActive == false) 
+                {
+                
+                }
             }
             catch(Exception ex) 
             {
                 MessageBox.Show($"Ошибка! {ex}");
             }
-            return Clients;
+            return clientList;
         }
 
         public bool CheckClient(Client SelectedClient)
@@ -47,10 +68,11 @@ namespace ArendatorTOP.ViewModel
             }
         }
 
-        public void DeleteClient() 
+        public ObservableCollection<Client> DeleteClient() 
         {
-            DBModel.GetContext().Client.Remove(client);
+            client.Del = true;
             DBModel.GetContext().SaveChanges();
+            return Clients = (ObservableCollection<Client>)Clients.Where(p => p.Del == true);
         }
 
         public List<Client> Search(string text)
@@ -78,44 +100,13 @@ namespace ArendatorTOP.ViewModel
             }
         }
 
+
         public List<Client> ActiveClients() 
         {
             var Client = DBModel.GetContext().Rent.Where(p => p.DateEnd > DateTime.Now).Select(p=>p.Client).ToList();
             return Client;
         }
 
-        //public string OpenDoc(Client client, int index)
-        //{
-        //    string path = "";
-
-        //    switch (index)
-        //    {
-        //        case 0:
-        //            break;
-        //        case 1:
-        //            path = client.PathToCopyPassport;
-        //            break;
-        //        case 2:
-        //            path = client.PathToCopyCertificateOfRegistrationOfaLegalEntity;
-        //            break;
-        //        case 3:
-        //            path = client.PathToCopyContractOfDirector;
-        //            break;
-        //    }
-
-        //    //if(path != "") 
-        //    //{
-        //    //    try 
-        //    //    {
-        //    //        St file = new File();
-        //    //    }
-        //    //    catch(Exception ex) 
-        //    //    {
-        //    //        return $"Ошибка! {ex}";
-        //    //    }
-        //    //}
-        //    //return null;
-        //}
 
     }
 }

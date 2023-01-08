@@ -43,6 +43,7 @@ namespace ArendatorTOP
         public virtual DbSet<Statement> Statement { get; set; }
         public virtual DbSet<Supplier> Supplier { get; set; }
         public virtual DbSet<Supply> Supply { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TypeOfDocument> TypeOfDocument { get; set; }
         public virtual DbSet<TypeOfMaterial> TypeOfMaterial { get; set; }
         public virtual DbSet<TypeOfReport> TypeOfReport { get; set; }

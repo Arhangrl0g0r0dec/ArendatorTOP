@@ -115,50 +115,70 @@ namespace ArendatorTOP.Windows
             }
         }
 
+        private void ChangeDataContext() 
+        {
+            DataContext = new AddClientViewModel();
+        }
+
         private void btnAddPassport_Click(object sender, RoutedEventArgs e)
         {
+            if(textTitle.Text == "Редактировать") 
+            {
+                ChangeDataContext();
+            }
             controlLoadingOne.Visibility = Visibility.Visible;
             if ((DataContext as AddClientViewModel).FileDialog(btnAddPassport.Content.ToString())) 
             {
                 MessageBox.Show("Файл успешно сохранен!");
+                CheckMark1.Visibility = Visibility.Visible;
             }
             else 
             {
                 MessageBox.Show("Не удалось сохранить файл, либо он не был выбран!");
             }
             controlLoadingOne.Visibility = Visibility.Hidden;
-            CheckMark1.Visibility = Visibility.Visible;
+            
         }
 
         private void btnAddRegistrationSertificate_Click(object sender, RoutedEventArgs e)
         {
+            if (textTitle.Text == "Редактировать")
+            {
+                ChangeDataContext();
+            }
             controlLoadingTwo.Visibility = Visibility.Visible;
             
             if ((DataContext as AddClientViewModel).FileDialog(btnAddRegistrationSertificate.Content.ToString()))
             {
                 MessageBox.Show("Файл успешно сохранен!");
+                CheckMark2.Visibility = Visibility.Visible;
             }
             else
             {
                 MessageBox.Show("Не удалось сохранить файл, либо он не был выбран!");
             }
             controlLoadingTwo.Visibility = Visibility.Hidden;
-            CheckMark2.Visibility = Visibility.Visible;
+            
         }
 
         private void btnAddSertificateOfDirector_Click(object sender, RoutedEventArgs e)
         {
+            if (textTitle.Text == "Редактировать")
+            {
+                ChangeDataContext();
+            }
             controlLoadingThree.Visibility = Visibility.Visible;
             if ((DataContext as AddClientViewModel).FileDialog(text.Text.ToString())) 
             {
                 MessageBox.Show("Файл успешно сохранен!");
+                CheckMark3.Visibility = Visibility.Visible;
             }
             else
             {
                 MessageBox.Show("Не удалось сохранить файл, либо он не был выбран!");
             }
             controlLoadingThree.Visibility = Visibility.Hidden;
-            CheckMark3.Visibility = Visibility.Visible;
+            
         }
 
         /// <summary>
