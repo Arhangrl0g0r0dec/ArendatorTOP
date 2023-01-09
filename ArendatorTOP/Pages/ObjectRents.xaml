@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1200"
       Title="ObjectRent"
-      xmlns:viewModel="clr-namespace:ArendatorTOP.ViewModel">
+      xmlns:viewModel="clr-namespace:ArendatorTOP.ViewModel" Background="#FBEBEB">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -21,8 +21,8 @@
         <viewModel:ObjectRentViewModel>
         </viewModel:ObjectRentViewModel>
     </Page.DataContext>
-    <TabControl Background="Transparent">
-        <TabItem Background="Transparent">
+    <TabControl Background="White">
+        <TabItem >
             <Grid Style="{DynamicResource MainBack}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="109"/>
@@ -262,14 +262,13 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="План помещений" Grid.Row="1" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Grid Grid.Row="2">
-                    <Image Source="{StaticResource floorplanDrawingImage}" RenderTransformOrigin="0.5,0.5">
-                        <Image.RenderTransform>
-                            <RotateTransform Angle="90"/>
-                        </Image.RenderTransform>
-                    </Image>
-                </Grid>
+                <Frame Grid.Row="2" x:Name="Container"/>
+                <StackPanel Grid.Row="0" Style="{DynamicResource MainBack}">
+                </StackPanel>
+                <StackPanel Grid.Row="1" Style="{DynamicResource MainBack}">
+                    <TextBlock Text="План помещений" Grid.Row="1" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+                
             </Grid>
         </TabItem>
     </TabControl>

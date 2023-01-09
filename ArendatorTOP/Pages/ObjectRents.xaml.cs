@@ -1,12 +1,15 @@
 ﻿using ArendatorTOP.ViewModel;
+using CefSharp.Wpf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -25,6 +28,7 @@ namespace ArendatorTOP.Pages
         //Логика для взаимодействия с анимацией фильтров
         private bool? isShowFilter = null;
 
+
         public bool? IsShowFilter
         {
             get => isShowFilter;
@@ -41,6 +45,8 @@ namespace ArendatorTOP.Pages
         public ObjectRents()
         {
             InitializeComponent();
+
+            Container.Navigate(new Plan());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

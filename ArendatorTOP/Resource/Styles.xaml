@@ -198,6 +198,27 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="ButtonPlan" TargetType="Button">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="borderButton" Background="#FBEBEB" BorderThickness="2" Opacity="0.5" CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="borderButton" Property="BorderBrush" Value="#C67803"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="borderButton" Property="BorderBrush" Value="Black"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="Button" TargetType="Button">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Template">
