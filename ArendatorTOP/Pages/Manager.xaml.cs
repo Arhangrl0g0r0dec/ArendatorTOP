@@ -52,5 +52,10 @@ namespace ArendatorTOP.Pages
         {
             ContainerFrame.Navigate(new ClientsPage());
         }
+
+        private void btnDemonstration_Click(object sender, RoutedEventArgs e)
+        {
+            ContainerFrame.Navigate(new DemonstrationPage());
+        }
     }
 }

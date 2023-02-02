@@ -99,7 +99,7 @@
                                     <ComboBox x:Name="comboBoxDoc" Width="300" Height="25" Foreground="White" Style="{DynamicResource myComboBoxStyle}" SelectionChanged="comboBoxDoc_SelectionChanged">
                                         <ComboBoxItem Content="Ничего">
                                         </ComboBoxItem>
-                                        <ComboBoxItem Content="Копия паспорта">
+                                        <ComboBoxItem Content="Копия паспорта" >
                                         </ComboBoxItem>
                                         <ComboBoxItem Content="Свидетельство о регистрации юр.лица">
                                         </ComboBoxItem>

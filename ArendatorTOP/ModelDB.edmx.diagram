@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ac177342d25d48c2b850d747ab8bfb47" Name="Diagram1">
+        <EntityTypeShape EntityType="ArendatorTOPModel.ApplicationToReception" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.Appointment" Width="1.5" PointX="3.75" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.Client" Width="1.5" PointX="6" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.DecommissionedMaterial" Width="1.5" PointX="5.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.Demonstration" Width="1.5" PointX="8.25" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.Document" Width="1.5" PointX="7.5" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.Employee" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.FormOfPayment" Width="1.5" PointX="3" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.Materials" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.ObjectRent" Width="1.5" PointX="6" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.PhotoOR" Width="1.5" PointX="8.25" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.Post" Width="1.5" PointX="0.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.Rent" Width="1.5" PointX="5.25" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.Report" Width="1.5" PointX="10.25" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.SentMaterials" Width="1.5" PointX="11.25" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.Statement" Width="1.5" PointX="3.75" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.Supplier" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.Supply" Width="1.5" PointX="7.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.TypeOfDocument" Width="1.5" PointX="5.25" PointY="41.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.TypeOfMaterial" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.TypeOfReport" Width="1.5" PointX="8" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.User" Width="1.5" PointX="5.25" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.Application_Material" Width="1.5" PointX="7.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.Message" Width="1.5" PointX="5.25" PointY="38.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendatorTOPModel.SupplyMaterial" Width="1.5" PointX="9.75" PointY="10.375" IsExpanded="true" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Application_Material_ApplicationToReception" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_ApplicationToReception_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_ApplicationToReception_Employee1" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Supply_ApplicationToReception" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_ObjectRent_Appointment" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Demonstration_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Rent_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_DecommissionedMaterial_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_DecommissionedMaterial_Materials" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Demonstration_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Demonstration_ObjectRent" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Document_Rent" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Document_TypeOfDocument" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Employee_Post" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Message_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Message_Employee1" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Rent_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Report_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_SentMaterials_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_User_Employee1" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Rent_FormOfPayment" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Application_Material_Materials" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Materials_TypeOfMaterial" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_SentMaterials_Materials" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_SupplyMaterial_Materials" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_ObjectRent_Statement" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_PhotoOR_ObjectRent" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Rent_ObjectRent" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_SentMaterials_ObjectRent" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Report_TypeOfReport" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_Supply_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendatorTOPModel.FK_SupplyMaterial_Supply" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

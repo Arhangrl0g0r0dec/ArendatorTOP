@@ -60,5 +60,15 @@ namespace ArendatorTOP.Pages
                 st.ScaleY = st.ScaleX;
             }
         }
+
+        private void test_MouseLeave(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void test_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

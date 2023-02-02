@@ -16,14 +16,15 @@ namespace ArendatorTOP
     {
         public int Id { get; set; }
         public Nullable<int> IdClient { get; set; }
-        public int IdObjectRent { get; set; }
-        public int IdEmployee { get; set; }
+        public Nullable<int> IdObjectRent { get; set; }
+        public Nullable<int> IdEmployee { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Patronimic { get; set; }
         public string PhoneNumber { get; set; }
         public System.DateTime DateOfDemonstration { get; set; }
         public System.TimeSpan TimeOfDemonstration { get; set; }
+        public Nullable<bool> IsOccupied { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual Employee Employee { get; set; }

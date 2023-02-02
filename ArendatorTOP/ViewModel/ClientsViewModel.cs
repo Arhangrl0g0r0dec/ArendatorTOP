@@ -13,6 +13,7 @@ namespace ArendatorTOP.ViewModel
     class ClientsViewModel : ViewModelBase
     {
         public bool IsChecedDelete { get; set; }
+        public int SelectedIndex{ get; set; }
         public bool IsChecedActive { get; set; }
         public static Client client { get; set; }
         public ObservableCollection<Client> Clients { get; set; }

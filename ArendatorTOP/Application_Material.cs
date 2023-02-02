@@ -12,12 +12,13 @@ namespace ArendatorTOP
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class Application_Material
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int IdApplication { get; set; }
+        public int IdMaterial { get; set; }
+        public int Count { get; set; }
+    
+        public virtual ApplicationToReception ApplicationToReception { get; set; }
+        public virtual Materials Materials { get; set; }
     }
 }

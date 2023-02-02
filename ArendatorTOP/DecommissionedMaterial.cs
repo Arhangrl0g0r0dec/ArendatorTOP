@@ -18,7 +18,7 @@ namespace ArendatorTOP
         public int IdMaterial { get; set; }
         public int IdEmployee { get; set; }
         public string PathToDocument16 { get; set; }
-        public int Count { get; set; }
+        public int CountMat { get; set; }
     
         public virtual Employee Employee { get; set; }
         public virtual Materials Materials { get; set; }

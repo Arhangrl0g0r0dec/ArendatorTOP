@@ -98,12 +98,12 @@ namespace ArendatorTOP.Pages
 
         private void comboBoxDoc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-        //    int index = (sender as ComboBox).SelectedIndex;
+            //int index = (sender as ComboBox).SelectedIndex;
 
-        //    if((DataContext as ClientsViewModel).OpenDoc((sender as ComboBox).DataContext as Client, index) != null) 
-        //    {
-        //        MessageBox.Show((DataContext as ClientsViewModel).OpenDoc((sender as ComboBox).DataContext as Client, index));
-        //    }
+            //if((DataContext as ClientsViewModel).OpenDoc((sender as ComboBox).DataContext as Client, index) != null) 
+            //{
+            //    MessageBox.Show((DataContext as ClientsViewModel).OpenDoc((sender as ComboBox).DataContext as Client, index));
+            //}
         }
 
         private void chekBoxActive_Click(object sender, RoutedEventArgs e)

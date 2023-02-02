@@ -22,8 +22,7 @@ namespace ArendatorTOP.Converters
                 if (!File.Exists(path))
                     return "\\Resource\\Images\\no_foto.jpg";
                 else
-                    using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-                        return BitmapFrame.Create(fs, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                    return Path.GetFullPath(path);
             }
             catch 
             {

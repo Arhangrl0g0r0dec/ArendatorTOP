@@ -16,8 +16,8 @@ namespace ArendatorTOP
     {
         public int Id { get; set; }
         public int IdMaterial { get; set; }
-        public int IdObjectRent { get; set; }
-        public int IdEmployee { get; set; }
+        public Nullable<int> IdObjectRent { get; set; }
+        public Nullable<int> IdEmployee { get; set; }
         public string PathToDocument13 { get; set; }
         public int Count { get; set; }
         public System.DateTime DateSent { get; set; }

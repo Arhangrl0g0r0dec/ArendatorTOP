@@ -22,7 +22,10 @@
         </viewModel:ObjectRentViewModel>
     </Page.DataContext>
     <TabControl Background="White">
-        <TabItem >
+        <TabItem>
+            <TabItem.Header>
+                <Image Source="\Resource\Images\list.jpg" Stretch="Fill" Width="35" Height="35"/>
+            </TabItem.Header>
             <Grid Style="{DynamicResource MainBack}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="109"/>
@@ -256,6 +259,9 @@
             </Grid>
         </TabItem>
         <TabItem>
+            <TabItem.Header>
+                <Image Source="\Resource\Images\plan.jpg" Stretch="Fill" Width="35" Height="35"/>
+            </TabItem.Header>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="80"/>

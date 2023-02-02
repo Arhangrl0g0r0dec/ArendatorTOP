@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:ArendatorTOP.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1250"
-      Title="Plan">
+      Title="Plan"
+      xmlns:viewmodel="clr-namespace:ArendatorTOP.ViewModel">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -16,6 +17,10 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
+
+    <Page.DataContext>
+        <viewmodel:ObjectRentViewModel/>
+    </Page.DataContext>
 
     <Canvas Grid.Row="2" x:Name="CanvasPlan" MouseWheel="CanvasPlan_MouseWheel">
         <Canvas.RenderTransform>
@@ -78,32 +83,33 @@
                     <RotateTransform Angle="90"/>
                 </Image.RenderTransform>
             </Image>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="6"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="6"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="3" Grid.Column="7" Grid.RowSpan="4"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="3" Grid.Column="12" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="5" Grid.Column="12" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="7" Grid.RowSpan="2" />
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="14" Grid.RowSpan="2" Grid.ColumnSpan="12"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="26" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="3" Grid.Column="14" Grid.RowSpan="4" Grid.ColumnSpan="3"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="4" Grid.Column="19" Grid.RowSpan="3" Grid.ColumnSpan="2" />
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="4" Grid.Column="21" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="4" Grid.Column="26" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="29" Grid.ColumnSpan="3" Grid.RowSpan="6"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="31"  Grid.RowSpan="5"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="4"  Grid.RowSpan="2"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="6" Grid.ColumnSpan="5"  Grid.RowSpan="2"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="13" Grid.ColumnSpan="8" Grid.RowSpan="2"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="21" Grid.ColumnSpan="6" Grid.RowSpan="2"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="27" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="27" Grid.ColumnSpan="3"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="21" Grid.ColumnSpan="6"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="16" Grid.ColumnSpan="6"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="9" Grid.ColumnSpan="7"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="5" Grid.ColumnSpan="4"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="2"/>
-            <Button Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2"/>
+            <Button x:Name="btnSchema1" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="6">
+            </Button>
+            <Button x:Name="btnSchema2" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="6"/>
+            <Button x:Name="btnSchema3" Style="{DynamicResource ButtonPlan}" Grid.Row="3" Grid.Column="7" Grid.RowSpan="4"/>
+            <Button x:Name="btnSchema4" Style="{DynamicResource ButtonPlan}" Grid.Row="3" Grid.Column="12" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+            <Button x:Name="btnSchema5" Style="{DynamicResource ButtonPlan}" Grid.Row="5" Grid.Column="12" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+            <Button x:Name="btnSchema6" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="7" Grid.RowSpan="2" />
+            <Button x:Name="btnSchema7" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="14" Grid.RowSpan="2" Grid.ColumnSpan="12"/>
+            <Button x:Name="btnSchema8" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="26" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
+            <Button x:Name="btnSchema9" Style="{DynamicResource ButtonPlan}" Grid.Row="3" Grid.Column="14" Grid.RowSpan="4" Grid.ColumnSpan="3"/>
+            <Button x:Name="btnSchema10" Style="{DynamicResource ButtonPlan}" Grid.Row="4" Grid.Column="19" Grid.RowSpan="3" Grid.ColumnSpan="2" />
+            <Button x:Name="btnSchema11" Style="{DynamicResource ButtonPlan}" Grid.Row="4" Grid.Column="21" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+            <Button x:Name="btnSchema12" Style="{DynamicResource ButtonPlan}" Grid.Row="4" Grid.Column="26" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+            <Button x:Name="btnSchema13" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="29" Grid.ColumnSpan="3" Grid.RowSpan="6"/>
+            <Button x:Name="btnSchema14" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="31"  Grid.RowSpan="5"/>
+            <Button x:Name="btnSchema15" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="4"  Grid.RowSpan="2"/>
+            <Button x:Name="btnSchema16" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="6" Grid.ColumnSpan="5"  Grid.RowSpan="2"/>
+            <Button x:Name="btnSchema17" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="13" Grid.ColumnSpan="8" Grid.RowSpan="2"/>
+            <Button x:Name="btnSchema18" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="21" Grid.ColumnSpan="6" Grid.RowSpan="2"/>
+            <Button x:Name="btnSchema19" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="27" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+            <Button x:Name="btnSchema20" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="27" Grid.ColumnSpan="3"/>
+            <Button x:Name="btnSchema21" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="21" Grid.ColumnSpan="6"/>
+            <Button x:Name="btnSchema22" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="16" Grid.ColumnSpan="6"/>
+            <Button x:Name="btnSchema23" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="9" Grid.ColumnSpan="7"/>
+            <Button x:Name="btnSchema24" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="5" Grid.ColumnSpan="4"/>
+            <Button x:Name="btnSchema25" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="2"/>
+            <Button x:Name="btnSchema26" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2"/>
         </Grid>
     </Canvas>
 </Page>

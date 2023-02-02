@@ -17,6 +17,8 @@ namespace ArendatorTOP
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
+            this.ApplicationToReception = new HashSet<ApplicationToReception>();
+            this.ApplicationToReception1 = new HashSet<ApplicationToReception>();
             this.DecommissionedMaterial = new HashSet<DecommissionedMaterial>();
             this.Demonstration = new HashSet<Demonstration>();
             this.Message = new HashSet<Message>();
@@ -35,6 +37,10 @@ namespace ArendatorTOP
         public int IdPost { get; set; }
         public string PhotoPath { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ApplicationToReception> ApplicationToReception { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ApplicationToReception> ApplicationToReception1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DecommissionedMaterial> DecommissionedMaterial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

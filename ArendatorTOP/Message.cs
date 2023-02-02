@@ -14,8 +14,8 @@ namespace ArendatorTOP
     
     public partial class Message
     {
-        public int IdSender { get; set; }
-        public int IdRecipient { get; set; }
+        public Nullable<int> IdSender { get; set; }
+        public Nullable<int> IdRecipient { get; set; }
         public string ContentMessage { get; set; }
     
         public virtual Employee Employee { get; set; }

@@ -5,14 +5,25 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище ArendatorTOPModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "ArendatorTOP.dbo.Application_Material" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Application_Material">
+          <Key>
+            <PropertyRef Name="IdApplication" />
+            <PropertyRef Name="IdMaterial" />
+            <PropertyRef Name="Count" />
+          </Key>
+          <Property Name="IdApplication" Type="int" Nullable="false" />
+          <Property Name="IdMaterial" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="ApplicationToReception">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdMaterial" Type="int" Nullable="false" />
-          <Property Name="IdEmployee" Type="int" Nullable="false" />
-          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="IdRecipient" Type="int" />
+          <Property Name="IdCreator" Type="int" />
           <Property Name="DateFormed" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Appointment">
@@ -20,7 +31,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="text" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -53,7 +64,7 @@
           <Property Name="IdMaterial" Type="int" Nullable="false" />
           <Property Name="IdEmployee" Type="int" Nullable="false" />
           <Property Name="PathToDocument16" Type="text" Nullable="false" />
-          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="CountMat" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Demonstration">
           <Key>
@@ -61,14 +72,15 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdClient" Type="int" />
-          <Property Name="IdObjectRent" Type="int" Nullable="false" />
-          <Property Name="IdEmployee" Type="int" Nullable="false" />
+          <Property Name="IdObjectRent" Type="int" />
+          <Property Name="IdEmployee" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Surname" Type="nvarchar" MaxLength="50" />
           <Property Name="Patronimic" Type="nvarchar" MaxLength="50" />
           <Property Name="PhoneNumber" Type="text" />
           <Property Name="DateOfDemonstration" Type="date" Nullable="false" />
           <Property Name="TimeOfDemonstration" Type="time" Precision="7" Nullable="false" />
+          <Property Name="IsOccupied" Type="bit" />
         </EntityType>
         <EntityType Name="Document">
           <Key>
@@ -104,22 +116,21 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="text" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="IdType" Type="int" Nullable="false" />
           <Property Name="Weight" Type="float" />
           <Property Name="Fragility" Type="bit" />
-          <Property Name="Sizes" Type="text" />
+          <Property Name="Sizes" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountMat" Type="int" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "ArendatorTOP.dbo.Message" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="Message">
           <Key>
-            <PropertyRef Name="IdSender" />
-            <PropertyRef Name="IdRecipient" />
             <PropertyRef Name="ContentMessage" />
           </Key>
-          <Property Name="IdSender" Type="int" Nullable="false" />
-          <Property Name="IdRecipient" Type="int" Nullable="false" />
+          <Property Name="IdSender" Type="int" />
+          <Property Name="IdRecipient" Type="int" />
           <Property Name="ContentMessage" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="ObjectRent">
@@ -181,9 +192,9 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdMaterial" Type="int" Nullable="false" />
-          <Property Name="IdObjectRent" Type="int" Nullable="false" />
-          <Property Name="IdEmployee" Type="int" Nullable="false" />
-          <Property Name="PathToDocument13" Type="text" Nullable="false" />
+          <Property Name="IdObjectRent" Type="int" />
+          <Property Name="IdEmployee" Type="int" />
+          <Property Name="PathToDocument13" Type="text" />
           <Property Name="Count" Type="int" Nullable="false" />
           <Property Name="DateSent" Type="date" Nullable="false" />
         </EntityType>
@@ -208,7 +219,7 @@
           <Property Name="Street" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="House" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Mail" Type="text" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="Supply">
           <Key>
@@ -218,7 +229,7 @@
           <Property Name="IdSuppler" Type="int" Nullable="false" />
           <Property Name="IdApplicationOnReciption" Type="int" Nullable="false" />
           <Property Name="Formed" Type="bit" Nullable="false" />
-          <Property Name="PathToDocument" Type="text" Nullable="false" />
+          <Property Name="PathToDocument" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "ArendatorTOP.dbo.SupplyMaterial" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -232,19 +243,9 @@
           </Key>
           <Property Name="IdSupply" Type="int" Nullable="false" />
           <Property Name="IdMaterial" Type="int" Nullable="false" />
-          <Property Name="PriceDilivery" Type="decimal" Precision="6" Scale="3" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="PriceDilivery" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TypeOfDocument">
           <Key>
@@ -275,6 +276,54 @@
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Application_Material_ApplicationToReception">
+          <End Role="ApplicationToReception" Type="Self.ApplicationToReception" Multiplicity="1" />
+          <End Role="Application_Material" Type="Self.Application_Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationToReception">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Application_Material">
+              <PropertyRef Name="IdApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_Material_Materials">
+          <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
+          <End Role="Application_Material" Type="Self.Application_Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Application_Material">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationToReception_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="ApplicationToReception" Type="Self.ApplicationToReception" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationToReception">
+              <PropertyRef Name="IdCreator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationToReception_Employee1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="ApplicationToReception" Type="Self.ApplicationToReception" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationToReception">
+              <PropertyRef Name="IdRecipient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DecommissionedMaterial_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -290,9 +339,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DecommissionedMaterial_Materials">
-          <End Role="Materials" Type="Self.Materials" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
           <End Role="DecommissionedMaterial" Type="Self.DecommissionedMaterial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Materials">
@@ -318,7 +365,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Demonstration_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Demonstration" Type="Self.Demonstration" Multiplicity="*" />
@@ -332,7 +379,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Demonstration_ObjectRent">
-          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="1">
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Demonstration" Type="Self.Demonstration" Multiplicity="*" />
@@ -402,7 +449,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Message_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Message" Type="Self.Message" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -414,7 +461,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Message_Employee1">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Message" Type="Self.Message" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -552,7 +599,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SentMaterials_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="SentMaterials" Type="Self.SentMaterials" Multiplicity="*" />
@@ -580,7 +627,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SentMaterials_ObjectRent">
-          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="1">
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="SentMaterials" Type="Self.SentMaterials" Multiplicity="*" />
@@ -680,11 +727,17 @@
           <EntitySet Name="Statement" EntityType="Self.Statement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supply" EntityType="Self.Supply" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOfDocument" EntityType="Self.TypeOfDocument" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOfMaterial" EntityType="Self.TypeOfMaterial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOfReport" EntityType="Self.TypeOfReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Application_Material" EntityType="Self.Application_Material" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Application_Material].[IdApplication] AS [IdApplication], 
+    [Application_Material].[IdMaterial] AS [IdMaterial], 
+    [Application_Material].[Count] AS [Count]
+    FROM [dbo].[Application_Material] AS [Application_Material]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Message" EntityType="Self.Message" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Message].[IdSender] AS [IdSender], 
@@ -701,6 +754,22 @@
     [SupplyMaterial].[Count] AS [Count]
     FROM [dbo].[SupplyMaterial] AS [SupplyMaterial]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_Application_Material_ApplicationToReception" Association="Self.FK_Application_Material_ApplicationToReception">
+            <End Role="ApplicationToReception" EntitySet="ApplicationToReception" />
+            <End Role="Application_Material" EntitySet="Application_Material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_Material_Materials" Association="Self.FK_Application_Material_Materials">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="Application_Material" EntitySet="Application_Material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationToReception_Employee" Association="Self.FK_ApplicationToReception_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ApplicationToReception" EntitySet="ApplicationToReception" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationToReception_Employee1" Association="Self.FK_ApplicationToReception_Employee1">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ApplicationToReception" EntitySet="ApplicationToReception" />
+          </AssociationSet>
           <AssociationSet Name="FK_DecommissionedMaterial_Employee" Association="Self.FK_DecommissionedMaterial_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="DecommissionedMaterial" EntitySet="DecommissionedMaterial" />
@@ -824,10 +893,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdMaterial" Type="Int32" Nullable="false" />
-          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
-          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="IdRecipient" Type="Int32" />
+          <Property Name="IdCreator" Type="Int32" />
           <Property Name="DateFormed" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Application_Material" Relationship="Self.FK_Application_Material_ApplicationToReception" FromRole="ApplicationToReception" ToRole="Application_Material" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_ApplicationToReception_Employee" FromRole="ApplicationToReception" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_ApplicationToReception_Employee1" FromRole="ApplicationToReception" ToRole="Employee" />
           <NavigationProperty Name="Supply" Relationship="Self.FK_Supply_ApplicationToReception" FromRole="ApplicationToReception" ToRole="Supply" />
         </EntityType>
         <EntityType Name="Appointment">
@@ -835,7 +906,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ObjectRent" Relationship="Self.FK_ObjectRent_Appointment" FromRole="Appointment" ToRole="ObjectRent" />
         </EntityType>
         <EntityType Name="Client">
@@ -871,7 +942,7 @@
           <Property Name="IdMaterial" Type="Int32" Nullable="false" />
           <Property Name="IdEmployee" Type="Int32" Nullable="false" />
           <Property Name="PathToDocument16" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="CountMat" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_DecommissionedMaterial_Employee" FromRole="DecommissionedMaterial" ToRole="Employee" />
           <NavigationProperty Name="Materials" Relationship="Self.FK_DecommissionedMaterial_Materials" FromRole="DecommissionedMaterial" ToRole="Materials" />
         </EntityType>
@@ -881,14 +952,15 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdClient" Type="Int32" />
-          <Property Name="IdObjectRent" Type="Int32" Nullable="false" />
-          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+          <Property Name="IdObjectRent" Type="Int32" />
+          <Property Name="IdEmployee" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="DateOfDemonstration" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="TimeOfDemonstration" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="IsOccupied" Type="Boolean" />
           <NavigationProperty Name="Client" Relationship="Self.FK_Demonstration_Client" FromRole="Demonstration" ToRole="Client" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Demonstration_Employee" FromRole="Demonstration" ToRole="Employee" />
           <NavigationProperty Name="ObjectRent" Relationship="Self.FK_Demonstration_ObjectRent" FromRole="Demonstration" ToRole="ObjectRent" />
@@ -916,6 +988,8 @@
           <Property Name="ContractNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdPost" Type="Int32" Nullable="false" />
           <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ApplicationToReception" Relationship="Self.FK_ApplicationToReception_Employee" FromRole="Employee" ToRole="ApplicationToReception" />
+          <NavigationProperty Name="ApplicationToReception1" Relationship="Self.FK_ApplicationToReception_Employee1" FromRole="Employee" ToRole="ApplicationToReception" />
           <NavigationProperty Name="DecommissionedMaterial" Relationship="Self.FK_DecommissionedMaterial_Employee" FromRole="Employee" ToRole="DecommissionedMaterial" />
           <NavigationProperty Name="Demonstration" Relationship="Self.FK_Demonstration_Employee" FromRole="Employee" ToRole="Demonstration" />
           <NavigationProperty Name="Post" Relationship="Self.FK_Employee_Post" FromRole="Employee" ToRole="Post" />
@@ -939,12 +1013,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdType" Type="Int32" Nullable="false" />
           <Property Name="Weight" Type="Double" />
           <Property Name="Fragility" Type="Boolean" />
-          <Property Name="Sizes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Sizes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountMat" Type="Int32" />
           <NavigationProperty Name="DecommissionedMaterial" Relationship="Self.FK_DecommissionedMaterial_Materials" FromRole="Materials" ToRole="DecommissionedMaterial" />
+          <NavigationProperty Name="Application_Material" Relationship="Self.FK_Application_Material_Materials" FromRole="Materials" ToRole="Application_Material" />
           <NavigationProperty Name="TypeOfMaterial" Relationship="Self.FK_Materials_TypeOfMaterial" FromRole="Materials" ToRole="TypeOfMaterial" />
           <NavigationProperty Name="SentMaterials" Relationship="Self.FK_SentMaterials_Materials" FromRole="Materials" ToRole="SentMaterials" />
           <NavigationProperty Name="SupplyMaterial" Relationship="Self.FK_SupplyMaterial_Materials" FromRole="Materials" ToRole="SupplyMaterial" />
@@ -1023,9 +1099,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdMaterial" Type="Int32" Nullable="false" />
-          <Property Name="IdObjectRent" Type="Int32" Nullable="false" />
-          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
-          <Property Name="PathToDocument13" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdObjectRent" Type="Int32" />
+          <Property Name="IdEmployee" Type="Int32" />
+          <Property Name="PathToDocument13" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Count" Type="Int32" Nullable="false" />
           <Property Name="DateSent" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_SentMaterials_Employee" FromRole="SentMaterials" ToRole="Employee" />
@@ -1054,7 +1130,7 @@
           <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="House" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Supply" Relationship="Self.FK_Supply_Supplier" FromRole="Supplier" ToRole="Supply" />
         </EntityType>
         <EntityType Name="Supply">
@@ -1065,20 +1141,10 @@
           <Property Name="IdSuppler" Type="Int32" Nullable="false" />
           <Property Name="IdApplicationOnReciption" Type="Int32" Nullable="false" />
           <Property Name="Formed" Type="Boolean" Nullable="false" />
-          <Property Name="PathToDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PathToDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ApplicationToReception" Relationship="Self.FK_Supply_ApplicationToReception" FromRole="Supply" ToRole="ApplicationToReception" />
           <NavigationProperty Name="Supplier" Relationship="Self.FK_Supply_Supplier" FromRole="Supply" ToRole="Supplier" />
           <NavigationProperty Name="SupplyMaterial" Relationship="Self.FK_SupplyMaterial_Supply" FromRole="Supply" ToRole="SupplyMaterial" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TypeOfDocument">
           <Key>
@@ -1113,14 +1179,24 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_User_Employee1" FromRole="User" ToRole="Employee" />
         </EntityType>
+        <EntityType Name="Application_Material">
+          <Key>
+            <PropertyRef Name="IdApplication" />
+            <PropertyRef Name="IdMaterial" />
+            <PropertyRef Name="Count" />
+          </Key>
+          <Property Name="IdApplication" Type="Int32" Nullable="false" />
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ApplicationToReception" Relationship="Self.FK_Application_Material_ApplicationToReception" FromRole="Application_Material" ToRole="ApplicationToReception" />
+          <NavigationProperty Name="Materials" Relationship="Self.FK_Application_Material_Materials" FromRole="Application_Material" ToRole="Materials" />
+        </EntityType>
         <EntityType Name="Message">
           <Key>
-            <PropertyRef Name="IdSender" />
-            <PropertyRef Name="IdRecipient" />
             <PropertyRef Name="ContentMessage" />
           </Key>
-          <Property Name="IdSender" Type="Int32" Nullable="false" />
-          <Property Name="IdRecipient" Type="Int32" Nullable="false" />
+          <Property Name="IdSender" Type="Int32" />
+          <Property Name="IdRecipient" Type="Int32" />
           <Property Name="ContentMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Message_Employee" FromRole="Message" ToRole="Employee" />
           <NavigationProperty Name="Employee1" Relationship="Self.FK_Message_Employee1" FromRole="Message" ToRole="Employee" />
@@ -1135,12 +1211,48 @@
           </Key>
           <Property Name="IdSupply" Type="Int32" Nullable="false" />
           <Property Name="IdMaterial" Type="Int32" Nullable="false" />
-          <Property Name="PriceDilivery" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="PriceDilivery" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Count" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Materials" Relationship="Self.FK_SupplyMaterial_Materials" FromRole="SupplyMaterial" ToRole="Materials" />
           <NavigationProperty Name="Supply" Relationship="Self.FK_SupplyMaterial_Supply" FromRole="SupplyMaterial" ToRole="Supply" />
         </EntityType>
+        <Association Name="FK_Application_Material_ApplicationToReception">
+          <End Role="ApplicationToReception" Type="Self.ApplicationToReception" Multiplicity="1" />
+          <End Role="Application_Material" Type="Self.Application_Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationToReception">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Application_Material">
+              <PropertyRef Name="IdApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationToReception_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="ApplicationToReception" Type="Self.ApplicationToReception" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationToReception">
+              <PropertyRef Name="IdCreator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationToReception_Employee1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="ApplicationToReception" Type="Self.ApplicationToReception" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationToReception">
+              <PropertyRef Name="IdRecipient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Supply_ApplicationToReception">
           <End Role="ApplicationToReception" Type="Self.ApplicationToReception" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1212,9 +1324,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DecommissionedMaterial_Materials">
-          <End Role="Materials" Type="Self.Materials" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
           <End Role="DecommissionedMaterial" Type="Self.DecommissionedMaterial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Materials">
@@ -1226,7 +1336,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Demonstration_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Demonstration" Type="Self.Demonstration" Multiplicity="*" />
@@ -1240,7 +1350,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Demonstration_ObjectRent">
-          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="1">
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Demonstration" Type="Self.Demonstration" Multiplicity="*" />
@@ -1296,7 +1406,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Message_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Message" Type="Self.Message" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -1308,7 +1418,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Message_Employee1">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Message" Type="Self.Message" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -1348,7 +1458,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SentMaterials_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="SentMaterials" Type="Self.SentMaterials" Multiplicity="*" />
@@ -1384,6 +1494,18 @@
             </Principal>
             <Dependent Role="Rent">
               <PropertyRef Name="IdTypeOfPayment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_Material_Materials">
+          <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
+          <End Role="Application_Material" Type="Self.Application_Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Application_Material">
+              <PropertyRef Name="IdMaterial" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1472,7 +1594,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SentMaterials_ObjectRent">
-          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="1">
+          <End Role="ObjectRent" Type="Self.ObjectRent" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="SentMaterials" Type="Self.SentMaterials" Multiplicity="*" />
@@ -1546,13 +1668,25 @@
           <EntitySet Name="Statement" EntityType="Self.Statement" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" />
           <EntitySet Name="Supply" EntityType="Self.Supply" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TypeOfDocument" EntityType="Self.TypeOfDocument" />
           <EntitySet Name="TypeOfMaterial" EntityType="Self.TypeOfMaterial" />
           <EntitySet Name="TypeOfReport" EntityType="Self.TypeOfReport" />
           <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Application_Material" EntityType="Self.Application_Material" />
           <EntitySet Name="Message" EntityType="Self.Message" />
           <EntitySet Name="SupplyMaterial" EntityType="Self.SupplyMaterial" />
+          <AssociationSet Name="FK_Application_Material_ApplicationToReception" Association="Self.FK_Application_Material_ApplicationToReception">
+            <End Role="ApplicationToReception" EntitySet="ApplicationToReception" />
+            <End Role="Application_Material" EntitySet="Application_Material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationToReception_Employee" Association="Self.FK_ApplicationToReception_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ApplicationToReception" EntitySet="ApplicationToReception" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationToReception_Employee1" Association="Self.FK_ApplicationToReception_Employee1">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ApplicationToReception" EntitySet="ApplicationToReception" />
+          </AssociationSet>
           <AssociationSet Name="FK_Supply_ApplicationToReception" Association="Self.FK_Supply_ApplicationToReception">
             <End Role="ApplicationToReception" EntitySet="ApplicationToReception" />
             <End Role="Supply" EntitySet="Supply" />
@@ -1625,6 +1759,10 @@
             <End Role="FormOfPayment" EntitySet="FormOfPayment" />
             <End Role="Rent" EntitySet="Rent" />
           </AssociationSet>
+          <AssociationSet Name="FK_Application_Material_Materials" Association="Self.FK_Application_Material_Materials">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="Application_Material" EntitySet="Application_Material" />
+          </AssociationSet>
           <AssociationSet Name="FK_Materials_TypeOfMaterial" Association="Self.FK_Materials_TypeOfMaterial">
             <End Role="TypeOfMaterial" EntitySet="TypeOfMaterial" />
             <End Role="Materials" EntitySet="Materials" />
@@ -1676,9 +1814,8 @@
             <EntityTypeMapping TypeName="ArendatorTOPModel.ApplicationToReception">
               <MappingFragment StoreEntitySet="ApplicationToReception">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
-                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="IdRecipient" ColumnName="IdRecipient" />
+                <ScalarProperty Name="IdCreator" ColumnName="IdCreator" />
                 <ScalarProperty Name="DateFormed" ColumnName="DateFormed" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1722,7 +1859,7 @@
                 <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
                 <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
                 <ScalarProperty Name="PathToDocument16" ColumnName="PathToDocument16" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="CountMat" ColumnName="CountMat" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1739,6 +1876,7 @@
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="DateOfDemonstration" ColumnName="DateOfDemonstration" />
                 <ScalarProperty Name="TimeOfDemonstration" ColumnName="TimeOfDemonstration" />
+                <ScalarProperty Name="IsOccupied" ColumnName="IsOccupied" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1783,6 +1921,7 @@
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
                 <ScalarProperty Name="Fragility" ColumnName="Fragility" />
                 <ScalarProperty Name="Sizes" ColumnName="Sizes" />
+                <ScalarProperty Name="CountMat" ColumnName="CountMat" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1893,17 +2032,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="ArendatorTOPModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TypeOfDocument">
             <EntityTypeMapping TypeName="ArendatorTOPModel.TypeOfDocument">
               <MappingFragment StoreEntitySet="TypeOfDocument">
@@ -1934,6 +2062,15 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Application_Material">
+            <EntityTypeMapping TypeName="ArendatorTOPModel.Application_Material">
+              <MappingFragment StoreEntitySet="Application_Material">
+                <ScalarProperty Name="IdApplication" ColumnName="IdApplication" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
