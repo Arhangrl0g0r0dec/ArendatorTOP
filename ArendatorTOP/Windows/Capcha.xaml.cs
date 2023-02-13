@@ -37,7 +37,7 @@ namespace ArendatorTOP
             {
                 if(user.Employee.Post.Id == 1)
                 {
-                    mainWindow.Container.Navigate(new Manager(mainWindow));
+                    mainWindow.Container.Navigate(new Manager(mainWindow, user));
                     Close();
                 }
                 else if(user.Employee.Post.Id == 2) 
@@ -48,6 +48,7 @@ namespace ArendatorTOP
             else
             {
                 MessageBox.Show("Неверный код!");
+                textBoxCapcha.Text = "";
                 (DataContext as AutorizationViewModel).GetCapcha();
             }
         }

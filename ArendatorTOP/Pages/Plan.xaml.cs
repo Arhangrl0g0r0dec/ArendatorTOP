@@ -23,11 +23,10 @@ namespace ArendatorTOP.Pages
 
         double scaleMinX { get; set; }
         double scaleMinY { get; set; }
-
         public Plan()
         {
             InitializeComponent();
-
+            
             scaleMinX = st.ScaleX;
             scaleMinY = st.ScaleY;
         }

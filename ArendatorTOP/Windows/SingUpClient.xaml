@@ -4,9 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArendatorTOP.Windows"
+        xmlns:viewmodel="clr-namespace:ArendatorTOP.ViewModel"
         mc:Ignorable="d"
-        Title="Запись клиента" Height="450" Width="800">
-    
+        Title="Запись клиента" Height="600" Width="1000">
+
+    <Window.DataContext>
+        <viewmodel:AddDemonstrationViewModel>
+        </viewmodel:AddDemonstrationViewModel>
+    </Window.DataContext>
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,17 +19,131 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    
+
     <Grid Style="{DynamicResource MainBack}">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="198*"/>
+            <RowDefinition Height="355*"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <TabControl Grid.Row="1" Style="{DynamicResource MainBack}">
-            <TabItem>
+        <TextBlock TextWrapping="NoWrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Title}" Grid.Row="0"/>
+        <TabControl Grid.Row="1"  Style="{DynamicResource MainBack}">
+            <TabItem Header="Клиент">
+                <Grid Style="{DynamicResource MainBack}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="345*"/>
+                        <ColumnDefinition Width="223*"/>
+                        <ColumnDefinition Width="226*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="" x:Name="textSecTitle" FontSize="16" HorizontalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" Height="20" Width="244"/>
+                    <TextBlock Text="Выбор клиента" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" FontSize="16" Height="20"/>
+                    <TextBlock Text="Выбор помещения" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="1" FontSize="16" Height="20"/>
+                    <TextBlock Text="Данные о демонстрации" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" FontSize="16" Height="20" Width="170"/>
+                    <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
+                        <TextBlock Text="Дата и время начала:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16"/>
+                        <TextBlock x:Name="DateTimeStart" Text="{Binding DateTimeStart}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" Margin="0,53,0,53" Grid.RowSpan="3">
+                        <TextBlock Text="Имя:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="nameText" Text="{Binding Name}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="0" Grid.Row="4" Orientation="Horizontal">
+                        <TextBlock Text="Фамилия:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="surnameText" Text="{Binding Surname}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="0" Grid.Row="4" Orientation="Horizontal" Margin="0,53,0,53" Grid.RowSpan="3">
+                        <TextBlock Text="Отчество:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="Patronimic" Text="{Binding Patronimic}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="0" Grid.Row="6" Orientation="Horizontal">
+                        <TextBlock Text="Номер для связи:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
+                        <TextBox Width="200" x:Name="PhoneNumberText" Text="{Binding PhoneNumber}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="0" Grid.Row="7" Orientation="Horizontal">
+                        <TextBlock Text="Помещение:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="ObjectRentText" Text="{Binding InfoObjectRent}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                        <TextBlock Text="Поиск" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBox x:Name="searchText" Style="{DynamicResource RadiusText}" Height="20" Width="150" Margin="10,0,0,0" TextChanged="searchText_TextChanged" Text="{Binding SearchStringClient, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2">
+                        <TextBlock Text="Назначение" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ComboBox ItemsSource="{Binding SelectionFiltersApp, Mode=OneWay}" Style="{DynamicResource myComboBoxStyle}" x:Name="comboType" Width="150" Height="24" Margin="10,0,0,0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox x:Name="appointmentBox" IsChecked="{Binding IsChecked}" Content="{Binding Appointments.Title}" Checked="appointmentBox_Checked" Unchecked="appointmentBox_Unchecked"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                    <ListView ItemsSource="{Binding Clients}" ItemContainerStyle="{DynamicResource listViewItemStyle}" x:Name="listBoxClients" Grid.Column="1" Grid.Row="3" Grid.RowSpan="5" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="listBoxClients_SelectionChanged">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Name, StringFormat=Имя: {0}}" Grid.Row="0"/>
+                                    <TextBlock Text="{Binding Surname, StringFormat=Фамилия: {0}}" Grid.Row="1"/>
+                                    <TextBlock Text="{Binding Patronimic, StringFormat=Отчество: {0}}" Grid.Row="2"/>
+                                    <TextBlock Text="{Binding PhoneNumber, StringFormat=Номер телефона: {0}}" Grid.Row="3"/>
+                                    <TextBlock Text="{Binding Mail, StringFormat=Почта: {0}}" Grid.Row="4"/>
+                                    <TextBlock Text="{Binding KPP, StringFormat=КПП: {0}}" Grid.Row="5"/>
+                                    <TextBlock Text="{Binding INN, StringFormat=ИНН: {0}}" Grid.Row="6"/>
+                                    <TextBlock Text="{Binding OGRN, StringFormat=ОГРН: {0}}" Grid.Row="7"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <ListView ItemsSource="{Binding ObjectRents}" ItemContainerStyle="{DynamicResource listViewItemStyle}" x:Name="listBoxOR" Grid.Column="2" Grid.Row="3" Grid.RowSpan="5" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="listBoxOR_SelectionChanged">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Id, StringFormat=№: {0}}" Grid.Row="0"/>
+                                    <TextBlock Text="{Binding Appointment.Title, StringFormat=Назначение: {0}}" Grid.Row="1"/>
+                                    <TextBlock Text="{Binding PriceForOneMeter, StringFormat=Стоимость за кв.метр: {0}}" Grid.Row="2"/>
+                                    <TextBlock Text="{Binding Floor, StringFormat=Этаж: {0}}" Grid.Row="3"/>
+                                    <TextBlock Text="{Binding Square, StringFormat=Площадь: {0}}" Grid.Row="4"/>
+                                    <TextBlock Text="{Binding Statement.Title, StringFormat=Состояние: {0}}" Grid.Row="5"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
             </TabItem>
-            <TabItem>
+            <TabItem Header="Посетитель">
+
             </TabItem>
         </TabControl>
+        <Button x:Name="btnSave" Content="Сохранить" Grid.Row="3" Width="80" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource Button3}" Click="btnSave_Click"/>
+        <Button x:Name="btnCanpel" Content="Отмена" Grid.Row="3" Width="80" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{DynamicResource Button4}" Margin="0,0,20,0" Click="btnCanpel_Click" />
     </Grid>
 </Window>

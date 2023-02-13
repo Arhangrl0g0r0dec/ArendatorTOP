@@ -22,10 +22,12 @@ namespace ArendatorTOP.Pages
     public partial class Manager : Page
     {
         MainWindow mainWindow;
-        public Manager(MainWindow main)
+        User User;
+        public Manager(MainWindow main, User user)
         {
             InitializeComponent();
             mainWindow = main;
+            User = user;
         }
 
         private void btnClient_Click(object sender, RoutedEventArgs e)
@@ -55,7 +57,7 @@ namespace ArendatorTOP.Pages
 
         private void btnDemonstration_Click(object sender, RoutedEventArgs e)
         {
-            ContainerFrame.Navigate(new DemonstrationPage());
+            ContainerFrame.Navigate(new DemonstrationPage(User, this));
         }
     }
 }

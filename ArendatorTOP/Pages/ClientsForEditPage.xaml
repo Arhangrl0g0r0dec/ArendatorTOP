@@ -29,7 +29,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal" Margin="20,0,0,0" HorizontalAlignment="Left">
                 <TextBlock Text="Поиск" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Text="" MaxLength="14" x:Name="searchBox" Style="{DynamicResource RadiusText}" Grid.Row="0" Width="200" Height="24" HorizontalAlignment="Left" Margin="20,0,0,0" TextChanged="searchBox_TextChanged"/>
+                <TextBox Text="" x:Name="searchBox" Style="{DynamicResource RadiusText}" Grid.Row="0" Width="200" Height="24" HorizontalAlignment="Left" Margin="20,0,0,0" TextChanged="searchBox_TextChanged"/>
             </StackPanel>
             <StackPanel Grid.Row="0" Orientation="Horizontal">
                 <CheckBox x:Name="chekBoxRent" Content="Арендуют сейчас" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" Click="chekBoxRent_Click"/>

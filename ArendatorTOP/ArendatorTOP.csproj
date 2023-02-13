@@ -219,6 +219,7 @@
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AddClientViewModel.cs" />
+    <Compile Include="ViewModel\AddDemonstrationViewModel.cs" />
     <Compile Include="ViewModel\DemonstrationViewModel.cs" />
     <Compile Include="ViewModel\ObjectRentViewModel.cs" />
     <Compile Include="ViewModel\ReportViewModel.cs" />
