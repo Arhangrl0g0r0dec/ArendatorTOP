@@ -6,13 +6,93 @@
       xmlns:local="clr-namespace:ArendatorTOP.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ClientsPage">
-
-    <Grid>
+      Title="ClientsPage"
+      xmlns:modelView="clr-namespace:ArendatorTOP.ViewModel">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resource/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Page.DataContext>
+        <modelView:ClientsViewModel>
+        </modelView:ClientsViewModel>
+    </Page.DataContext>
+    <Grid Style="{DynamicResource MainBack}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="199*"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="331*"/>
+            <RowDefinition Height="34*"/>
         </Grid.RowDefinitions>
-
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" HorizontalAlignment="Left">
+                <TextBlock Text="Поиск" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Text="" x:Name="searchBox" Style="{DynamicResource RadiusText}" Grid.Row="0" Width="200" Height="24" HorizontalAlignment="Left" Margin="20,0,0,0" TextChanged="searchBox_TextChanged"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <CheckBox x:Name="chekBoxRent" Content="Арендуют сейчас" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" Click="chekBoxRent_Click"/>
+                <CheckBox x:Name="chekBoxActive"  Content="Скрытые" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" Click="chekBoxActive_Click"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="380,0,0,0">
+            <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+        </StackPanel>
+        <Border Grid.Row="2" CornerRadius="10">
+            <DataGrid IsReadOnly="True" CanUserSortColumns="False" ItemsSource="{Binding Clients}" x:Name="dataClients" MinRowHeight="20" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}" MaxWidth="100" MinWidth="100"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" MaxWidth="100" MinWidth="100"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding Patronimic}" MaxWidth="100" MinWidth="100"/>
+                    <DataGridTextColumn Header="ИНН" Binding="{Binding INN}" MaxWidth="100" MinWidth="100"/>
+                    <DataGridTextColumn Header="ОГРН" Binding="{Binding OGRN}" MaxWidth="100" MinWidth="100"/>
+                    <DataGridTextColumn Header="КПП" Binding="{Binding KPP}" MaxWidth="100" MinWidth="100"/>
+                    <DataGridTextColumn Header="Mail" Binding="{Binding Mail}" Width="150" MaxWidth="150" MinWidth="100"/>
+                    <DataGridTemplateColumn Header="Адрес" Width="300">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat=" {0}, {1}, Этаж {2}, Офис {3}, Домофон {4}">
+                                            <Binding Path="Street"></Binding>
+                                            <Binding Path="Home"></Binding>
+                                            <Binding Path="Floor"></Binding>
+                                            <Binding Path="Office"></Binding>
+                                            <Binding Path="Domophone"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Демонстрации" Width="200" MaxWidth="200" MinWidth="200">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{DynamicResource Button2}" x:Name="btnEdit" Width="150" Height="25"  Content="Имеющиеся демонстрации"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Документы" Width="300" MaxWidth="500">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="2" CornerRadius="5">
+                                    <ComboBox x:Name="comboBoxDoc" Width="300" Height="25" Foreground="White" Style="{DynamicResource myComboBoxStyle}">
+                                        <ComboBoxItem Content="Ничего">
+                                        </ComboBoxItem>
+                                        <ComboBoxItem Content="Копия паспорта" >
+                                        </ComboBoxItem>
+                                        <ComboBoxItem Content="Свидетельство о регистрации юр.лица">
+                                        </ComboBoxItem>
+                                        <ComboBoxItem Content="Свидетельство подтверждающее полномочия руководителя">
+                                        </ComboBoxItem>
+                                    </ComboBox>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
     </Grid>
 </Page>

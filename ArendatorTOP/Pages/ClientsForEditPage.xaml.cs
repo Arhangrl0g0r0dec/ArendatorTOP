@@ -27,7 +27,7 @@ namespace ArendatorTOP.Pages
         {
             InitializeComponent();
             mainWindow = main;
-            dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+            dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(); 
         }
 
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)

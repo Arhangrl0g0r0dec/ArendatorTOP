@@ -25,6 +25,7 @@ namespace ArendatorTOP
     
         public int Id { get; set; }
         public int IdAppointment { get; set; }
+        public Nullable<int> IdControl { get; set; }
         public double Square { get; set; }
         public decimal PriceForOneMeter { get; set; }
         public int Floor { get; set; }
@@ -32,6 +33,7 @@ namespace ArendatorTOP
         public Nullable<bool> Del { get; set; }
     
         public virtual Appointment Appointment { get; set; }
+        public virtual Control Control { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Demonstration> Demonstration { get; set; }
         public virtual Statement Statement { get; set; }

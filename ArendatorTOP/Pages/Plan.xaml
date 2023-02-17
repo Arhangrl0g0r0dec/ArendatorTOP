@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1250"
       Title="Plan"
-      xmlns:viewmodel="clr-namespace:ArendatorTOP.ViewModel">
+      xmlns:viewmodel="clr-namespace:ArendatorTOP.ViewModel" MouseUp="Page_MouseUp" >
 
     <Page.Resources>
         <ResourceDictionary>
@@ -22,94 +22,196 @@
         <viewmodel:ObjectRentViewModel/>
     </Page.DataContext>
 
-    <Canvas Grid.Row="2" x:Name="CanvasPlan" MouseWheel="CanvasPlan_MouseWheel">
-        <Canvas.RenderTransform>
-            <ScaleTransform x:Name="st"/>
-        </Canvas.RenderTransform>
-        <Grid x:Name="GridPlan">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="162"/>
-                <RowDefinition Height="32"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="14"/>
-                <RowDefinition Height="32"/>
-                <RowDefinition Height="44"/>
-                <RowDefinition Height="6"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="33"/>
-                <RowDefinition Height="3"/>
-                <RowDefinition Height="12"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="52"/>
-                <RowDefinition Height="154"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="354"/>
-                <ColumnDefinition Width="54"/>
-                <ColumnDefinition Width="15"/>
-                <ColumnDefinition Width="11"/>
-                <ColumnDefinition Width="59"/>
-                <ColumnDefinition Width="7"/>
-                <ColumnDefinition Width="17"/>
-                <ColumnDefinition Width="36"/>
-                <ColumnDefinition Width="6"/>
-                <ColumnDefinition Width="6"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="4"/>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="13"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="4"/>
-                <ColumnDefinition Width="14"/>
-                <ColumnDefinition Width="5"/>
-                <ColumnDefinition Width="14"/>
-                <ColumnDefinition Width="27"/>
-                <ColumnDefinition Width="6"/>
-                <ColumnDefinition Width="3"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="18"/>
-                <ColumnDefinition Width="15"/>
-                <ColumnDefinition Width="15"/>
-                <ColumnDefinition Width="11"/>
-                <ColumnDefinition Width="2"/>
-                <ColumnDefinition Width="35"/>
-                <ColumnDefinition Width="13"/>
-                <ColumnDefinition Width="22"/>
-                <ColumnDefinition Width="44"/>
-                <ColumnDefinition Width="310"/>
-            </Grid.ColumnDefinitions>
-            <Image Source="{StaticResource floorplanDrawingImage}" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="33" Grid.RowSpan="14" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image.RenderTransform>
-                    <RotateTransform Angle="90"/>
-                </Image.RenderTransform>
-            </Image>
-            <Button x:Name="btnSchema1" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="6">
-            </Button>
-            <Button x:Name="btnSchema2" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="6"/>
-            <Button x:Name="btnSchema3" Style="{DynamicResource ButtonPlan}" Grid.Row="3" Grid.Column="7" Grid.RowSpan="4"/>
-            <Button x:Name="btnSchema4" Style="{DynamicResource ButtonPlan}" Grid.Row="3" Grid.Column="12" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-            <Button x:Name="btnSchema5" Style="{DynamicResource ButtonPlan}" Grid.Row="5" Grid.Column="12" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-            <Button x:Name="btnSchema6" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="7" Grid.RowSpan="2" />
-            <Button x:Name="btnSchema7" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="14" Grid.RowSpan="2" Grid.ColumnSpan="12"/>
-            <Button x:Name="btnSchema8" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="26" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
-            <Button x:Name="btnSchema9" Style="{DynamicResource ButtonPlan}" Grid.Row="3" Grid.Column="14" Grid.RowSpan="4" Grid.ColumnSpan="3"/>
-            <Button x:Name="btnSchema10" Style="{DynamicResource ButtonPlan}" Grid.Row="4" Grid.Column="19" Grid.RowSpan="3" Grid.ColumnSpan="2" />
-            <Button x:Name="btnSchema11" Style="{DynamicResource ButtonPlan}" Grid.Row="4" Grid.Column="21" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
-            <Button x:Name="btnSchema12" Style="{DynamicResource ButtonPlan}" Grid.Row="4" Grid.Column="26" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
-            <Button x:Name="btnSchema13" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="29" Grid.ColumnSpan="3" Grid.RowSpan="6"/>
-            <Button x:Name="btnSchema14" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="31"  Grid.RowSpan="5"/>
-            <Button x:Name="btnSchema15" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="4"  Grid.RowSpan="2"/>
-            <Button x:Name="btnSchema16" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="6" Grid.ColumnSpan="5"  Grid.RowSpan="2"/>
-            <Button x:Name="btnSchema17" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="13" Grid.ColumnSpan="8" Grid.RowSpan="2"/>
-            <Button x:Name="btnSchema18" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="21" Grid.ColumnSpan="6" Grid.RowSpan="2"/>
-            <Button x:Name="btnSchema19" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="27" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
-            <Button x:Name="btnSchema20" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="27" Grid.ColumnSpan="3"/>
-            <Button x:Name="btnSchema21" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="21" Grid.ColumnSpan="6"/>
-            <Button x:Name="btnSchema22" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="16" Grid.ColumnSpan="6"/>
-            <Button x:Name="btnSchema23" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="9" Grid.ColumnSpan="7"/>
-            <Button x:Name="btnSchema24" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="5" Grid.ColumnSpan="4"/>
-            <Button x:Name="btnSchema25" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="2"/>
-            <Button x:Name="btnSchema26" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2"/>
-        </Grid>
-    </Canvas>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="39*"/>
+            <ColumnDefinition Width="350"/>
+        </Grid.ColumnDefinitions>
+        <ListView Grid.Column="1" SelectionMode="Multiple" ItemContainerStyle="{DynamicResource listViewItemStyle}" ItemsSource="{Binding ObjectRentsOnPaln}" SelectedItem="{Binding objectRentPlan, UpdateSourceTrigger=PropertyChanged}" x:Name="listTwoObjectRent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="300" Height="480">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="290">
+                            </RowDefinition>
+                            <RowDefinition Height="30">
+                            </RowDefinition>
+                            <RowDefinition Height="30">
+                            </RowDefinition>
+                            <RowDefinition Height="30">
+                            </RowDefinition>
+                            <RowDefinition Height="30">
+                            </RowDefinition>
+                            <RowDefinition Height="30">
+                            </RowDefinition>
+                            <RowDefinition Height="40">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Vertical" >
+                            <!--Область отображения изображений-->
+                            <ListBox x:Name="test" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Padding="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalContentAlignment="Stretch" ItemsSource="{Binding PhotoOR}" SelectedIndex="0" Width="298" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center" MouseMove="test_MouseMove" MouseLeave="test_MouseLeave">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Grid></Grid>
+                                        <!--В качестве контейнера элементов будет выступать grid. Тогда все элементы будут накладываться друг на друга-->
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Image Stretch="Fill" Source="{Binding Path, Converter={StaticResource relativToFullPathConverter}}"></Image>
+                                        <!--В качесте шаблона элементов будет выступать изображение-->
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                                <ListBox.ItemContainerStyle>
+                                    <!--Задаем стиль для элементов внутри listBox: убираем отступы, границы и фокусировку, чтобы нельзя было выбирать элементы -->
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="Focusable" Value="False"></Setter>
+                                        <Setter Property="Padding" Value="0"></Setter>
+                                        <Setter Property="BorderThickness" Value="0"></Setter>
+                                        <Style.Triggers>
+                                            <!--Задаем триггер, который будет отображать поверх других элементов "выделенный" элемент (выделять элемент будем программно)-->
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Panel.ZIndex" Value="10000"></Setter>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                            </ListBox>
+                            <!--Область отображения кружочков-->
+                            <ListBox SelectedIndex="{Binding ElementName=test, Path=SelectedIndex}" BorderThickness="0" ItemsSource="{Binding PhotoOR}" Width="auto" Height="12">
+                                <!--Значение SelectedIndex будем брать у ListBox с изображениями.-->
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                                        <!--В качестве контейнера установим StackPanel в горизонтальной орентации.-->
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Ellipse Margin="1,0" Width="7" Height="7" Fill="#B3BCC5"></Ellipse>
+                                        <!--Элементом ListBox будет служить круг серого цвета-->
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="Focusable" Value="False"></Setter>
+                                        <Setter Property="Padding" Value="0"></Setter>
+                                        <Setter Property="BorderThickness" Value="0"></Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <!--Если элемент выделен, то меняем серый кружок на синий-->
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate>
+                                                            <Ellipse Margin="1,0" Width="7" Height="7" Fill="#005BFF"></Ellipse>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                            </ListBox>
+                        </StackPanel>
+                        <TextBlock Grid.Row="1" Text="{Binding Appointment.Title, StringFormat=Назначение: {0}}" FontSize="16" Margin="5,0,0,0"/>
+                        <TextBlock Grid.Row="2" Text="{Binding Square, StringFormat=Площадь: {0}}" FontSize="16" Margin="5,0,0,0"/>
+                        <TextBlock Grid.Row="3" Text="{Binding PriceForOneMeter, StringFormat=Стоимость за кв.метр: {0} руб.}" FontSize="16" Margin="5,0,0,0"/>
+                        <TextBlock Grid.Row="4" Text="{Binding Floor, StringFormat=Этаж: {0}}" FontSize="16" Margin="5,0,0,0"/>
+                        <TextBlock Grid.Row="5" Text="{Binding Statement.Title, StringFormat=Состояние: {0}}" FontSize="16" Margin="5,0,0,0"/>
+                        <Button Grid.Row="6" x:Name="btnDetail" Content="Подробнее" FontSize="16" Style="{DynamicResource Button}" Width="180" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Canvas x:Name="CanvasPlan" MouseWheel="CanvasPlan_MouseWheel" Grid.Column="0">
+            <Canvas.RenderTransform>
+                <ScaleTransform x:Name="st"/>
+            </Canvas.RenderTransform>
+            <Grid x:Name="GridPlan">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="162"/>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="14"/>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="44"/>
+                    <RowDefinition Height="6"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="33"/>
+                    <RowDefinition Height="3"/>
+                    <RowDefinition Height="12"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="52"/>
+                    <RowDefinition Height="154"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="354"/>
+                    <ColumnDefinition Width="54"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="11"/>
+                    <ColumnDefinition Width="59"/>
+                    <ColumnDefinition Width="7"/>
+                    <ColumnDefinition Width="17"/>
+                    <ColumnDefinition Width="36"/>
+                    <ColumnDefinition Width="6"/>
+                    <ColumnDefinition Width="6"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="13"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="14"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="14"/>
+                    <ColumnDefinition Width="27"/>
+                    <ColumnDefinition Width="6"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="18"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="11"/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="35"/>
+                    <ColumnDefinition Width="13"/>
+                    <ColumnDefinition Width="22"/>
+                    <ColumnDefinition Width="44"/>
+                    <ColumnDefinition Width="310"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="{StaticResource floorplanDrawingImage}" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="33" Grid.RowSpan="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image.RenderTransform>
+                        <RotateTransform Angle="90"/>
+                    </Image.RenderTransform>
+                </Image>
+                <Button x:Name="btnSchema1" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="6" Click="btnSchema1_Click"/>
+                <Button x:Name="btnSchema2" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="6" Click="btnSchema2_Click"/>
+                <Button x:Name="btnSchema3" Style="{DynamicResource ButtonPlan}" Grid.Row="3" Grid.Column="7" Grid.RowSpan="4" Click="btnSchema3_Click"/>
+                <Button x:Name="btnSchema4" Style="{DynamicResource ButtonPlan}" Grid.Row="3" Grid.Column="12" Grid.ColumnSpan="2" Grid.RowSpan="2" Click="btnSchema4_Click"/>
+                <Button x:Name="btnSchema5" Style="{DynamicResource ButtonPlan}" Grid.Row="5" Grid.Column="12" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                <Button x:Name="btnSchema6" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="7" Grid.RowSpan="2" />
+                <Button x:Name="btnSchema7" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="14" Grid.RowSpan="2" Grid.ColumnSpan="12"/>
+                <Button x:Name="btnSchema8" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="26" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
+                <Button x:Name="btnSchema9" Style="{DynamicResource ButtonPlan}" Grid.Row="3" Grid.Column="14" Grid.RowSpan="4" Grid.ColumnSpan="3"/>
+                <Button x:Name="btnSchema10" Style="{DynamicResource ButtonPlan}" Grid.Row="4" Grid.Column="19" Grid.RowSpan="3" Grid.ColumnSpan="2" />
+                <Button x:Name="btnSchema11" Style="{DynamicResource ButtonPlan}" Grid.Row="4" Grid.Column="21" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+                <Button x:Name="btnSchema12" Style="{DynamicResource ButtonPlan}" Grid.Row="4" Grid.Column="26" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+                <Button x:Name="btnSchema13" Style="{DynamicResource ButtonPlan}" Grid.Row="1" Grid.Column="29" Grid.ColumnSpan="3" Grid.RowSpan="6"/>
+                <Button x:Name="btnSchema14" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="31"  Grid.RowSpan="5"/>
+                <Button x:Name="btnSchema15" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="4"  Grid.RowSpan="2"/>
+                <Button x:Name="btnSchema16" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="6" Grid.ColumnSpan="5"  Grid.RowSpan="2"/>
+                <Button x:Name="btnSchema17" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="13" Grid.ColumnSpan="8" Grid.RowSpan="2"/>
+                <Button x:Name="btnSchema18" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="21" Grid.ColumnSpan="6" Grid.RowSpan="2"/>
+                <Button x:Name="btnSchema19" Style="{DynamicResource ButtonPlan}" Grid.Row="8" Grid.Column="27" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+                <Button x:Name="btnSchema20" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="27" Grid.ColumnSpan="3"/>
+                <Button x:Name="btnSchema21" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="21" Grid.ColumnSpan="6"/>
+                <Button x:Name="btnSchema22" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="16" Grid.ColumnSpan="6"/>
+                <Button x:Name="btnSchema23" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="9" Grid.ColumnSpan="7"/>
+                <Button x:Name="btnSchema24" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="5" Grid.ColumnSpan="4"/>
+                <Button x:Name="btnSchema25" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="2"/>
+                <Button x:Name="btnSchema26" Style="{DynamicResource ButtonPlan}" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2"/>
+            </Grid>
+        </Canvas>
+    </Grid>
 </Page>

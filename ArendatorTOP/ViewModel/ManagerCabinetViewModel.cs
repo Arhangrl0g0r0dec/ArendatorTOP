@@ -17,7 +17,7 @@ namespace ArendatorTOP.ViewModel
             GetFullName();
         }
 
-        public string GetFullName() 
+        public string GetFullName()
         {
             FullName = User.Employee.Surname + " " + User.Employee.Name;
             return FullName;

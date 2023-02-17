@@ -1,5 +1,4 @@
-﻿using ArendatorTOP.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,22 +16,17 @@ using System.Windows.Shapes;
 namespace ArendatorTOP.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Manager.xaml
+    /// Логика взаимодействия для Operator.xaml
     /// </summary>
-    public partial class Manager : Page
+    public partial class Operator : Page
     {
         MainWindow mainWindow;
         User User;
-        public Manager(MainWindow main, User user)
+        public Operator(MainWindow main, User user)
         {
             InitializeComponent();
             mainWindow = main;
             User = user;
-        }
-
-        private void btnClient_Click(object sender, RoutedEventArgs e)
-        {
-            ContainerFrame.Navigate(new ClientsForEditPage(mainWindow));
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
@@ -40,24 +34,24 @@ namespace ArendatorTOP.Pages
             mainWindow.Container.Navigate(new Autorisation(mainWindow));
         }
 
+        private void btnClient_Click(object sender, RoutedEventArgs e)
+        {
+            ContainerFrame.Navigate(new ClientsPage(mainWindow));
+        }
+
         private void btnObjectRent_Click(object sender, RoutedEventArgs e)
         {
-            ContainerFrame.Navigate(new ObjectRents());
+            ContainerFrame.Navigate(new ObjectRentForLook());
         }
 
         private void btnRent_Click(object sender, RoutedEventArgs e)
         {
-            ContainerFrame.Navigate(new Reports());
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ContainerFrame.Navigate(new ClientsForEditPage(mainWindow));
+            ContainerFrame.Navigate(new ReportOfDemonstration());
         }
 
         private void btnDemonstration_Click(object sender, RoutedEventArgs e)
         {
-            ContainerFrame.Navigate(new DemonstrationPage(User, this));
+            ContainerFrame.Navigate(new DemonstrationPage(User, null));
         }
     }
 }

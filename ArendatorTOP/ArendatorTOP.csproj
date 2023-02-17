@@ -102,58 +102,61 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationToReception.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Application_Material.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Appointment.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Client.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Control.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Converters\ReportConverter.cs" />
     <Compile Include="DecommissionedMaterial.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Demonstration.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Document.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Floor.cs" />
     <Compile Include="FormOfPayment.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IMessageShow.cs" />
     <Compile Include="Materials.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Message.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelDB.Context.cs">
+    <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDB.Context.tt</DependentUpon>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelDB.cs">
+    <Compile Include="Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelDB.Designer.cs">
+    <Compile Include="Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDB.edmx</DependentUpon>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="ObjectRent.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\DemonstrationPage.xaml.cs">
       <DependentUpon>DemonstrationPage.xaml</DependentUpon>
@@ -161,8 +164,14 @@
     <Compile Include="Pages\Director.xaml.cs">
       <DependentUpon>Director.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ObjectRentForLook.xaml.cs">
+      <DependentUpon>ObjectRentForLook.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ObjectRents.xaml.cs">
       <DependentUpon>ObjectRents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Operator.xaml.cs">
+      <DependentUpon>Operator.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PdfPage.xaml.cs">
       <DependentUpon>PdfPage.xaml</DependentUpon>
@@ -170,44 +179,50 @@
     <Compile Include="Pages\Plan.xaml.cs">
       <DependentUpon>Plan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ReportOfDemonstration.xaml.cs">
+      <DependentUpon>ReportOfDemonstration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Reports.xaml.cs">
       <DependentUpon>Reports.xaml</DependentUpon>
     </Compile>
     <Compile Include="PhotoOR.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Post.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Rent.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Report.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="SentMaterials.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Statement.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Supplier.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Supply.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="SupplyMaterial.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="TypeOfDocument.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="TypeOfMaterial.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="TypeOfReport.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="UC\CheckMarkControl.xaml.cs">
       <DependentUpon>CheckMarkControl.xaml</DependentUpon>
@@ -216,12 +231,13 @@
       <DependentUpon>LoadingControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AddClientViewModel.cs" />
     <Compile Include="ViewModel\AddDemonstrationViewModel.cs" />
     <Compile Include="ViewModel\DemonstrationViewModel.cs" />
     <Compile Include="ViewModel\ObjectRentViewModel.cs" />
+    <Compile Include="ViewModel\ReportDemonstrationViewModel.cs" />
     <Compile Include="ViewModel\ReportViewModel.cs" />
     <Compile Include="ViewModel\SelectionFilter.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
@@ -264,7 +280,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ObjectRentForLook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ObjectRents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Operator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -273,6 +297,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Plan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ReportOfDemonstration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -360,12 +388,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.manifest" />
-    <EntityDeploy Include="ModelDB.edmx">
+    <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="ModelDB.edmx.diagram">
-      <DependentUpon>ModelDB.edmx</DependentUpon>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -391,15 +419,15 @@
     <Resource Include="Resource\Images\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ModelDB.Context.tt">
+    <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelDB.edmx</DependentUpon>
-      <LastGenOutput>ModelDB.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="ModelDB.tt">
+    <Content Include="Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelDB.edmx</DependentUpon>
-      <LastGenOutput>ModelDB.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Resource\Images\lCON.ico" />
     <Resource Include="Resource\Images\list.jpg" />

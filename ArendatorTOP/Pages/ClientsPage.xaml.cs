@@ -1,4 +1,5 @@
-﻿using Svg2Xaml;
+﻿using ArendatorTOP.ViewModel;
+using Svg2Xaml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,46 @@ namespace ArendatorTOP.Pages
     /// </summary>
     public partial class ClientsPage : Page
     {
-        public ClientsPage()
+
+        MainWindow mainWindow;
+        public ClientsPage(MainWindow main)
         {
             InitializeComponent();
+            mainWindow = main;
+            dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
         }
 
-        
+        private void chekBoxActive_Click(object sender, RoutedEventArgs e)
+        {
+            if (chekBoxActive.IsChecked == true)
+            {
+                (DataContext as ClientsViewModel).IsChecedDelete = true;
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+            }
+            else if (chekBoxActive.IsChecked != true)
+            {
+                (DataContext as ClientsViewModel).IsChecedDelete = false;
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+            }
+        }
+
+        private void chekBoxRent_Click(object sender, RoutedEventArgs e)
+        {
+            if (chekBoxRent.IsChecked == true)
+            {
+                (DataContext as ClientsViewModel).IsChecedActive = true;
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+            }
+            else if (chekBoxRent.IsChecked != true)
+            {
+                (DataContext as ClientsViewModel).IsChecedActive = false;
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+            }
+        }
+
+        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dataClients.ItemsSource = (DataContext as ClientsViewModel).Search(searchBox.Text);
+        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using ArendatorTOP.Interfaces;
+using ArendatorTOP.Pages;
+using Microsoft.Office.Core;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +16,7 @@ namespace ArendatorTOP.ViewModel
 {
     class ObjectRentViewModel : ViewModelBase
     {
+        public List<Control> controls = new List<Control>();
         ObjectRent Objrent;
         public int selectedSortIndex { get; set; } = 0;
         public int selectedStateIndex { get; set; } = 0;
@@ -28,11 +31,16 @@ namespace ArendatorTOP.ViewModel
         public ObservableCollection<SelectionFilter> SelectionFiltersSort { get; set; }
         public ObservableCollection<SelectionFilter> SelectionFiltersActive { get; set; }
         public ObservableCollection<ObjectRent> ObjectRents { get; set; }
+        public ObservableCollection<ObjectRent> ObjectRentsOnPaln { get; set; }
+
+        public ObjectRent objectRentPlan;
 
         public ObjectRentViewModel()
         {
             Title = "Помещения";
             ObjectRents = new ObservableCollection<ObjectRent>();
+            ObjectRentsOnPaln = new ObservableCollection<ObjectRent>();
+
             List<Floor> Floors = new List<Floor>()
             {
                 new Floor(0),
@@ -42,6 +50,7 @@ namespace ArendatorTOP.ViewModel
                 new Floor(4),
                 new Floor(5),
             };
+            controls = DBModel.GetContext().Control.ToList();
 
             SelectionFiltersFloor = new ObservableCollection<SelectionFilter>(Floors.Select(p => new SelectionFilter() { Floor = p}));
             SelectionFiltersApp = new ObservableCollection<SelectionFilter>(DBModel.GetContext().Appointment.Select(p => new SelectionFilter() { Appointments = p }));
@@ -125,6 +134,26 @@ namespace ArendatorTOP.ViewModel
             catch (Exception ex) 
             {
             }
+        }
+
+        public ObservableCollection<ObjectRent> GetObjectRentsForPlan(string btn) 
+        {
+            ObjectRentsOnPaln.Clear();
+            List<ObjectRent> objectRents= new List<ObjectRent>();
+            
+            objectRents = DBModel.GetContext().ObjectRent.ToList();
+
+            if (!String.IsNullOrEmpty(btn))
+            {
+                objectRents = objectRents.Where(p => p.Control.Title == btn).ToList();
+            }
+
+            foreach (var objectRent in objectRents)
+            {
+                ObjectRentsOnPaln.Add(objectRent);
+            }
+
+            return ObjectRentsOnPaln;
         }
 
         public void Delete(ObjectRent objectRent) 

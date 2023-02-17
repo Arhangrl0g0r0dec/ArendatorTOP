@@ -80,7 +80,7 @@ namespace ArendatorTOP.ViewModel
         {
             if (!String.IsNullOrEmpty(text)) 
             {
-                clients = DBModel.GetContext().Client.Where(p => p.Name.ToLower().Contains(text.ToLower())
+                clients = DBModel.GetContext().Client.Where(n => n.Del == false).Where(p => p.Name.ToLower().Contains(text.ToLower())
                 || p.Surname.ToLower().Contains(text.ToLower())
                 || p.Patronimic.ToLower().Contains(text.ToLower())
                 || p.PhoneNumber.ToLower().Contains(text.ToLower())
