@@ -28,20 +28,20 @@ namespace ArendatorTOP.Pages
         {
             InitializeComponent();
             mainWindow = main;
-            dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+            dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(null);
         }
 
         private void chekBoxActive_Click(object sender, RoutedEventArgs e)
         {
             if (chekBoxActive.IsChecked == true)
             {
-                (DataContext as ClientsViewModel).IsChecedDelete = true;
-                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+                (DataContext as ClientsViewModel).IsCheckedActive = true;
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(null);
             }
             else if (chekBoxActive.IsChecked != true)
             {
-                (DataContext as ClientsViewModel).IsChecedDelete = false;
-                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+                (DataContext as ClientsViewModel).IsCheckedActive = true;
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(null);
             }
         }
 
@@ -49,19 +49,19 @@ namespace ArendatorTOP.Pages
         {
             if (chekBoxRent.IsChecked == true)
             {
-                (DataContext as ClientsViewModel).IsChecedActive = true;
-                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+                (DataContext as ClientsViewModel).IsCheckedActive = true;
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(null);
             }
             else if (chekBoxRent.IsChecked != true)
             {
-                (DataContext as ClientsViewModel).IsChecedActive = false;
-                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+                (DataContext as ClientsViewModel).IsCheckedActive = false;
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(null);
             }
         }
 
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dataClients.ItemsSource = (DataContext as ClientsViewModel).Search(searchBox.Text);
+            dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(searchBox.Text);
         }
     }
 }

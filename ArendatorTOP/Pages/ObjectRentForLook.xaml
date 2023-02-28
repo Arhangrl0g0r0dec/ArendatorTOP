@@ -23,7 +23,7 @@
     <TabControl Background="White">
         <TabItem>
             <TabItem.Header>
-                <Image Source="\Resource\Images\list.jpg" Stretch="Fill" Width="35" Height="35"/>
+                <Image Source="/Resource\Images\list.jpg" Stretch="Fill" Width="35" Height="35"/>
             </TabItem.Header>
             <Grid Style="{DynamicResource MainBack}">
                 <Grid.RowDefinitions>
@@ -35,7 +35,7 @@
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,0" HorizontalAlignment="Left">
                         <Button x:Name="btnFiltration" Height="24" Margin="5,0,0,0" Background="Transparent" BorderThickness="0" Click="btnFiltration_Click">
                             <Button.Content>
-                                <Image Source="\Resource\Images\Filter.png"/>
+                                <Image Source="/Resource\Images\Filter.png"/>
                             </Button.Content>
                         </Button>
                     </StackPanel>
@@ -138,7 +138,7 @@
                     <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
                 </StackPanel>
                 <Border Grid.Row="2" CornerRadius="10">
-                    <ListView SelectionMode="Multiple" ItemContainerStyle="{DynamicResource listViewItemStyle}" ItemsSource="{Binding ObjectRents}" x:Name="listObjectRent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=5}">
+                    <ListView SelectionMode="Multiple" ItemContainerStyle="{DynamicResource listViewItemStyle}" ItemsSource="{Binding ObjectRents}" x:Name="listObjectRent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
@@ -247,7 +247,7 @@
         </TabItem>
         <TabItem>
             <TabItem.Header>
-                <Image Source="\Resource\Images\plan.jpg" Stretch="Fill" Width="35" Height="35"/>
+                <Image Source="/Resource\Images\plan.jpg" Stretch="Fill" Width="35" Height="35"/>
             </TabItem.Header>
             <Grid>
                 <Grid.RowDefinitions>

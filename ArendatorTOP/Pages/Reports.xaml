@@ -17,7 +17,7 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="\Resource\Styles.xaml"/>
+                <ResourceDictionary Source="/Resource\Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -41,7 +41,7 @@
                 <DatePicker x:Name="DateEnd" DataContext="{Binding DateEndRent}" Grid.Row="1" HorizontalAlignment="Left" Width="150" Margin="0,0,10,0"/>
             </StackPanel>
 
-            <live:PieChart Grid.Row="3" LegendLocation="Bottom">
+        <live:PieChart Grid.Row="3" LegendLocation="Bottom">
             <live:PieChart.Series>
                 <MultiBinding Converter="{StaticResource repConverter}">
                     <Binding Path="ObjectRentId">

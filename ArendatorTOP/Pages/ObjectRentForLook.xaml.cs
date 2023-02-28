@@ -25,6 +25,7 @@ namespace ArendatorTOP.Pages
         public ObjectRentForLook()
         {
             InitializeComponent();
+            Container.Navigate(new Plan());
         }
 
         private bool? isShowFilter = null;

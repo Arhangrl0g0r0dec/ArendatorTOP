@@ -21,27 +21,27 @@ namespace ArendatorTOP.Windows
     /// </summary>
     public partial class SingUpClient : Window
     {
-        Demonstration demonstration = new Demonstration();
         ObjectRent objectRent;
         Client client;
         User User;
         DemonstrationPage demonstrationPage;
         Manager Managers;
+        Demonstration demonstration;
         public SingUpClient(Demonstration SelectedDemonstration, User user, DemonstrationPage demonstrationPages, Manager manager)
         {
             InitializeComponent();
-            demonstrationPage = demonstrationPages;
             demonstration = SelectedDemonstration;
-            if ((bool)demonstration.IsOccupied)
+            demonstrationPage = demonstrationPages;
+            if ((bool)SelectedDemonstration.IsOccupied)
             {
                 textSecTitle.Text = "Редактирование записи";
-                nameText.Text = demonstration.Name;
-                surnameText.Text = demonstration.Surname;
-                Patronimic.Text = demonstration.Patronimic;
-                PhoneNumberText.Text = demonstration.PhoneNumber;
-                ObjectRentText.Text =  "№" + demonstration.IdObjectRent + " " + demonstration.ObjectRent.Appointment.Title;
-                listBoxClients.SelectedItem = demonstration.Client;
-                listBoxOR.SelectedItem= demonstration.ObjectRent;
+                nameText.Text = SelectedDemonstration.Name;
+                surnameText.Text = SelectedDemonstration.Surname;
+                Patronimic.Text = SelectedDemonstration.Patronimic;
+                PhoneNumberText.Text = SelectedDemonstration.PhoneNumber;
+                ObjectRentText.Text =  "№" + SelectedDemonstration.IdObjectRent + " " + SelectedDemonstration.ObjectRent.Appointment.Title;
+                listBoxClients.SelectedItem = SelectedDemonstration.Client;
+                listBoxOR.SelectedItem= SelectedDemonstration.ObjectRent;
             }
             else 
             {
@@ -49,7 +49,7 @@ namespace ArendatorTOP.Windows
             }
             User = user;
             Managers = manager;
-            DateTimeStart.Text = (DataContext as AddDemonstrationViewModel).GetDemonstrationDateTime(demonstration);
+            DateTimeStart.Text = (DataContext as AddDemonstrationViewModel).GetDemonstrationDateTime(SelectedDemonstration);
             listBoxClients.ItemsSource = (DataContext as AddDemonstrationViewModel).UpdateClientList();
             listBoxOR.ItemsSource = (DataContext as AddDemonstrationViewModel).UpdateObjectRentList();
         }
@@ -87,9 +87,9 @@ namespace ArendatorTOP.Windows
                 && !String.IsNullOrEmpty(PhoneNumberText.Text)
                 && !String.IsNullOrEmpty(ObjectRentText.Text))
             {
-                (DataContext as AddDemonstrationViewModel).SaveDemonstration(demonstration,objectRent, client, User, PhoneNumberText.Text);
+                (DataContext as AddDemonstrationViewModel).SaveDemonstration(demonstration, objectRent, client, User, PhoneNumberText.Text);
                 MessageBox.Show("Заявка на демонстрацию сохранена успешно!");
-                Managers.ContainerFrame.Navigate(new DemonstrationPage(User, Managers));
+                demonstrationPage.DataDemonstration.ItemsSource = DBModel.GetContext().Demonstration.ToList();
                 this.Close();
             }
             else

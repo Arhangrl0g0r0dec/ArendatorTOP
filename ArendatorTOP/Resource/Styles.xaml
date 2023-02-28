@@ -21,10 +21,7 @@
         <Setter Property="Background" Value="#FBEBEB"/>
     </Style>
 
-    <Style TargetType="DataGridRow">
-        <Setter Property="Background" Value="#FBEBEB"/>
-        <Setter Property="BorderThickness" Value="0"/>
-    </Style>
+    
 
     <Style x:Key="PanelAuto">
         <Setter Property="Control.Background" Value="#B2463F3F"/>
@@ -86,6 +83,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="DataGridRow">
+        <Setter Property="Background" Value="#FBEBEB"/>
+        <Setter Property="BorderThickness" Value="0"/>
     </Style>
 
     <Style TargetType="DataGridColumnHeader">

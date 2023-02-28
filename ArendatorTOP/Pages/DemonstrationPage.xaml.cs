@@ -77,14 +77,6 @@ namespace ArendatorTOP.Pages
             }
         }
 
-        //private void ErrorMessage()
-        //{
-        //    if (DateStartPicker.SelectedDate.Value > DateEndPicker.SelectedDate.Value)
-        //    {
-        //        MessageBox.Show("Выбран неверный формат даты!");
-        //    }
-        //}
-
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             DataDemonstration.ItemsSource = (DataContext as DemonstrationViewModel).UpdateDemonstration();

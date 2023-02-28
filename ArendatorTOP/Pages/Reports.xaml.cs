@@ -141,6 +141,15 @@ namespace ArendatorTOP.Pages
                 dateStart = DateTime.Now.Date;
             }
 
+            if (DateEnd.SelectedDate != null)
+            {
+                dateEnd = DateEnd.SelectedDate.Value.Date;
+            }
+            else
+            {
+                dateEnd = DateTime.Now.Date;
+            }
+
             if (dateStart > dateEnd)
             {
                 MessageBox.Show("Данный диапазон дат невозможен!");

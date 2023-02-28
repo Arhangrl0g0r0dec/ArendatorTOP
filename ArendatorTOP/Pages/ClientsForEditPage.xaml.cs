@@ -27,12 +27,12 @@ namespace ArendatorTOP.Pages
         {
             InitializeComponent();
             mainWindow = main;
-            dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(); 
+            dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(null); 
         }
 
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dataClients.ItemsSource = (DataContext as ClientsViewModel).Search(searchBox.Text);
+            dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(searchBox.Text);
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -52,15 +52,11 @@ namespace ArendatorTOP.Pages
 
         private void chekBoxRent_Click(object sender, RoutedEventArgs e)
         {
-            if (chekBoxRent.IsChecked == true) 
+            if (chekBoxRent.IsChecked == true)
             {
-                (DataContext as ClientsViewModel).IsChecedActive = true;
-                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
-            }
-            else if (chekBoxRent.IsChecked != true) 
-            {
-                (DataContext as ClientsViewModel).IsChecedActive = false;
-                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+                (DataContext as ClientsViewModel).IsCheckedActive = (bool)chekBoxRent.IsChecked;
+                chekBoxActive.IsChecked = false;
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(null);
             }
         }
 
@@ -85,7 +81,7 @@ namespace ArendatorTOP.Pages
 
                 MessageBox.Show("Клиент успешно убран из списка!");
 
-                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(null);
             }
             else if (boxResult == MessageBoxResult.No)
             {
@@ -110,14 +106,11 @@ namespace ArendatorTOP.Pages
         {
             if (chekBoxActive.IsChecked == true)
             {
-                (DataContext as ClientsViewModel).IsChecedDelete = true;
-                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
+                (DataContext as ClientsViewModel).IsCheckedDelete = (bool)chekBoxActive.IsChecked;
+                chekBoxRent.IsChecked = false;
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(null);
             }
-            else if (chekBoxActive.IsChecked != true)
-            {
-                (DataContext as ClientsViewModel).IsChecedDelete = false;
-                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList();
-            }
+            
         }
     }
 }

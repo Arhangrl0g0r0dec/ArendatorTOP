@@ -7,51 +7,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ArendatorTOP.ViewModel
 {
     class ClientsViewModel : ViewModelBase
     {
-        public bool IsChecedDelete { get; set; }
+        public bool IsCheckedActive;
+        public bool IsCheckedDelete;
         public int SelectedIndex{ get; set; }
-        public bool IsChecedActive { get; set; }
         public static Client client { get; set; }
-        public ObservableCollection<Client> Clients { get; set; }
+        public ObservableCollection<Client> Clients = new ObservableCollection<Client>();
         public List<Client> clients { get; set; }
         public ClientsViewModel()
         {
             Title = "Клинеты";
         }
-        public List<Client> UpdateClientList()
+        public ObservableCollection<Client> UpdateClientList(string text)
         {
+            Clients.Clear();
             List<Client> clientList = DBModel.GetContext().Client.ToList();
-            try 
+            try
             {
-                if (IsChecedDelete == true)
+                if (!String.IsNullOrEmpty(text))
+                {
+                    clientList = DBModel.GetContext().Client.Where(p => p.Name.ToLower().Contains(text.ToLower())
+                    || p.Surname.ToLower().Contains(text.ToLower())
+                    || p.Patronimic.ToLower().Contains(text.ToLower())
+                    || p.PhoneNumber.ToLower().Contains(text.ToLower())
+                    || p.INN.ToLower().Contains(text.ToLower())
+                    || p.OGRN.ToLower().Contains(text.ToLower())
+                    || p.Mail.ToLower().Contains(text.ToLower())
+                    || p.KPP.ToLower().Contains(text.ToLower())).ToList();
+                }
+
+                if (IsCheckedDelete == true)
                 {
                     clientList = clientList.Where(p => p.Del == true).ToList();
                 }
 
-                if (IsChecedDelete == false)
-                {
-                    clientList = clientList.Where(p => p.Del != true).ToList();
-                }
-
-                if (IsChecedActive == true) 
-                {
-                    
-                }
-
-                if (IsChecedActive == false) 
-                {
-                
-                }
+                //if(IsCheckedActive == true)
+                //{
+                //    clientList = DBModel.GetContext().Rent.Where(p => p.DateEnd > DateTime.Now).Select(p => p.Client).Where(p => p.Del == false).ToList();
+                //}
             }
             catch(Exception ex) 
             {
                 MessageBox.Show($"Ошибка! {ex}");
             }
-            return clientList;
+
+            foreach(var client in clientList) 
+            {
+                Clients.Add(client);
+            }
+            
+            return Clients;
         }
 
         public bool CheckClient(Client SelectedClient)
@@ -69,45 +79,17 @@ namespace ArendatorTOP.ViewModel
             }
         }
 
-        public ObservableCollection<Client> DeleteClient() 
+        public ObservableCollection<Client> DeleteClient()
         {
             client.Del = true;
             DBModel.GetContext().SaveChanges();
-            return Clients = (ObservableCollection<Client>)Clients.Where(p => p.Del == true);
+            return UpdateClientList(null);
         }
 
-        public List<Client> Search(string text)
+        public List<Client> ActiveClients()
         {
-            if (!String.IsNullOrEmpty(text)) 
-            {
-                clients = DBModel.GetContext().Client.Where(n => n.Del == false).Where(p => p.Name.ToLower().Contains(text.ToLower())
-                || p.Surname.ToLower().Contains(text.ToLower())
-                || p.Patronimic.ToLower().Contains(text.ToLower())
-                || p.PhoneNumber.ToLower().Contains(text.ToLower())
-                || p.INN.ToLower().Contains(text.ToLower())
-                || p.OGRN.ToLower().Contains(text.ToLower())
-                || p.Mail.ToLower().Contains(text.ToLower())
-                || p.KPP.ToLower().Contains(text.ToLower())).ToList();
-
-                if (clients.Count != 0)
-                    return clients;
-                else
-                    return null;
-            }
-            else 
-            {
-                clients = DBModel.GetContext().Client.ToList();
-                return clients;
-            }
-        }
-
-
-        public List<Client> ActiveClients() 
-        {
-            var Client = DBModel.GetContext().Rent.Where(p => p.DateEnd > DateTime.Now).Select(p=>p.Client).ToList();
+            var Client = DBModel.GetContext().Rent.Where(p => p.DateEnd > DateTime.Now).Select(p => p.Client).ToList();
             return Client;
         }
-
-
     }
 }
