@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ArendatorTOP.ViewModel
 {
-    class ReportViewModel:ViewModelBase
+    class ReportObjectRentViewModel:ViewModelBase
     {
         public DateTime DateStartRent { get; set; }
         public DateTime DateEndRent { get; set; }
@@ -16,7 +16,7 @@ namespace ArendatorTOP.ViewModel
         public List<string> ObjectRentTitle { get; set; }
 
         public string FullTitle { get; set; }
-        public ReportViewModel()
+        public ReportObjectRentViewModel()
         {
             Title = "Отчетность по аренде";
             List<ObjectRent> objectRents = DBModel.GetContext().ObjectRent.ToList();

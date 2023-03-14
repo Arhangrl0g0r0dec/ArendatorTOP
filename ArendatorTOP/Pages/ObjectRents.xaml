@@ -40,7 +40,7 @@
                             </Button.Content>
                         </Button>
                     </StackPanel>
-                    <StackPanel x:Name="StakPanelFilter" Grid.Row="0" Orientation="Horizontal" Width="1100">
+                    <StackPanel x:Name="StakPanelFilter" Grid.Row="0" Orientation="Horizontal" Width="0">
                         <StackPanel.Style>
                             <Style TargetType="StackPanel">
                                 <Style.Triggers>
@@ -48,7 +48,7 @@
                                         <DataTrigger.EnterActions>
                                             <BeginStoryboard x:Name="_bS2">
                                                 <Storyboard>
-                                                    <DoubleAnimation Storyboard.TargetProperty="Width" From="0" To="1000" Duration="0:0:0.2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Width" From="0" To="1100" Duration="0:0:0.2"/>
                                                 </Storyboard>
                                             </BeginStoryboard>
                                         </DataTrigger.EnterActions>
@@ -60,7 +60,7 @@
                                         <DataTrigger.EnterActions>
                                             <BeginStoryboard x:Name="_bS1">
                                                 <Storyboard>
-                                                    <DoubleAnimation Storyboard.TargetProperty="Width" From="1000" To="0" Duration="0:0:0.2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Width" From="1100" To="0" Duration="0:0:0.2"/>
                                                 </Storyboard>
                                             </BeginStoryboard>
                                         </DataTrigger.EnterActions>

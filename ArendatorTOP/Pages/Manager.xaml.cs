@@ -1,6 +1,7 @@
 ﻿using ArendatorTOP.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace ArendatorTOP.Pages
     public partial class Manager : Page
     {
         MainWindow mainWindow;
-        User User;
+        public User User;
         public Manager(MainWindow main, User user)
         {
             InitializeComponent();

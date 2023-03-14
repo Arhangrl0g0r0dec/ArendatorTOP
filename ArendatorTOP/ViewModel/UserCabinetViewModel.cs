@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace ArendatorTOP.ViewModel
 {
-    class ManagerCabinetViewModel : ViewModelBase
+    class UserCabinetViewModel : ViewModelBase
     {
+        public string NameForChat { get; set; }
         public string FullName { get; set; }
         public User User { get; set; }
-        public ManagerCabinetViewModel() 
+        public int Id { get; set; }
+        public UserCabinetViewModel() 
         {
             Title = "Главная";
             User = AutorizationViewModel.user;
+            NameForChat = User.Employee.Surname[0] + ". " + User.Employee.Name;
+            Id = User.Employee.Id;
             GetFullName();
         }
 

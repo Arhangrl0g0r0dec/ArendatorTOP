@@ -45,11 +45,6 @@ namespace ArendatorTOP.ViewModel
                 {
                     clientList = clientList.Where(p => p.Del == true).ToList();
                 }
-
-                //if(IsCheckedActive == true)
-                //{
-                //    clientList = DBModel.GetContext().Rent.Where(p => p.DateEnd > DateTime.Now).Select(p => p.Client).Where(p => p.Del == false).ToList();
-                //}
             }
             catch(Exception ex) 
             {

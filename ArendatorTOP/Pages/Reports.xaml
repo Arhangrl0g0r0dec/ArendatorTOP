@@ -11,7 +11,7 @@
       xmlns:converter="clr-namespace:ArendatorTOP.Converters"
       xmlns:model="clr-namespace:ArendatorTOP.ViewModel">
     <Page.DataContext>
-        <model:ReportViewModel/>
+        <model:ReportObjectRentViewModel/>
     </Page.DataContext>
 
     <Page.Resources>

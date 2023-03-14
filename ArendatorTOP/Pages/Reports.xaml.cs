@@ -32,7 +32,7 @@ namespace ArendatorTOP.Pages
             InitializeComponent();
         }
 
-        async void WordExport(string savePath, ReportViewModel reportViewModel) 
+        async void WordExport(string savePath, ReportObjectRentViewModel reportViewModel) 
         {
             
             
@@ -160,7 +160,7 @@ namespace ArendatorTOP.Pages
                 saveFileDialog.Filter = "Doc Files (*.docx)|*.docx";
                 if (saveFileDialog.ShowDialog() == true)
                 {
-                    WordExport(saveFileDialog.FileName, DataContext as ReportViewModel);
+                    WordExport(saveFileDialog.FileName, DataContext as ReportObjectRentViewModel);
                     plug.Visibility = Visibility.Visible;
                 }
             }

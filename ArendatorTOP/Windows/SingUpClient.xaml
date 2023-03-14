@@ -139,7 +139,80 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Посетитель">
-
+                <Grid Style="{DynamicResource MainBack}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="298*"/>
+                        <ColumnDefinition Width="199*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Выбор помещения" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" FontSize="16" Height="20" Width="130"/>
+                    <TextBlock Text="Данные о демонстрации" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" FontSize="16" Height="20" Width="170"/>
+                    <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
+                        <TextBlock Text="Дата и время начала:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
+                        <TextBlock x:Name="DateTimeStartDemonstratoin" Text="{Binding DateTimeStart}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="0" Grid.Row="3" Orientation="Horizontal">
+                        <TextBlock Text="Имя:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold" Width="125"/>
+                        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0" Width="300" Height="25"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="0" Grid.Row="4" Orientation="Horizontal">
+                        <TextBlock Text="Фамилия:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold" Width="125"/>
+                        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0" Width="300" Height="25"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="0" Grid.Row="5" Orientation="Horizontal">
+                        <TextBlock Text="Отчество:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold" Width="125"/>
+                        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0" Width="300" Height="25"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="0" Grid.Row="6" Orientation="Horizontal">
+                        <TextBlock Text="Номер для связи:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold" Width="125"/>
+                        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0" Width="300" Height="25"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="0" Grid.Row="7" Orientation="Horizontal">
+                        <TextBlock Text="Помещение:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="ORText" Text="{Binding InfoObjectRent}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="10,0,0,69" Grid.RowSpan="2" Grid.Column="1">
+                        <TextBlock Text="Назначение" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+                        <ComboBox ItemsSource="{Binding SelectionFiltersApp, Mode=OneWay}" Style="{DynamicResource myComboBoxStyle}" x:Name="comboTypeOR" Width="250" Height="24" Margin="10,0,0,0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox x:Name="appointmentBox" IsChecked="{Binding IsChecked}" Content="{Binding Appointments.Title}" Checked="appointmentBox_Checked" Unchecked="appointmentBox_Unchecked"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                    <ListView ItemsSource="{Binding ObjectRents}" ItemContainerStyle="{DynamicResource listViewItemStyle}" x:Name="listBoxObjectsRent" Grid.Row="3" Grid.RowSpan="5" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="listBoxOR_SelectionChanged" Margin="10,0,0,0" Grid.Column="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Id, StringFormat=№: {0}}" Grid.Row="0"/>
+                                    <TextBlock Text="{Binding Appointment.Title, StringFormat=Назначение: {0}}" Grid.Row="1"/>
+                                    <TextBlock Text="{Binding PriceForOneMeter, StringFormat=Стоимость за кв.метр: {0}}" Grid.Row="2"/>
+                                    <TextBlock Text="{Binding Floor, StringFormat=Этаж: {0}}" Grid.Row="3"/>
+                                    <TextBlock Text="{Binding Square, StringFormat=Площадь: {0}}" Grid.Row="4"/>
+                                    <TextBlock Text="{Binding Statement.Title, StringFormat=Состояние: {0}}" Grid.Row="5"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
             </TabItem>
         </TabControl>
         <Button x:Name="btnSave" Content="Сохранить" Grid.Row="3" Width="80" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource Button3}" Click="btnSave_Click"/>

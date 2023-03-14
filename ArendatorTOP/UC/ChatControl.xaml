@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="ArendatorTOP.UC.ChatControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ArendatorTOP.UC"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="525" BorderThickness="0"
+             xmlns:viewmodel="clr-namespace:ArendatorTOP.ViewModel" Loaded="UserControl_Loaded"
+             xmlns:converter="clr-namespace:ArendatorTOP.Converters">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resource\Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Width="24" Height="29" Name="btnChat" BorderThickness="0" Click="btnChat_Click" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resource\Images\message.png"/>
+            </Button.Background>
+        </Button>
+        <Canvas Name="canvas" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Border BorderBrush="Gray" CornerRadius="0,10,10,10" BorderThickness="2" Name="brd"
+                Canvas.Top="0" Canvas.Left="20" Width="0" Height="0">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:ChatControl},Path=IsShowChat}" Value="False">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard x:Name="_bS2">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Width" From="0" To="350" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Height" From="0" To="400" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <RemoveStoryboard BeginStoryboardName="_bS2"></RemoveStoryboard>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:ChatControl},Path=IsShowChat}" Value="True">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard x:Name="_bS1">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Width" From="350" To="0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Height" From="400" To="0" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <RemoveStoryboard BeginStoryboardName="_bS1"></RemoveStoryboard>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="230"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TabControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3">
+                        <TabItem Header="Чат">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="230"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="45"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <ListBox x:Name="listEmployee" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" ItemsSource="{Binding Employees}" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Ellipse Width="35" Height="35">
+                                                <Ellipse.Fill>
+                                                    <ImageBrush ImageSource="{Binding PhotoPath, Converter={StaticResource relativToFullPathConverter}}"/>
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox x:Name="listChat" Grid.Row="1" Grid.Column="1" Width="340">
+                                </ListBox>
+                                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                                    <TextBox x:Name="txtContentMessage" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource RadiusText}" Margin="10" Width="250" Height="80"/>
+                                    <Button x:Name="btnEnterMessage" Width="25" Height="25"  Style="{DynamicResource EnterMessageButton}" Click="btnEnterMessage_Click">
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="/Resource\Images\EnterMessage.jpg"/>
+                                        </Button.Background>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Уведомления">
+                            <ListBox x:Name="listNotification" Grid.Row="1" Grid.Column="1">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding ContentMessage}"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </Border>
+        </Canvas>
+    </StackPanel>
+</UserControl>

@@ -21,7 +21,14 @@
         <Setter Property="Background" Value="#FBEBEB"/>
     </Style>
 
-    
+    <Style x:Key="Chat">
+        <Setter Property="Control.Background" Value="Transparent"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+        </Style.Resources>
+    </Style>
 
     <Style x:Key="PanelAuto">
         <Setter Property="Control.Background" Value="#B2463F3F"/>
@@ -219,6 +226,15 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="EnterMessageButton" TargetType="Button">
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="25"/>
+            </Style>
+        </Style.Resources>
+        <Setter Property="Background" Value="#463F3F"/>
     </Style>
 
     <Style x:Key="Button" TargetType="Button">
