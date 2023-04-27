@@ -16,10 +16,10 @@ namespace ArendatorTOP.ServiceChat {
     public interface IServiceChat {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Connect", ReplyAction="http://tempuri.org/IServiceChat/ConnectResponse")]
-        int Connect(string Name);
+        void Connect(string Name, int Id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Connect", ReplyAction="http://tempuri.org/IServiceChat/ConnectResponse")]
-        System.Threading.Tasks.Task<int> ConnectAsync(string Name);
+        System.Threading.Tasks.Task ConnectAsync(string Name, int Id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Disconnect", ReplyAction="http://tempuri.org/IServiceChat/DisconnectResponse")]
         void Disconnect(int id);
@@ -69,12 +69,12 @@ namespace ArendatorTOP.ServiceChat {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public int Connect(string Name) {
-            return base.Channel.Connect(Name);
+        public void Connect(string Name, int Id) {
+            base.Channel.Connect(Name, Id);
         }
         
-        public System.Threading.Tasks.Task<int> ConnectAsync(string Name) {
-            return base.Channel.ConnectAsync(Name);
+        public System.Threading.Tasks.Task ConnectAsync(string Name, int Id) {
+            return base.Channel.ConnectAsync(Name, Id);
         }
         
         public void Disconnect(int id) {

@@ -64,7 +64,7 @@ namespace ArendatorTOP.ViewModel
             client = SelectedClient;
             var r = DBModel.GetContext().Rent.Where(p => p.IdClient == SelectedClient.Id && p.DateEnd > DateTime.Now).ToList();
             
-            if(r.Count != 0) 
+            if(r.Count != 0)
             {
                 return true;
             }

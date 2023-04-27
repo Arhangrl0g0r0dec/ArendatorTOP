@@ -11,11 +11,18 @@ namespace ChatHost
     {
         static void Main(string[] args)
         {
-            using (var host = new ServiceHost(typeof(wcf_chat.ServiceChat))) 
+            try
             {
-                host.Open();
-                Console.WriteLine("Хост начал свою работу!");
-                Console.ReadLine();
+                using (var host = new ServiceHost(typeof(wcf_chat.ServiceChat)))
+                {
+                    host.Open();
+                    Console.WriteLine("Хост начал свою работу!");
+                    Console.ReadLine();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Неудачное подключение!");
             }
         }
     }

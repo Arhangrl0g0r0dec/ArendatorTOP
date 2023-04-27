@@ -20,9 +20,23 @@ namespace ArendatorTOP.Pages
     /// </summary>
     public partial class Director : Page
     {
-        public Director()
+        User User;
+        MainWindow MainWindow;
+        public Director(MainWindow mainWindow, User user)
         {
             InitializeComponent();
+            User = user;
+            MainWindow = mainWindow;
+        }
+
+        private void btnRents_Click(object sender, RoutedEventArgs e)
+        {
+            ContainerFrame.Navigate(new RentsPage(User));
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Container.Navigate(new Autorisation(MainWindow));
         }
     }
 }

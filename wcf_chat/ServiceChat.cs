@@ -14,24 +14,21 @@ namespace wcf_chat
     /// Список клиентов в приложении
     /// </summary>
         List<ServerUser> users = new List<ServerUser>();
-        int Id;
         /// <summary>
         /// Метод определяющий подключение к серверу клиента
         /// </summary>
         /// <param name="name">Имя Клиента</param>
         /// <returns></returns>
-        public int Connect(string name)
+        public void Connect(string name, int Id)
         {
+            
             ServerUser serverUser = new ServerUser()
             {
                 Id = Id,
                 Name = name,
                 OperationContext = OperationContext.Current
             };
-            Id++;
             users.Add(serverUser);
-
-            return serverUser.Id;
         }
         /// <summary>
         /// Метод отключения клиента от сервера

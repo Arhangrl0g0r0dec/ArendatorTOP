@@ -20,6 +20,8 @@ using ArendatorTOP.Pages;
 using CefSharp.DevTools.IO;
 using ArendatorTOP.ServiceChat;
 using System.ServiceModel;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.Windows.Interop;
 
 namespace ArendatorTOP.UC
 {
@@ -28,26 +30,14 @@ namespace ArendatorTOP.UC
     /// </summary>
     public partial class ChatControl : UserControl, INotifyPropertyChanged, IServiceChatCallback
     {
-        public static readonly DependencyProperty NameForChatProperty =
-            DependencyProperty.Register("NameForChat", typeof(string),
-                typeof(ChatControl), new UIPropertyMetadata());
-        /// <summary>
-        /// Имя полученное от Manager при помощи свойства расширения NameForChat
-        /// </summary>
-        public string NameForChat
-        {
-            get { return (string) GetValue(NameForChatProperty); }
-            set { SetValue(NameForChatProperty, value); }
-        }
-
-        public int IdForChat = 0;
         /// <summary>
         /// Свойство определящее будет ли показан чат
         /// </summary>
+        User User { get; set; }
+        bool IsConnect = false;
         private bool? isShowChat = null;
         public event PropertyChangedEventHandler PropertyChanged;
-
-        bool IsConnect = false;
+        List<Employee> Employees { get; set; }
         ServiceChatClient client;
         public bool? IsShowChat
         {
@@ -61,22 +51,58 @@ namespace ArendatorTOP.UC
                 }
             }
         }
-        public List<Employee> Employees = DBModel.GetContext().Employee.ToList();
+        
+        public int Id {get; set;} 
+        public string Name { get; set; }
         public ChatControl()
         {
             InitializeComponent();
-        }
-        
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.DataContext = this;
-            Employee employee = new Employee();
-            employee = Employees.FirstOrDefault(p => p.Id == IdForChat);
-            Employees.Remove(employee);
-            listEmployee.ItemsSource = Employees;
-            listNotification.ItemsSource = DBModel.GetContext().Message.Where(n => n.IdRecipient == IdForChat).ToList();
             client = new ServiceChatClient(new InstanceContext(this));
+            User = (DataContext as ChatClientViewModel).User;
+            this.DataContext = this;
+            Id = User.Employee.Id;
+            Name = User.Employee.Surname[0] + ". " + User.Employee.Name;
             ConnectionUser();
+            Employees = DBModel.GetContext().Employee.Where(e => e.Id != Id).ToList();
+            listEmployee.ItemsSource = Employees;
+        }
+
+        void DisconnectUser()
+        {
+            if (IsConnect)
+            {
+                client.Disconnect(Id);
+                client = null;
+                IsConnect = false;
+            }
+        }
+
+        public void ConnectionUser()
+        {
+            if (IsConnect)
+            {
+                DisconnectUser();
+            }
+            else
+            {
+                ConnectUser();
+            }
+        }
+
+        void ConnectUser()
+        {
+            try
+            {
+                if (!IsConnect)
+                {
+                    client.Connect(Name, Id);
+                    IsConnect = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка подключения! " + ex.Message);
+            }
         }
 
         private void btnChat_Click(object sender, RoutedEventArgs e)
@@ -91,50 +117,16 @@ namespace ArendatorTOP.UC
             } 
         }
 
-        void ConnectUser()
+        private void btnEnterMessage_Click(object sender, RoutedEventArgs e)
         {
-            if (!IsConnect)
-            {
-                client.Connect(NameForChat);
-                IsConnect = true;
-            }
-        }
-
-        void DisconnectUser()
-        {
-            if (IsConnect)
-            {
-                client.Disconnect(IdForChat);
-                client = null;
-                IsConnect = false;
-            }
+            client.SendMessage(txtContentMessage.Text, Id);
+            txtContentMessage.Text = string.Empty;
         }
 
         public void MsgCallback(string msg)
         {
             listChat.Items.Add(msg);
             listChat.ScrollIntoView(listChat.Items.Count - 1);
-        }
-
-        void ConnectionUser()
-        {
-            if (IsConnect)
-            {
-                DisconnectUser();
-            }
-            else
-            {
-                ConnectUser();
-            }
-        }
-
-        private void btnEnterMessage_Click(object sender, RoutedEventArgs e)
-        {
-            if (client != null)
-            {
-                client.SendMessage(txtContentMessage.Text, IdForChat);
-                txtContentMessage.Text = string.Empty;
-            }
         }
     }
 }

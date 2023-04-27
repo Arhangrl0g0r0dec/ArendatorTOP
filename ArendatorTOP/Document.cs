@@ -16,8 +16,9 @@ namespace ArendatorTOP
     {
         public int Id { get; set; }
         public int IdTypeOfDocument { get; set; }
-        public string NumDocument { get; set; }
+        public int NumDocument { get; set; }
         public int IdRent { get; set; }
+        public string PathToDocument { get; set; }
     
         public virtual Rent Rent { get; set; }
         public virtual TypeOfDocument TypeOfDocument { get; set; }

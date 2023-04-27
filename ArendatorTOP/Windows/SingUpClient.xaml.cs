@@ -81,21 +81,49 @@ namespace ArendatorTOP.Windows
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (!String.IsNullOrEmpty(nameText.Text)
+            string[] FullName = new string[3];
+            if (Tabs.SelectedIndex == 0) 
+            {
+                if (!String.IsNullOrEmpty(nameText.Text)
                 && !String.IsNullOrEmpty(surnameText.Text)
                 && !String.IsNullOrEmpty(Patronimic.Text)
                 && !String.IsNullOrEmpty(PhoneNumberText.Text)
+                && !String.IsNullOrEmpty(ObjectRentText.Text)) 
+                {
+                    (DataContext as AddDemonstrationViewModel).SaveDemonstration(demonstration, objectRent, client, User, PhoneNumberText.Text);
+                    ReloadDemonstrations();
+                }
+                else
+                {
+                    MessageBox.Show("Не все поля с данными были заполнены! Проверьте выбрали ли вы помещение и клиента.");
+                }
+            }
+            else if(Tabs.SelectedIndex == 1)
+            {
+                if (!String.IsNullOrEmpty(nameOfVisitor.Text)
+                && !String.IsNullOrEmpty(surnameOfVisitor.Text)
+                && !String.IsNullOrEmpty(patronimicOfVisitor.Text)
+                && !String.IsNullOrEmpty(PhoneNumberText.Text)
                 && !String.IsNullOrEmpty(ObjectRentText.Text))
-            {
-                (DataContext as AddDemonstrationViewModel).SaveDemonstration(demonstration, objectRent, client, User, PhoneNumberText.Text);
-                MessageBox.Show("Заявка на демонстрацию сохранена успешно!");
-                demonstrationPage.DataDemonstration.ItemsSource = DBModel.GetContext().Demonstration.ToList();
-                this.Close();
+                {
+                    FullName[0] = nameOfVisitor.Text;
+                    FullName[1] = surnameOfVisitor.Text;
+                    FullName[2] = patronimicOfVisitor.Text;
+                    (DataContext as AddDemonstrationViewModel).SaveDemonstrationForVisitor(demonstration, objectRent, User, PhoneNumberText.Text, FullName);
+                    ReloadDemonstrations();
+                }
+                else
+                {
+                    MessageBox.Show("Не все поля с данными были заполнены! Проверьте выбрали ли вы помещение и клиента.");
+                }
             }
-            else
-            {
-                MessageBox.Show("Не все поля с данными были заполнены! Проверьте выбрали ли вы помещение и клиента.");
-            }
+        }
+
+        private void ReloadDemonstrations()
+        {
+            MessageBox.Show("Заявка на демонстрацию сохранена успешно!");
+            demonstrationPage.DataDemonstration.ItemsSource = (DataContext as AddDemonstrationViewModel).GetDemonstrations();
+            this.Close();
         }
 
         private void searchText_TextChanged(object sender, TextChangedEventArgs e)

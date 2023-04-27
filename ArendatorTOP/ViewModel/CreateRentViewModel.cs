@@ -5,34 +5,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ArendatorTOP.ViewModel
 {
-    class AddDemonstrationViewModel : ViewModelBase
+    class CreateRentViewModel : ViewModelBase
     {
         public ObservableCollection<SelectionFilter> SelectionFiltersApp { get; set; }
         public ObservableCollection<Client> Clients = new ObservableCollection<Client>();
         public ObservableCollection<ObjectRent> ObjectRents = new ObservableCollection<ObjectRent>();
-        public string InfoObjectRent;
-        public string Name;
-        public string Surname;
-        public string Patronimic;
-        public string PhoneNumber;
-        public string SearchStringClient { get; set; }
-        public AddDemonstrationViewModel() 
+        public string SearchStringClient { get; set;}
+        public string InfoObjectRent { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Patronimic { get; set; }
+        public string PhoneNumber { get; set; }
+        public int NumContract { get; set; }
+        public List<FormOfPayment> formOfPayments = new List<FormOfPayment>();
+        public CreateRentViewModel() 
         {
-            Title = "Запись на демонтрацию";
             SelectionFiltersApp = new ObservableCollection<SelectionFilter>(DBModel.GetContext().Appointment.Select(p => new SelectionFilter() { Appointments = p }));
         }
 
-        public ObservableCollection<Client> UpdateClientList() 
+        public ObservableCollection<Client> UpdateClientList()
         {
             Clients.Clear();
 
             List<Client> clients = DBModel.GetContext().Client.ToList();
 
-            if (!String.IsNullOrEmpty(SearchStringClient)) 
+            if (!String.IsNullOrEmpty(SearchStringClient))
             {
                 clients = DBModel.GetContext().Client.Where(p => p.Name.ToLower().Contains(SearchStringClient.ToLower())
                 || p.Surname.ToLower().Contains(SearchStringClient.ToLower())
@@ -44,20 +44,14 @@ namespace ArendatorTOP.ViewModel
                 || p.KPP.ToLower().Contains(SearchStringClient.ToLower())).ToList();
             }
 
-            foreach(Client client in clients)
+            foreach (Client client in clients)
             {
                 Clients.Add(client);
             }
             return Clients;
         }
 
-        public List<Demonstration> GetDemonstrations()
-        {
-            List<Demonstration> demonstrations = new List<Demonstration>();
-            demonstrations = DBModel.GetContext().Demonstration.ToList();
-            return demonstrations;
-        }
-        public ObservableCollection<ObjectRent> UpdateObjectRentList() 
+        public ObservableCollection<ObjectRent> UpdateObjectRentList()
         {
             ObjectRents.Clear();
             List<ObjectRent> objectRents = DBModel.GetContext().ObjectRent.Where(p => p.Del == false).ToList();
@@ -84,9 +78,9 @@ namespace ArendatorTOP.ViewModel
             return ObjectRents;
         }
 
-        public string GetClientName(Client client) 
+        public string GetClientName(Client client)
         {
-            return Name= client.Name;
+            return Name = client.Name;
         }
 
         public string GetClientSurname(Client client)
@@ -109,31 +103,45 @@ namespace ArendatorTOP.ViewModel
             return InfoObjectRent = "№" + obj.Id + obj.Appointment.Title.ToString();
         }
 
-        public string GetDemonstrationDateTime(Demonstration demonstration) 
+        //Вывести контракт!!!
+        public Document GetNumContract()
         {
-            return demonstration.DateOfDemonstration.ToShortDateString() + " " + demonstration.TimeOfDemonstration.ToString();
+            Document document;
+            document = DBModel.GetContext().Document.Where(p => p.IdTypeOfDocument == 1).OrderBy(p => p.NumDocument).FirstOrDefault();
+            NumContract = document.NumDocument + 1;
+
+            if (document == null) 
+            {
+                return null;
+            }
+            else 
+            {
+                return document;
+            }
         }
 
-        public void SaveDemonstration(Demonstration demonstration ,ObjectRent SelectedObjectRent, Client SelectedClient, User user, string PhoneNumber)
+
+        public List<FormOfPayment> UpdatePaymentList()
         {
-            demonstration.ObjectRent = SelectedObjectRent;
-            demonstration.Client = SelectedClient;
-            demonstration.IsOccupied = true;
-            demonstration.Employee = user.Employee;
-            demonstration.PhoneNumber = PhoneNumber;
-            DBModel.GetContext().SaveChanges();
+            return formOfPayments = DBModel.GetContext().FormOfPayment.ToList();
         }
 
-        public void SaveDemonstrationForVisitor(Demonstration demonstration, ObjectRent SelectedObjectRent, User user, string PhoneNumber, string[] FullName)
+        public Rent SaveDemonstration(Client client, Employee employee, ObjectRent objectRent, FormOfPayment formOfPayment, DateTime dateStart, DateTime dateEnd) 
         {
-            demonstration.ObjectRent = SelectedObjectRent;
-            demonstration.Name = FullName[0];
-            demonstration.Surname = FullName[1];
-            demonstration.Patronimic = FullName[2];
-            demonstration.IsOccupied = true;
-            demonstration.Employee = user.Employee;
-            demonstration.PhoneNumber = PhoneNumber;
-            DBModel.GetContext().SaveChanges();
+            Rent rent = new Rent()
+            {
+                Client = client,
+                ObjectRent = objectRent,
+                Bet = Convert.ToDecimal(Convert.ToDouble(objectRent.PriceForOneMeter) * objectRent.Square),
+                DateStart = dateStart,
+                DateEnd = dateEnd,
+                Deposit = Convert.ToDecimal(Convert.ToDouble(objectRent.PriceForOneMeter) * objectRent.Square),
+                Employee = employee,
+                FormOfPayment = formOfPayment,
+                OwnerOfObjectRent = "ООО ПСК РИТМ",
+                Document = null,
+            };
+            return rent;
         }
     }
 }

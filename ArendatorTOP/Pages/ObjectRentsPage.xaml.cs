@@ -1,4 +1,5 @@
 ﻿using ArendatorTOP.ViewModel;
+using ArendatorTOP.Windows;
 using CefSharp.Wpf;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ArendatorTOP.Pages
 {
@@ -28,7 +30,7 @@ namespace ArendatorTOP.Pages
         //Логика для взаимодействия с анимацией фильтров
         private bool? isShowFilter = null;
 
-
+        ObjectRent ObjectRent;
         public bool? IsShowFilter
         {
             get => isShowFilter;
@@ -132,22 +134,22 @@ namespace ArendatorTOP.Pages
         //Удаление помещения
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            var item = (sender as Button).DataContext as ObjectRent;
+            var ObjectRent = (sender as Button).DataContext as ObjectRent;
 
             MessageBoxResult boxResult = new MessageBoxResult();
 
-            if ((DataContext as ObjectRentViewModel).CheckObjectRent(item))
+            if ((DataContext as ObjectRentViewModel).CheckObjectRent(ObjectRent))
             {
-                boxResult = MessageBox.Show($"Вы уверены что хотите убрать помещение № {item.Id.ToString() + " " + item.Appointment.Title} из списка, у него еще есть незавершенная аренда! Вместе с помещением уберутся все связанные с ним данные об аренде!", "Убрать?", MessageBoxButton.YesNo);
+                boxResult = MessageBox.Show($"Вы уверены что хотите убрать помещение № {ObjectRent.Id.ToString() + " " + ObjectRent.Appointment.Title} из списка, у него еще есть незавершенная аренда!", "Убрать?", MessageBoxButton.YesNo);
             }
             else
             {
-                boxResult = MessageBox.Show($"Вы уверены что хотите убрать помещение № {item.Id.ToString() + " " + item.Appointment.Title} из списка", "Убрать?", MessageBoxButton.YesNo);
+                boxResult = MessageBox.Show($"Вы уверены что хотите убрать помещение № {ObjectRent.Id.ToString() + " " + ObjectRent.Appointment.Title} из списка", "Убрать?", MessageBoxButton.YesNo);
             }
 
             if (boxResult == MessageBoxResult.Yes)
             {
-                (DataContext as ObjectRentViewModel).Delete(item);
+                (DataContext as ObjectRentViewModel).Delete(ObjectRent);
 
                 MessageBox.Show("Помещение успешно убрано из списка!");
 
@@ -181,6 +183,33 @@ namespace ArendatorTOP.Pages
                 (DataContext as ObjectRentViewModel).IsCheking = false;
                 (DataContext as ObjectRentViewModel).ObjectRentList();
             }
+        }
+        /// <summary>
+        /// Событие нажатия кнопки "Подробнее"
+        /// Необходимо додумать появление окон, возможно стоит использовать одно окно для просмотра, удаления, добавления, а MoreDetailsAboutObjectRent удалить из проекта
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDetail_Click(object sender, RoutedEventArgs e)
+        {
+            ObjectRent = (sender as Button).DataContext as ObjectRent;
+            //MoreDetailsAboutObjectRent moreDetailsAboutObject = new MoreDetailsAboutObjectRent(item);
+            //moreDetailsAboutObject.Show();
+            
+        }
+
+        private void addObjectRent_Click(object sender, RoutedEventArgs e)
+        {
+            AddObjectRent addObjectRent = new AddObjectRent(ObjectRent);
+            addObjectRent.Show();
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            var objectRent = (sender as Button).DataContext as ObjectRent;
+            
+            AddObjectRent addObjectRent = new AddObjectRent(objectRent);
+            addObjectRent.Show();
         }
     }
 }

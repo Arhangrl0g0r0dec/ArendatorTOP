@@ -41,7 +41,7 @@ namespace ArendatorTOP.ViewModel
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Фото| *png; *jpg; *gif;";
-            ofd.InitialDirectory = "C:\\Users\\Arhangel0g0r0dec\\Arhangel0g0r0dec\\Desktop\\Архив для нужного хлама";
+            ofd.InitialDirectory = "C:\\";
             ofd.ShowDialog();
             FilePath = ofd.FileName;
             FileName = ofd.SafeFileName;

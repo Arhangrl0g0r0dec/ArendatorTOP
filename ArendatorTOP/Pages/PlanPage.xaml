@@ -26,7 +26,7 @@
             <ColumnDefinition Width="39*"/>
             <ColumnDefinition Width="350"/>
         </Grid.ColumnDefinitions>
-        <ListView Grid.Column="1" SelectionMode="Multiple" ItemContainerStyle="{DynamicResource listViewItemStyle}" ItemsSource="{Binding ObjectRentsOnPaln}" SelectedItem="{Binding objectRentPlan, UpdateSourceTrigger=PropertyChanged}" x:Name="listTwoObjectRent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
+        <ListView Grid.Column="1" SelectionMode="Multiple" Background="White" ItemContainerStyle="{DynamicResource listViewItemStyle}" ItemsSource="{Binding ObjectRentsOnPaln}" SelectedItem="{Binding objectRentPlan, UpdateSourceTrigger=PropertyChanged}" x:Name="listTwoObjectRent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Width="300" Height="480">
@@ -122,11 +122,11 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Canvas x:Name="CanvasPlan" MouseWheel="CanvasPlan_MouseWheel" Grid.Column="0">
+        <Canvas x:Name="CanvasPlan" MouseWheel="CanvasPlan_MouseWheel" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Canvas.RenderTransform>
                 <ScaleTransform x:Name="st"/>
             </Canvas.RenderTransform>
-            <Grid x:Name="GridPlan">
+            <Grid x:Name="GridPlan" HorizontalAlignment="Left" VerticalAlignment="Center" Width="889">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="162"/>
                     <RowDefinition Height="32"/>

@@ -42,7 +42,7 @@ namespace ArendatorTOP
                 }
                 else if(user.Employee.Post.Id == 2) 
                 {
-                    mainWindow.Container.Navigate(new Director());
+                    mainWindow.Container.Navigate(new Director(mainWindow ,user));
                     Close();
                 }
                 else if (user.Employee.Post.Id == 3)

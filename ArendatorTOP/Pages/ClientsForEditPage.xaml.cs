@@ -68,11 +68,11 @@ namespace ArendatorTOP.Pages
 
             if ((DataContext as ClientsViewModel).CheckClient(SelectedClients))
             {
-                boxResult = MessageBox.Show($"Вы уверены что хотите удалить клиента {SelectedClients.Name + " " + SelectedClients.Surname + " " + SelectedClients.Patronimic}, у него еще есть незавершенная аренда! Вместе с клиентом удалятся все связанные с ним данные об аренде!", "Удалить?", MessageBoxButton.YesNo);
+                boxResult = MessageBox.Show($"Вы уверены что хотите удалить клиента {SelectedClients.Name + " " + SelectedClients.Surname + " " + SelectedClients.Patronimic}, у него еще есть незавершенная аренда! ", "Удалить?", MessageBoxButton.YesNo);
             }
             else
             {
-                boxResult = MessageBox.Show($"Вы уверены что хотите удалить клиента {SelectedClients.Name + " " + SelectedClients.Surname + " " + SelectedClients.Patronimic} Вместе с клиентом удалятся все связанные с ним данные об аренде!", "Удалить?", MessageBoxButton.YesNo);
+                boxResult = MessageBox.Show($"Вы уверены что хотите удалить клиента {SelectedClients.Name + " " + SelectedClients.Surname + " " + SelectedClients.Patronimic} ?", "Удалить?", MessageBoxButton.YesNo);
             }
 
             if (boxResult == MessageBoxResult.Yes)

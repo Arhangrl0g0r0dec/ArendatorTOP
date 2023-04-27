@@ -41,18 +41,10 @@ namespace ArendatorTOP.ViewModel
             ObjectRents = new ObservableCollection<ObjectRent>();
             ObjectRentsOnPaln = new ObservableCollection<ObjectRent>();
 
-            List<Floor> Floors = new List<Floor>()
-            {
-                new Floor(0),
-                new Floor(1),
-                new Floor(2),
-                new Floor(3),
-                new Floor(4),
-                new Floor(5),
-            };
+            
             controls = DBModel.GetContext().Control.ToList();
 
-            SelectionFiltersFloor = new ObservableCollection<SelectionFilter>(Floors.Select(p => new SelectionFilter() { Floor = p}));
+            SelectionFiltersFloor = new ObservableCollection<SelectionFilter>(DBModel.GetContext().Floor.Select(p => new SelectionFilter() { Floor = p}));
             SelectionFiltersApp = new ObservableCollection<SelectionFilter>(DBModel.GetContext().Appointment.Select(p => new SelectionFilter() { Appointments = p }));
             SelectionFiltersState = new ObservableCollection<SelectionFilter>(DBModel.GetContext().Statement.Select(p => new SelectionFilter() { Statements = p }));
 

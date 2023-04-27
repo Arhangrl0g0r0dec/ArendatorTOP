@@ -1,4 +1,5 @@
-﻿using ArendatorTOP.ViewModel;
+﻿using ArendatorTOP.UC;
+using ArendatorTOP.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,6 +60,11 @@ namespace ArendatorTOP.Pages
         private void btnDemonstration_Click(object sender, RoutedEventArgs e)
         {
             ContainerFrame.Navigate(new DemonstrationPage(User, this));
+        }
+
+        private void btnRents_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
