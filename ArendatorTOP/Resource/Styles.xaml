@@ -2,11 +2,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:ArendatorTOP.Converters"
                     xmlns:viewModel="clr-namespace:ArendatorTOP.ViewModel">
-    <converters:RelativeToFullPathConverter x:Key="relativToFullPathConverter">
-    </converters:RelativeToFullPathConverter>
+
+    <converters:RelativeToPathConverter x:Key="relativToFullPathConverter"/>
     <converters:GetAddressesConverter x:Key="getAddressConverter">
     </converters:GetAddressesConverter>
     <converters:ReportConverter x:Key="repConverter"/>
+    <converters:FraqilityConverter x:Key="fraqConverter">
+    </converters:FraqilityConverter>
+
     <Style x:Key="Header">
         <Setter Property="Control.Background" Value="#FBEBEB"/>
     </Style>
@@ -207,7 +210,8 @@
     </Style>
 
     <Style x:Key="ButtonPlan" TargetType="Button">
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="20"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">

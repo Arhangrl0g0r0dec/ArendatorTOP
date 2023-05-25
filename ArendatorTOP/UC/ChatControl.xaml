@@ -8,6 +8,7 @@
              d:DesignHeight="350" d:DesignWidth="525" BorderThickness="0"
              xmlns:converter="clr-namespace:ArendatorTOP.Converters"
              xmlns:viewModel="clr-namespace:ArendatorTOP.ViewModel">
+    
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,18 +16,15 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
+    
     <UserControl.DataContext>
         <viewModel:ChatClientViewModel/>
     </UserControl.DataContext>
+
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button Width="24" Height="29" Name="btnChat" BorderThickness="0" Click="btnChat_Click" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button.Background>
-                <ImageBrush ImageSource="/Resource\Images\message.png"/>
-            </Button.Background>
-        </Button>
-        <Canvas Name="canvas" Panel.ZIndex="0" HorizontalAlignment="Right" VerticalAlignment="Center">
-            <Border BorderBrush="Gray" CornerRadius="0,10,10,10" BorderThickness="2" Name="brd"
-                Canvas.Top="0" Canvas.Left="20" Width="0" Height="0">
+        <Canvas Name="canvas" Panel.ZIndex="150" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Border BorderBrush="Gray" CornerRadius="10,10,10,0" BorderThickness="2" Name="brd"
+                Canvas.Top="0" Canvas.Left="30" Width="0" Height="0">
                 <Border.Style>
                     <Style TargetType="Border">
                         <Style.Triggers>
@@ -117,5 +115,10 @@
                 </Grid>
             </Border>
         </Canvas>
+        <Button Width="24" Height="29" Name="btnChat" BorderThickness="0" Click="btnChat_Click" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resource\Images\message.png"/>
+            </Button.Background>
+        </Button>
     </StackPanel>
 </UserControl>

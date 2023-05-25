@@ -23,6 +23,26 @@ namespace ArendatorTOP.ViewModel
         {
             Title = "Клинеты";
         }
+
+        public void OpenDocument(int indexDocument, Client client) 
+        {
+            string path = "";
+            if (indexDocument == 1)
+            {
+                path = DBModel.GetContext().Client.Where(p => p.Id == client.Id).Select(p => p.PathToCopyPassport).FirstOrDefault();
+                System.Diagnostics.Process.Start(@"path");
+            }
+            else if(indexDocument == 2) 
+            {
+                path = DBModel.GetContext().Client.Where(p => p.Id == client.Id).Select(p => p.PathToCopyContractOfDirector).FirstOrDefault();
+                File.Open(path, FileMode.Open);
+            }
+            else if(indexDocument == 3) 
+            {
+                path = DBModel.GetContext().Client.Where(p => p.Id == client.Id).Select(p => p.PathToCopyCertificateOfRegistrationOfaLegalEntity).FirstOrDefault();
+                File.Open(path, FileMode.Open);
+            }
+        }
         public ObservableCollection<Client> UpdateClientList(string text)
         {
             Clients.Clear();

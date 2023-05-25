@@ -1,4 +1,5 @@
-﻿using ArendatorTOP.ViewModel;
+﻿using ArendatorTOP.Pages;
+using ArendatorTOP.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +25,22 @@ namespace ArendatorTOP.Windows
         public MoreDetailsAboutObjectRent(ObjectRent objectRent)
         {
             InitializeComponent();
+
             ObjectRent = objectRent;
-            (DataContext as MoreDetailsAboutObjectRentViewModel).GetOR(ObjectRent.Id);
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            image.UriSource = new Uri("\\Resource\\Images\\AddImage.jpg");
-            listPhoto.Items.Add(image);
+            (DataContext as MoreDetailsAboutObjectRentViewModel).GetObjectRentInfo(ObjectRent);
+            comboAppointment.ItemsSource = (DataContext as MoreDetailsAboutObjectRentViewModel).GetAppointment();
+            comboAppointment.SelectedItem = ObjectRent.Appointment;
+            priceText.Text = ObjectRent.PriceForOneMeter.ToString();
+            squareText.Text = ObjectRent.Square.ToString();
+            comboStaitment.ItemsSource = (DataContext as MoreDetailsAboutObjectRentViewModel).GetStaitment();
+            comboStaitment.SelectedItem = ObjectRent.Statement;
+            textFloor.Text = ObjectRent.Floor.FloorValue.ToString();
+            btnOR.Width = (double)ObjectRent.Control.WidthControl;
+            btnOR.Height = (double)ObjectRent.Control.Height;
+            btnOR.Content = ObjectRent.Control.Id;
+
+            comboAppointment.IsEditable = false;
+            comboStaitment.IsEditable = false;
         }
     }
 }

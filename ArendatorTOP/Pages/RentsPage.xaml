@@ -104,7 +104,7 @@
                 <DataGridTemplateColumn Header="Помещение" Width="180" MinWidth="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Grid.Column="1" Style="{DynamicResource ButtonSingUp}" x:Name="btnContract">
+                            <Button Grid.Column="1" Style="{DynamicResource ButtonSingUp}" x:Name="btnObjectRent" Click="btnObjectRent_Click">
                                 <TextBlock Foreground="Black">
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat=" №{0} {1}">
@@ -121,7 +121,7 @@
                 <DataGridTemplateColumn Header="Договор" Width="180" MinWidth="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Grid.Column="1" Style="{DynamicResource ButtonSingUp}" x:Name="btnObjectRent" Click="btnObjectRent_Click">
+                            <Button Grid.Column="1" Style="{DynamicResource ButtonSingUp}" x:Name="btnDocument" Click="btnDocument_Click">
                                 <TextBlock Foreground="Black">
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat=" №{0} {1}">

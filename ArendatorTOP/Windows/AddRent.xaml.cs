@@ -29,6 +29,7 @@ namespace ArendatorTOP.Windows
             comboTypeOfPayment.ItemsSource = (DataContext as CreateRentViewModel).UpdatePaymentList();
             listBoxClients.ItemsSource = (DataContext as CreateRentViewModel).UpdateClientList();
             listBoxOR.ItemsSource = (DataContext as CreateRentViewModel).UpdateObjectRentList();
+            numContract.Text = ((DataContext as Document).NumDocument + 1).ToString();
             User = user;
         }
 

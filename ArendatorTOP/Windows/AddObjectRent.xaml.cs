@@ -1,4 +1,5 @@
 ﻿using ArendatorTOP.ViewModel;
+using ArendatorTOP.Pages;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -22,12 +23,14 @@ namespace ArendatorTOP.Windows
     /// </summary>
     public partial class AddObjectRent : Window
     {
+
         public ObjectRent ObjectRent;
-        //Доработать функционал редактирования
-        //Подумать над информацией которую можно редактировать, над планом помещения который должен отображаться
-        public AddObjectRent(ObjectRent objectRent)
+
+        ObjectRents ObjectRents;
+
+        public AddObjectRent(ObjectRent objectRent, ObjectRents objectRents)
         {
-            InitializeComponent();
+            InitializeComponent();            
             ObjectRent = objectRent;
             (DataContext as AddObjectRentViewModel).GetObjectRentInfo(ObjectRent);
             comboAppointment.ItemsSource = (DataContext as AddObjectRentViewModel).GetAppointment();
@@ -37,6 +40,10 @@ namespace ArendatorTOP.Windows
             comboStaitment.ItemsSource = (DataContext as AddObjectRentViewModel).GetStaitment();
             comboStaitment.SelectedItem = ObjectRent.Statement;
             textFloor.Text = ObjectRent.Floor.FloorValue.ToString();
+            btnOR.Width = (double)ObjectRent.Control.WidthControl;
+            btnOR.Height = (double)ObjectRent.Control.Height;
+            btnOR.Content = ObjectRent.Control.Id;
+            ObjectRents = objectRents;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -58,16 +65,12 @@ namespace ArendatorTOP.Windows
                 {
                     MessageBox.Show("Ошибка! Проверьте все ли данные о помещении заполнены соответствующими значениями!");
                 }
+                ObjectRents.listObjectRent.ItemsSource = DBModel.GetContext().ObjectRent.ToList();
             }
             catch (FormatException ex)
             {
                 MessageBox.Show("Ошибка! Проверьте все ли данные о помещении заполнены соответствующими значениями!" + ex.ToString());
             }
-        }
-
-        private void btnOnScheme_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void btnAddImage_Click(object sender, RoutedEventArgs e)
@@ -84,7 +87,6 @@ namespace ArendatorTOP.Windows
                 File.Copy(openFileDialog.FileName, pathImage);
                 (DataContext as AddObjectRentViewModel).AddObjectRentPhoto(pathImage);
                 listPhotoObjectRent.SelectedIndex = -1;
-
             }
         }
 

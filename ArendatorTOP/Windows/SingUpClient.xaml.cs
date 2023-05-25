@@ -52,6 +52,7 @@ namespace ArendatorTOP.Windows
             DateTimeStart.Text = (DataContext as AddDemonstrationViewModel).GetDemonstrationDateTime(SelectedDemonstration);
             listBoxClients.ItemsSource = (DataContext as AddDemonstrationViewModel).UpdateClientList();
             listBoxOR.ItemsSource = (DataContext as AddDemonstrationViewModel).UpdateObjectRentList();
+            listBoxObjectsRent.ItemsSource = (DataContext as AddDemonstrationViewModel).UpdateObjectRentList();
         }
 
         private void appointmentBox_Checked(object sender, RoutedEventArgs e)

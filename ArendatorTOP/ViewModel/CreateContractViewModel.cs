@@ -35,15 +35,25 @@ namespace ArendatorTOP.ViewModel
                 DBModel.GetContext().Rent.Add(rent);
                 DBModel.GetContext().SaveChanges();
 
-                Document document = new Document()
+                List<Document> documents = new List<Document>() 
+                {
+                    new Document()
                 {
                     IdRent = rent.Id,
                     IdTypeOfDocument = 1,
-                    NumDocument = 1,
+                    NumDocument = DBModel.GetContext().Document.Where(p=>p.NumDocument == 1).Count() + 1,
                     PathToDocument = path
-                };
+                },
+                    new Document()
+                {
+                    IdRent = rent.Id,
+                    IdTypeOfDocument = 4,
+                    NumDocument = DBModel.GetContext().Document.Where(p => p.NumDocument == 4).Count() + 1,
+                    PathToDocument = path
+                }
+            };
 
-                DBModel.GetContext().Document.Add(document);
+                DBModel.GetContext().Document.AddRange(documents);
                 DBModel.GetContext().SaveChanges();
                 return path;
             }
@@ -52,6 +62,19 @@ namespace ArendatorTOP.ViewModel
                 MessageBox.Show("Ошибка!" + ex.ToString());
                 return ex.ToString();
             }
+        }
+
+        public void AdditionalAgreement(Rent rent) 
+        {
+            string hashDate = DateTime.Now.Ticks.ToString();
+            string path = $"Архив\\Договора\\{hashDate}.xaml";
+            Document additionalAgreement = new Document() 
+            {
+                IdRent = rent.Id,
+                IdTypeOfDocument = 2,
+                NumDocument = DBModel.GetContext().Document.Count() + 1,
+                PathToDocument = path
+            };
         }
     }
 }

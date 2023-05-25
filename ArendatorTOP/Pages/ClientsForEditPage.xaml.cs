@@ -94,12 +94,9 @@ namespace ArendatorTOP.Pages
 
         private void comboBoxDoc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //int index = (sender as ComboBox).SelectedIndex;
-
-            //if((DataContext as ClientsViewModel).OpenDoc((sender as ComboBox).DataContext as Client, index) != null) 
-            //{
-            //    MessageBox.Show((DataContext as ClientsViewModel).OpenDoc((sender as ComboBox).DataContext as Client, index));
-            //}
+            int index = (sender as ComboBox).SelectedIndex;
+            Client client = (sender as ComboBox).DataContext as Client;
+            (DataContext as ClientsViewModel).OpenDocument(index, client);
         }
 
         private void chekBoxActive_Click(object sender, RoutedEventArgs e)

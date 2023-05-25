@@ -1,0 +1,57 @@
+﻿<Page x:Class="ArendatorTOP.Pages.MaterialPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ArendatorTOP.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MaterialPage"
+      xmlns:viewmodel="clr-namespace:ArendatorTOP.ViewModel">
+
+    <Page.DataContext>
+        <viewmodel:MaterialViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resource\Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Title}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <TextBlock Text="Поиск" Margin="10"/>
+            <TextBox x:Name="txtSearch" Style="{DynamicResource RadiusText}" Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="20" TextChanged="txtSearch_TextChanged"/>
+            <StackPanel Margin="10,0,10,0">
+                <TextBlock Text="По типу" Margin="5" TextAlignment="Center"/>
+                <ComboBox ItemsSource="{Binding TypeMaterials, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding typeOfMaterial, UpdateSourceTrigger=PropertyChanged}" Width="200" x:Name="comboTypeMaaterial" Style="{DynamicResource myComboBoxStyle}" SelectionChanged="comboTypeMaaterial_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Title}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+
+        <DataGrid MinColumnWidth="100" Grid.Row="2" x:Name="dataMaterials" AutoGenerateColumns="False" ItemsSource="{Binding Materials, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" CanUserSortColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="Тип материала" Binding="{Binding TypeOfMaterial.Title}"/>
+                <DataGridTextColumn Header="Вес" Binding="{Binding Weight, StringFormat={} {0} грамм}"/>
+                <DataGridTextColumn Header="Хрупкость" Binding="{Binding Fragility, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource fraqConverter}}"/>
+                <DataGridTextColumn Header="Размеры" Binding="{Binding Sizes}"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding CountMat, StringFormat={} {0} шт.}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

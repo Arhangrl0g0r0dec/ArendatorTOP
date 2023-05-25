@@ -50,12 +50,12 @@
                     <ColumnDefinition Width="104"/>
                     <ColumnDefinition Width="43"/>
                 </Grid.ColumnDefinitions>
+                <UC:ChatControl Grid.Column="0" x:Name="myUserControl" Panel.ZIndex="1500"/>
                 <Ellipse Grid.Row="0" Grid.Column="0" Width="100" Height="100" Grid.ColumnSpan="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Ellipse.Fill>
                         <ImageBrush x:Name="EmployeeImage" ImageSource="{Binding User.Employee.PhotoPath, Converter={StaticResource relativToFullPathConverter}}"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <UC:ChatControl Grid.Column="2" x:Name="myUserControl" Panel.ZIndex="0"/>
                 <Button Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="29" Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
                     <Button.Content>
                         <Image Source="/Resource\Images\Edit.png" Stretch="Fill"/>
@@ -68,13 +68,13 @@
                 </Button>
                 <TextBlock x:Name="fullName" Text="{Binding FullName}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" FontSize="14" Grid.ColumnSpan="3" />
                 <TextBlock x:Name="fullPost" Text="{Binding User.Employee.Post.Title}" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" FontSize="14" Grid.ColumnSpan="3"/>
-                <Button Content="Клиенты" x:Name="btnClient" Style="{DynamicResource Button}" Width="140" FontSize="14" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnClient_Click" />
+                <Button Content="Клиенты" x:Name="btnClient" Style="{DynamicResource Button}" Width="140" FontSize="14" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnClient_Click"/>
                 <Button x:Name="btnObjectRent" Content="Помещения" Style="{DynamicResource Button2}" Width="140" Height="20" FontSize="14" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Click="btnObjectRent_Click"/>
                 <Button Content="Отчетность аренды" Style="{DynamicResource Button3}" Width="140" Height="20" FontSize="14" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" x:Name="btnRent" Click="btnRent_Click"/>
                 <Button Content="Демонстрации" Style="{DynamicResource Button4}" Width="140" Height="20" FontSize="14" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" x:Name="btnDemonstration" Click="btnDemonstration_Click"/>
                 <Button Content="Аренда" Style="{DynamicResource Button}" Width="140" Height="20" FontSize="14" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" x:Name="btnRents" Click="btnRents_Click"/>
             </Grid>
         </StackPanel>
-        <Frame Grid.Row="0" Grid.Column="1" x:Name="ContainerFrame" Grid.RowSpan="2"/>
+        <Frame Grid.Row="0" Grid.Column="1" x:Name="ContainerFrame" Grid.RowSpan="2" Panel.ZIndex="0"/>
     </Grid>
 </Page>

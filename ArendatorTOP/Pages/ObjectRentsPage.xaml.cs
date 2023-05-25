@@ -44,10 +44,12 @@ namespace ArendatorTOP.Pages
             }
         }
 
-        public ObjectRents()
+        MainWindow MainWindow;
+
+        public ObjectRents(MainWindow mainWindow)
         {
             InitializeComponent();
-
+            MainWindow = mainWindow;
             Container.Navigate(new Plan());
         }
 
@@ -192,15 +194,15 @@ namespace ArendatorTOP.Pages
         /// <param name="e"></param>
         private void btnDetail_Click(object sender, RoutedEventArgs e)
         {
-            ObjectRent = (sender as Button).DataContext as ObjectRent;
-            //MoreDetailsAboutObjectRent moreDetailsAboutObject = new MoreDetailsAboutObjectRent(item);
-            //moreDetailsAboutObject.Show();
-            
+            var or = (sender as Button).DataContext as ObjectRent;
+            MoreDetailsAboutObjectRent moreDetailsAboutObjectRent = new MoreDetailsAboutObjectRent(or);
+            moreDetailsAboutObjectRent.Show();
+
         }
 
         private void addObjectRent_Click(object sender, RoutedEventArgs e)
         {
-            AddObjectRent addObjectRent = new AddObjectRent(ObjectRent);
+            AddObjectRent addObjectRent = new AddObjectRent(ObjectRent, this);
             addObjectRent.Show();
         }
 
@@ -208,7 +210,8 @@ namespace ArendatorTOP.Pages
         {
             var objectRent = (sender as Button).DataContext as ObjectRent;
             
-            AddObjectRent addObjectRent = new AddObjectRent(objectRent);
+            AddObjectRent addObjectRent = new AddObjectRent(objectRent, this);
+            addObjectRent.Owner = MainWindow;
             addObjectRent.Show();
         }
     }

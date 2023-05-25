@@ -50,6 +50,11 @@ namespace ArendatorTOP
                     mainWindow.Container.Navigate(new Operator(mainWindow, user));
                     Close();
                 }
+                else if (user.Employee.Post.Id == 4)
+                {
+                    mainWindow.Container.Navigate(new StorekeeperPage(mainWindow, user));
+                    Close();
+                }
             }
             else
             {

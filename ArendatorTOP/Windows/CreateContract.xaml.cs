@@ -46,8 +46,13 @@ namespace ArendatorTOP.Windows
                 if (docReader.Document != null)
                 {
                     XamlWriter.Save(docReader.Document, fs);
-                    //MessageBox.Show("Аренда, договор и акт сохранены успешно.");
-                    File.Open(path, FileMode.Open);
+                    MessageBox.Show("Аренда, договор и акт сохранены успешно.");
+                }
+
+                if (docReaderAct.Document != null) 
+                {
+                    XamlWriter.Save(docReaderAct.Document, fs);
+                    MessageBox.Show("Аренда, договор и акт сохранены успешно.");
                 }
             }
         }

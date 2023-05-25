@@ -236,7 +236,7 @@
                                     <TextBlock Grid.Row="3" Text="{Binding PriceForOneMeter, StringFormat=Стоимость за кв.метр: {0} руб.}" FontSize="16" Margin="5,0,0,0"/>
                                     <TextBlock Grid.Row="4" Text="{Binding Floor, StringFormat=Этаж: {0}}" FontSize="16" Margin="5,0,0,0"/>
                                     <TextBlock Grid.Row="5" Text="{Binding Statement.Title, StringFormat=Состояние: {0}}" FontSize="16" Margin="5,0,0,0"/>
-                                    <Button Grid.Row="6" x:Name="btnDetail" Content="Подробнее" FontSize="16" Style="{DynamicResource Button}" Width="180" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Button Grid.Row="6" x:Name="btnDetail" Content="Подробнее" FontSize="16" Style="{DynamicResource Button}" Width="180" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDetail_Click"/>
                                     <Button Grid.Row="7" x:Name="btnSheme" Content="Посмотреть на схеме" FontSize="16" Style="{DynamicResource Button}" Width="180" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Grid>
                             </DataTemplate>

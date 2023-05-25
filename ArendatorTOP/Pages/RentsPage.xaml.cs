@@ -41,11 +41,6 @@ namespace ArendatorTOP.Pages
             addRent.Show();
         }
 
-        private void btnObjectRent_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             Rent rent = (Rent)DataRents.SelectedItem;
@@ -90,6 +85,20 @@ namespace ArendatorTOP.Pages
         private void DateEndPicker_TextInput(object sender, TextCompositionEventArgs e)
         {
             DataRents.ItemsSource = (DataContext as RentsViewModel).UpdateRents();
+        }
+
+        private void btnDocument_Click(object sender, RoutedEventArgs e)
+        {
+            var rent = (sender as Button).DataContext as Rent;
+            Document document = rent.Document.Where(p => p.IdRent == rent.Id && p.IdTypeOfDocument == 1).FirstOrDefault();
+            string path = document.PathToDocument;
+            DocumentView documentView = new DocumentView(path);
+            documentView.Show();
+        }
+
+        private void btnObjectRent_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

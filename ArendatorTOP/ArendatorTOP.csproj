@@ -123,6 +123,8 @@
     <Compile Include="Control.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Converters\FraqilityConverter.cs" />
+    <Compile Include="Converters\RelativeToPathConverter.cs" />
     <Compile Include="Converters\ReportConverter.cs" />
     <Compile Include="DecommissionedMaterial.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
@@ -176,6 +178,9 @@
     <Compile Include="Pages\DirectorPage.xaml.cs">
       <DependentUpon>DirectorPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MaterialPage.xaml.cs">
+      <DependentUpon>MaterialPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ObjectRentForLookPage.xaml.cs">
       <DependentUpon>ObjectRentForLookPage.xaml</DependentUpon>
     </Compile>
@@ -199,6 +204,9 @@
     </Compile>
     <Compile Include="Pages\Reports.xaml.cs">
       <DependentUpon>Reports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StorekeeperPage.xaml.cs">
+      <DependentUpon>StorekeeperPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PhotoOR.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
@@ -258,6 +266,7 @@
     <Compile Include="ViewModel\CreateContractViewModel.cs" />
     <Compile Include="ViewModel\CreateRentViewModel.cs" />
     <Compile Include="ViewModel\DemonstrationViewModel.cs" />
+    <Compile Include="ViewModel\MaterialViewModel.cs" />
     <Compile Include="ViewModel\MoreDetailsAboutObjectRentViewModel.cs" />
     <Compile Include="ViewModel\ObjectRentViewModel.cs" />
     <Compile Include="ViewModel\RentsViewModel.cs" />
@@ -278,7 +287,6 @@
       <DependentUpon>Capcha.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\GetAddressesConverter.cs" />
-    <Compile Include="Converters\RelativeToFullPathConverter.cs" />
     <Compile Include="DBModel.cs" />
     <Compile Include="Windows\CreateContract.xaml.cs">
       <DependentUpon>CreateContract.xaml</DependentUpon>
@@ -302,6 +310,9 @@
     <Compile Include="ViewModel\AutorizationViewModel.cs" />
     <Compile Include="ViewModel\ClientsViewModel.cs" />
     <Compile Include="ViewModel\UserCabinetViewModel.cs" />
+    <Compile Include="Windows\DocumentView.xaml.cs">
+      <DependentUpon>DocumentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MoreDetailsAboutObjectRent.xaml.cs">
       <DependentUpon>MoreDetailsAboutObjectRent.xaml</DependentUpon>
     </Compile>
@@ -317,6 +328,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\DirectorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MaterialPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -349,6 +364,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Reports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StorekeeperPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -393,6 +412,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Dialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DocumentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

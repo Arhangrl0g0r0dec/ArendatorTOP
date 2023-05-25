@@ -1,4 +1,5 @@
 ﻿using ArendatorTOP.ViewModel;
+using ArendatorTOP.Windows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -131,6 +132,14 @@ namespace ArendatorTOP.Pages
         private void sortBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             (DataContext as ObjectRentViewModel).ObjectRentList();
+        }
+
+        private void btnDetail_Click(object sender, RoutedEventArgs e)
+        {
+            var or = (sender as Button).DataContext as ObjectRent;
+            MoreDetailsAboutObjectRent moreDetailsAboutObjectRent = new MoreDetailsAboutObjectRent(or);
+            moreDetailsAboutObjectRent.Show();
+
         }
     }
 }

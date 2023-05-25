@@ -63,6 +63,8 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IsOccupied" Type="bit" Nullable="false" />
+          <Property Name="WidthControl" Type="float" />
+          <Property Name="Height" Type="float" />
         </EntityType>
         <EntityType Name="DecommissionedMaterial">
           <Key>
@@ -157,7 +159,7 @@
           <Property Name="IdAppointment" Type="int" Nullable="false" />
           <Property Name="IdControl" Type="int" />
           <Property Name="Square" Type="float" Nullable="false" />
-          <Property Name="PriceForOneMeter" Type="decimal" Precision="9" Scale="3" Nullable="false" />
+          <Property Name="PriceForOneMeter" Type="decimal" Precision="9" Scale="0" Nullable="false" />
           <Property Name="IdFloor" Type="int" Nullable="false" />
           <Property Name="IdStatement" Type="int" Nullable="false" />
           <Property Name="Del" Type="bit" />
@@ -988,6 +990,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsOccupied" Type="Boolean" Nullable="false" />
+          <Property Name="WidthControl" Type="Double" />
+          <Property Name="Height" Type="Double" />
           <NavigationProperty Name="ObjectRent" Relationship="Self.FK_ObjectRent_Control" FromRole="Control" ToRole="ObjectRent" />
         </EntityType>
         <EntityType Name="DecommissionedMaterial">
@@ -1098,7 +1102,7 @@
           <Property Name="IdAppointment" Type="Int32" Nullable="false" />
           <Property Name="IdControl" Type="Int32" />
           <Property Name="Square" Type="Double" Nullable="false" />
-          <Property Name="PriceForOneMeter" Type="Decimal" Precision="9" Scale="3" Nullable="false" />
+          <Property Name="PriceForOneMeter" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
           <Property Name="IdFloor" Type="Int32" Nullable="false" />
           <Property Name="IdStatement" Type="Int32" Nullable="false" />
           <Property Name="Del" Type="Boolean" />
@@ -1956,6 +1960,8 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="IsOccupied" ColumnName="IsOccupied" />
+                <ScalarProperty Name="WidthControl" ColumnName="WidthControl" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
