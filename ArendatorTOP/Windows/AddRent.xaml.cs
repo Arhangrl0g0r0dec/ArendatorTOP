@@ -1,4 +1,5 @@
-﻿using ArendatorTOP.ViewModel;
+﻿using ArendatorTOP.Pages;
+using ArendatorTOP.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +21,18 @@ namespace ArendatorTOP.Windows
     /// </summary>
     public partial class AddRent : Window
     {
+        RentsPage RentsPage;
         ObjectRent ObjectRent { get; set; }
         Client Client { get; set; }
         User User { get; set; }
-        public AddRent(User user)
+        public AddRent(User user, RentsPage rentsPage)
         {
             InitializeComponent();
+            RentsPage = rentsPage;
             comboTypeOfPayment.ItemsSource = (DataContext as CreateRentViewModel).UpdatePaymentList();
             listBoxClients.ItemsSource = (DataContext as CreateRentViewModel).UpdateClientList();
             listBoxOR.ItemsSource = (DataContext as CreateRentViewModel).UpdateObjectRentList();
-            numContract.Text = ((DataContext as Document).NumDocument + 1).ToString();
+            numContract.Text = ((DataContext as CreateRentViewModel).GetNumContract().NumDocument + 1).ToString();
             User = user;
         }
 
@@ -59,7 +62,9 @@ namespace ArendatorTOP.Windows
 
                 DateTime dateStart = (DateTime)DateStart.SelectedDate;
 
-                CreateContract createContract = new CreateContract((DataContext as CreateRentViewModel).SaveDemonstration(Client, employee, ObjectRent, formOfPayment, dateStart, dateEnd));
+                Rent rent = (DataContext as CreateRentViewModel).SaveRent(Client, employee, ObjectRent, formOfPayment, dateStart, dateEnd);
+
+                CreateContract createContract = new CreateContract(rent, RentsPage);
                 createContract.Show();
                 this.Close();
             }

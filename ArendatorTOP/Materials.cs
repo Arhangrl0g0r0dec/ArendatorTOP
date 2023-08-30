@@ -17,9 +17,9 @@ namespace ArendatorTOP
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Materials()
         {
-            this.DecommissionedMaterial = new HashSet<DecommissionedMaterial>();
             this.Application_Material = new HashSet<Application_Material>();
-            this.SentMaterials = new HashSet<SentMaterials>();
+            this.DecommissionedMat_Material = new HashSet<DecommissionedMat_Material>();
+            this.SendMat_Material = new HashSet<SendMat_Material>();
             this.SupplyMaterial = new HashSet<SupplyMaterial>();
         }
     
@@ -32,12 +32,12 @@ namespace ArendatorTOP
         public Nullable<int> CountMat { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DecommissionedMaterial> DecommissionedMaterial { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application_Material> Application_Material { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DecommissionedMat_Material> DecommissionedMat_Material { get; set; }
         public virtual TypeOfMaterial TypeOfMaterial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SentMaterials> SentMaterials { get; set; }
+        public virtual ICollection<SendMat_Material> SendMat_Material { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SupplyMaterial> SupplyMaterial { get; set; }
     }

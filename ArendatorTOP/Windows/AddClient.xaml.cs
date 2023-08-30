@@ -43,9 +43,11 @@ namespace ArendatorTOP.Windows
             
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        public void btnSave_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
+            if (String.IsNullOrEmpty(textTitleCompany.Text))
+                errors.AppendLine("Наполните название компании");
             if (String.IsNullOrEmpty(textName.Text))
                 errors.AppendLine("Заполните имя!");
             if (String.IsNullOrEmpty(textSurname.Text))
@@ -89,9 +91,12 @@ namespace ArendatorTOP.Windows
                 {
                     ClientForAdd = new Client()
                     {
+                        City = textCity.Text,
+                        TitleCompany = textTitleCompany.Text,
                         Name = textName.Text,
                         Surname = textSurname.Text,
                         Patronimic = textPatronimic.Text,
+                        Del = false,
                         INN = textINN.Text,
                         OGRN = textOGRN.Text,
                         KPP = textKPP.Text,
@@ -107,11 +112,18 @@ namespace ArendatorTOP.Windows
                         PhoneNumber = textPhone.Text
                     };
 
-                    (DataContext as AddClientViewModel).AddClient(ClientForAdd);
-                    this.Close();
+                    if ((DataContext as AddClientViewModel).AddClient(ClientForAdd)) 
+                    {
+                        this.Close();
+                        MessageBox.Show("Информация сохранена!");
+                    }
+                    else 
+                    {
+                        this.Close();
+                        MessageBox.Show("Неудалось сохранить клиента!");
+                    }
+                    ClientEditPage.dataClients.ItemsSource = DBModel.GetContext().Client.Where(p => p.Del == false).ToList();
                 }
-                ClientEditPage.dataClients.ItemsSource = DBModel.GetContext().Client.ToList();
-                MessageBox.Show("Информация сохранена!");
             }
         }
 

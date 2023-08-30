@@ -31,12 +31,17 @@ namespace ArendatorTOP.Pages
 
         private void btnRents_Click(object sender, RoutedEventArgs e)
         {
-            ContainerFrame.Navigate(new RentsPage(User));
+            
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Container.Navigate(new Autorisation(MainWindow));
+        }
+
+        private void btnRentReport_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

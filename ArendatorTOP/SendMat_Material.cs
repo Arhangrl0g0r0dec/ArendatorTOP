@@ -12,14 +12,16 @@ namespace ArendatorTOP
     using System;
     using System.Collections.Generic;
     
-    public partial class Application_Material
+    public partial class SendMat_Material
     {
         public int Id { get; set; }
-        public int IdApplication { get; set; }
         public int IdMaterial { get; set; }
+        public int IdObjectRent { get; set; }
+        public int IdSendMaterial { get; set; }
         public int Count { get; set; }
     
-        public virtual ApplicationToReception ApplicationToReception { get; set; }
         public virtual Materials Materials { get; set; }
+        public virtual ObjectRent ObjectRent { get; set; }
+        public virtual SendMaterial SendMaterial { get; set; }
     }
 }

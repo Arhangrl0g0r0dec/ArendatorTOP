@@ -27,6 +27,7 @@ namespace ArendatorTOP.Pages
         {
             InitializeComponent();
             mainWindow = main;
+            chekBoxActive.IsChecked = false;
             dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(null); 
         }
 
@@ -58,6 +59,10 @@ namespace ArendatorTOP.Pages
                 chekBoxActive.IsChecked = false;
                 dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(null);
             }
+            else 
+            {
+                dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(null);
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -77,7 +82,7 @@ namespace ArendatorTOP.Pages
 
             if (boxResult == MessageBoxResult.Yes)
             {
-                (DataContext as ClientsViewModel).DeleteClient();
+                (DataContext as ClientsViewModel).DeleteClient(SelectedClients);
 
                 MessageBox.Show("Клиент успешно убран из списка!");
 
@@ -101,13 +106,9 @@ namespace ArendatorTOP.Pages
 
         private void chekBoxActive_Click(object sender, RoutedEventArgs e)
         {
-            if (chekBoxActive.IsChecked == true)
-            {
                 (DataContext as ClientsViewModel).IsCheckedDelete = (bool)chekBoxActive.IsChecked;
                 chekBoxRent.IsChecked = false;
                 dataClients.ItemsSource = (DataContext as ClientsViewModel).UpdateClientList(null);
-            }
-            
         }
     }
 }

@@ -10,12 +10,12 @@
       Title="Operator" 
       xmlns:converters="clr-namespace:ArendatorTOP.Converters"
       xmlns:UC="clr-namespace:ArendatorTOP.UC">
-    
+
     <Page.DataContext>
         <viewmodel:UserCabinetViewModel>
         </viewmodel:UserCabinetViewModel>
     </Page.DataContext>
-    
+
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -25,52 +25,45 @@
     </Page.Resources>
 
     <Grid Style="{DynamicResource MainBack}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="190"/>
+            <ColumnDefinition Width="43"/>
+            <ColumnDefinition Width="104"/>
+            <ColumnDefinition Width="43"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
-            <Grid Height="452" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="63"/>
-                    <RowDefinition Height="63"/>
-                    <RowDefinition Height="40*"/>
-                    <RowDefinition Height="53"/>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="43*"/>
-                    <RowDefinition Height="47*"/>
-                    <RowDefinition Height="53*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="43"/>
-                    <ColumnDefinition Width="104"/>
-                    <ColumnDefinition Width="43"/>
-                </Grid.ColumnDefinitions>
-                <Ellipse Grid.Row="0" Grid.Column="0" Width="100" Height="100" Grid.ColumnSpan="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Ellipse.Fill>
-                        <ImageBrush x:Name="EmployeeImage" ImageSource="{Binding User.Employee.PhotoPath, Converter={StaticResource relativToFullPathConverter}}"/>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <Button Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="29" Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
-                    <Button.Content>
-                        <Image Source="\Resource\Images\Edit.png" Stretch="Fill"/>
-                    </Button.Content>
-                </Button>
-                <UC:ChatControl Grid.Column="2" x:Name="ChatControl"/>
-                <Button Grid.Column="0" x:Name="btnExit" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="24" Height="29" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="btnExit_Click">
-                    <Button.Content>
-                        <Image Source="\Resource\Images\Exit.png"/>
-                    </Button.Content>
-                </Button>
-                <TextBlock x:Name="fullName" Text="{Binding FullName}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" FontSize="14" Grid.ColumnSpan="3" />
-                <TextBlock x:Name="fullPost" Text="{Binding User.Employee.Post.Title}" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" FontSize="14" Grid.ColumnSpan="3"/>
-                <Button Content="Клиенты" x:Name="btnClient" Style="{DynamicResource Button}" Width="140" FontSize="14" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnClient_Click"/>
-                <Button x:Name="btnObjectRent" Content="Помещения" Style="{DynamicResource Button2}" Width="140" Height="20" FontSize="14" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Click="btnObjectRent_Click"/>
-                <Button Content="Отчетность" Style="{DynamicResource Button3}" Width="140" Height="20" FontSize="14" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" x:Name="btnRent" Click="btnRent_Click"/>
-                <Button Content="Демонстрации" Style="{DynamicResource Button4}" Width="140" Height="20" FontSize="14" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" x:Name="btnDemonstration" Click="btnDemonstration_Click"/>
-            </Grid>
-        </StackPanel>
-        <Frame Grid.Row="0" Grid.Column="1" x:Name="ContainerFrame"/>
+        <Ellipse Grid.Row="0" Grid.Column="1" Width="100" Height="100" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Ellipse.Fill>
+                <ImageBrush x:Name="EmployeeImage" ImageSource="{Binding User.Employee.PhotoPath, Converter={StaticResource relativToFullPathConverter}}"/>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Button Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="29" Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+            <Button.Content>
+                <Image Source="\Resource\Images\Edit.png" Stretch="Fill"/>
+            </Button.Content>
+        </Button>
+        <UC:ChatControl Grid.Column="2" x:Name="ChatControl"/>
+        <Button x:Name="btnExit" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="24" Height="29" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="btnExit_Click">
+            <Button.Content>
+                <Image Source="/Resource\Images\Exit.png"/>
+            </Button.Content>
+        </Button>
+        <TextBlock x:Name="fullName" Text="{Binding FullName}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" FontSize="20" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <TextBlock x:Name="fullPost" Text="{Binding User.Employee.Post.Title}" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" FontSize="20" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <Button Content="Клиенты" x:Name="btnClient" Style="{DynamicResource Button}" Width="140" FontSize="20" Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnClient_Click"/>
+        <Button x:Name="btnObjectRent" Content="Помещения" Style="{DynamicResource Button2}" Width="140" Height="26" FontSize="20" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Click="btnObjectRent_Click"/>
+        <Button Content="Демонстрации" Style="{DynamicResource Button4}" Width="140" Height="26" FontSize="20" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" x:Name="btnDemonstration" Click="btnDemonstration_Click"/>
+        <Frame Grid.Row="0" Grid.RowSpan="11" Grid.Column="4" x:Name="ContainerFrame"/>
     </Grid>
 </Page>

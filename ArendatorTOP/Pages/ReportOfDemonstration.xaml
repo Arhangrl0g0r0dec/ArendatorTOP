@@ -1,7 +1,7 @@
 ﻿<Page x:Class="ArendatorTOP.Pages.ReportOfDemonstration"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ArendatorTOP.Pages"
       mc:Ignorable="d" 
@@ -24,21 +24,21 @@
     <Grid Style="{DynamicResource MainBack}">
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
-            <RowDefinition Height="61"/>
-            <RowDefinition Height="320"/>
+            <RowDefinition Height="71"/>
+            <RowDefinition/>
             <RowDefinition Height="34"/>
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding Title}" HorizontalAlignment="Left" FontSize="25" VerticalAlignment="Center" Height="34" Width="0" Margin="5,0,0,0"/>
-        <Button Style="{DynamicResource Button}" x:Name="btnCreateReport" Grid.Row="3" Content="Сформировать отчет" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="120" Click="btnCreateReport_Click"/>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Row="1" Width="162">
-            <TextBlock Text="Дата формирования отчета"/>
-            <DatePicker x:Name="DateStart" Grid.Row="1" DataContext="{Binding DateStartRent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Left" Width="150" Margin="0,10,0,0" CalendarClosed="DateStart_CalendarClosed"/>
+        <Button Style="{DynamicResource Button}" x:Name="btnCreateReport" Grid.Row="3" Content="Сформировать отчет" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="180" Click="btnCreateReport_Click"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Row="1" Width="250" VerticalAlignment="Center">
+            <TextBlock Text="Дата формирования отчета" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <DatePicker x:Name="DateStart" Grid.Row="1" DataContext="{Binding DateStartRent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Center" Width="150" Margin="0,10,0,0" CalendarClosed="DateStart_CalendarClosed" VerticalAlignment="Center"/>
         </StackPanel>
         <DataGrid Grid.Row="2" x:Name="dataDemonstrations" ItemsSource="{Binding Demonstrations}" AutoGenerateColumns="False" IsReadOnly="True" CanUserSortColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="50" Header="№" Binding="{Binding Id}"/>
-                <DataGridTemplateColumn MinWidth="200" Header="Менеджер">
-                     <DataGridTemplateColumn.CellTemplate>
+                <DataGridTemplateColumn MinWidth="300" Header="Менеджер">
+                    <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock>
                                 <TextBlock.Text>
@@ -52,7 +52,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn MinWidth="150" Header="Помещение">
+                <DataGridTemplateColumn MinWidth="250" Header="Помещение">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -66,8 +66,8 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn MinWidth="200" Header="Дата демонстрации" Binding="{Binding DateOfDemonstration}"/>
-                <DataGridTextColumn MinWidth="200" Header="Время демонстрации" Binding="{Binding TimeOfDemonstration}"/>
+                <DataGridTextColumn MinWidth="80" Header="Дата" Binding="{Binding DateOfDemonstration, Converter={StaticResource dateConverter}}"/>
+                <DataGridTextColumn MinWidth="80" Header="Время" Binding="{Binding TimeOfDemonstration}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Border x:Name="plug" Background="#F0FFFFFF" Grid.Row="0" Grid.RowSpan="4" Visibility="Hidden">

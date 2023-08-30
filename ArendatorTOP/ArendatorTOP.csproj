@@ -123,10 +123,14 @@
     <Compile Include="Control.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\FraqilityConverter.cs" />
     <Compile Include="Converters\RelativeToPathConverter.cs" />
     <Compile Include="Converters\ReportConverter.cs" />
     <Compile Include="DecommissionedMaterial.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DecommissionedMat_Material.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Demonstration.cs">
@@ -196,6 +200,9 @@
     <Compile Include="Pages\PlanPage.xaml.cs">
       <DependentUpon>PlanPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\RentsForManager.xaml.cs">
+      <DependentUpon>RentsForManager.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RentsPage.xaml.cs">
       <DependentUpon>RentsPage.xaml</DependentUpon>
     </Compile>
@@ -220,7 +227,10 @@
     <Compile Include="Report.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="SentMaterials.cs">
+    <Compile Include="SendMaterial.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SendMat_Material.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Statement.cs">
@@ -233,6 +243,9 @@
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="SupplyMaterial.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="TypeOfDocument.cs">
@@ -274,6 +287,9 @@
     <Compile Include="ViewModel\ReportObjectRentViewModel.cs" />
     <Compile Include="ViewModel\SelectionFilter.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="Windows\AddAdditionalAgreement.xaml.cs">
+      <DependentUpon>AddAdditionalAgreement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AddClient.xaml.cs">
       <DependentUpon>AddClient.xaml</DependentUpon>
     </Compile>
@@ -355,6 +371,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\RentsForManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\RentsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -388,6 +408,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\SchemeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddAdditionalAgreement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

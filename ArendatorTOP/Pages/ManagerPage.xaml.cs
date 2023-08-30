@@ -49,7 +49,7 @@ namespace ArendatorTOP.Pages
 
         private void btnRent_Click(object sender, RoutedEventArgs e)
         {
-            ContainerFrame.Navigate(new Reports());
+            ContainerFrame.Navigate(new Reports(User));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -64,7 +64,7 @@ namespace ArendatorTOP.Pages
 
         private void btnRents_Click(object sender, RoutedEventArgs e)
         {
-            ContainerFrame.Navigate(new RentsPage(User));
+            ContainerFrame.Navigate(new RentsPage(User, this));
         }
     }
 }

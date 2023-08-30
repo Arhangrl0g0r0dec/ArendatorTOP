@@ -101,5 +101,10 @@ namespace ArendatorTOP.Pages
         {
             DataDemonstration.ItemsSource = (DataContext as DemonstrationViewModel).UpdateDemonstration();
         }
+
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+            Managers.ContainerFrame.Navigate(new ReportOfDemonstration(User));
+        }
     }
 }

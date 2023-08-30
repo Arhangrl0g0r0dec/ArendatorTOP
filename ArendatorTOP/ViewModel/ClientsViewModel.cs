@@ -51,13 +51,13 @@ namespace ArendatorTOP.ViewModel
             {
                 if (!String.IsNullOrEmpty(text))
                 {
-                    clientList = DBModel.GetContext().Client.Where(p => p.Name.ToLower().Contains(text.ToLower())
+                    clientList = clientList.Where(p => p.Name.ToLower().Contains(text.ToLower())
+                    || p.TitleCompany.ToLower().Contains(text.ToLower())
                     || p.Surname.ToLower().Contains(text.ToLower())
                     || p.Patronimic.ToLower().Contains(text.ToLower())
                     || p.PhoneNumber.ToLower().Contains(text.ToLower())
                     || p.INN.ToLower().Contains(text.ToLower())
                     || p.OGRN.ToLower().Contains(text.ToLower())
-                    || p.Mail.ToLower().Contains(text.ToLower())
                     || p.KPP.ToLower().Contains(text.ToLower())).ToList();
                 }
 
@@ -65,17 +65,21 @@ namespace ArendatorTOP.ViewModel
                 {
                     clientList = clientList.Where(p => p.Del == true).ToList();
                 }
+
+                if (IsCheckedDelete == false)
+                {
+                    clientList = clientList.Where(p => p.Del == false).ToList();
+                }
             }
             catch(Exception ex) 
             {
                 MessageBox.Show($"Ошибка! {ex}");
             }
 
-            foreach(var client in clientList) 
+            foreach(var client in clientList)
             {
                 Clients.Add(client);
             }
-            
             return Clients;
         }
 
@@ -94,7 +98,7 @@ namespace ArendatorTOP.ViewModel
             }
         }
 
-        public ObservableCollection<Client> DeleteClient()
+        public ObservableCollection<Client> DeleteClient(Client client)
         {
             client.Del = true;
             DBModel.GetContext().SaveChanges();

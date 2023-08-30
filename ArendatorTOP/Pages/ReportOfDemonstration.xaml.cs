@@ -24,11 +24,13 @@ namespace ArendatorTOP.Pages
     /// </summary>
     public partial class ReportOfDemonstration : Page
     {
+        User User;
         DateTime dateStart { get; set; }
-        public ReportOfDemonstration()
+        public ReportOfDemonstration(User user)
         {
             InitializeComponent();
             dataDemonstrations.ItemsSource = (DataContext as ReportDemonstrationViewModel).GetListDemonstrations(DateTime.Now);
+            User = user;
         }
 
         private void btnCreateReport_Click(object sender, RoutedEventArgs e)
@@ -74,6 +76,13 @@ namespace ArendatorTOP.Pages
                 paragraph.Range.Font.Bold = 1;
                 paragraph.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 paragraph.Range.InsertParagraphAfter();
+                Word.Paragraph paragraph2 = document.Paragraphs.Add(ref missing);
+                paragraph2.Range.Text = $"Выполенил : {User.Employee.Post.Title.ToLower()} {User.Employee.Surname} {User.Employee.Name} {User.Employee.Patronimic}";
+                paragraph2.Range.Font.Name = "Times New Roman";
+                paragraph2.Range.Font.Size = 16;
+                paragraph2.Range.Font.Bold = 1;
+                paragraph2.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                paragraph2.Range.InsertParagraphAfter();
                 //Таблица
                 paragraph.Range.Font.Size = 12;
                 paragraph.Range.Font.Bold = 0;
@@ -82,7 +91,7 @@ namespace ArendatorTOP.Pages
                 table.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
                 //Шапка таблицы
                 table.Rows[1].Range.Font.Bold = 1;
-                table.Rows[1].Shading.BackgroundPatternColor = Word.WdColor.wdColorBlue;
+                table.Rows[1].Shading.BackgroundPatternColor = Word.WdColor.wdColorGray05;
                 table.Rows[1].Cells[1].Range.Text = "№";
                 table.Rows[1].Cells[2].Range.Text = "Менеджер";
                 table.Rows[1].Cells[3].Range.Text = "Помещение";

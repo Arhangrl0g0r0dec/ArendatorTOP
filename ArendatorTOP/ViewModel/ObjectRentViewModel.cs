@@ -71,8 +71,13 @@ namespace ArendatorTOP.ViewModel
                 { 
                     objectRents = objectRents.Where(p => p.PriceForOneMeter <= Convert.ToDecimal(EndPrice)).ToList();
                 }
-                
-                if(appointments.Count != 0) 
+
+                if (floors.Count != 0)
+                {
+                    objectRents = objectRents.Where(p => floors.Contains(p.Floor)).ToList();
+                }
+
+                if (appointments.Count != 0) 
                 {
                     objectRents = objectRents.Where(p => appointments.Contains(p.Appointment)).ToList();
                 }

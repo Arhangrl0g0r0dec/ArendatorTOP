@@ -14,13 +14,19 @@ namespace ArendatorTOP
     
     public partial class DecommissionedMaterial
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DecommissionedMaterial()
+        {
+            this.DecommissionedMat_Material = new HashSet<DecommissionedMat_Material>();
+        }
+    
         public int Id { get; set; }
-        public int IdMaterial { get; set; }
         public int IdEmployee { get; set; }
         public string PathToDocument16 { get; set; }
-        public int CountMat { get; set; }
+        public Nullable<System.DateTime> DateDecommission { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DecommissionedMat_Material> DecommissionedMat_Material { get; set; }
         public virtual Employee Employee { get; set; }
-        public virtual Materials Materials { get; set; }
     }
 }

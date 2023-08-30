@@ -93,7 +93,7 @@ namespace ArendatorTOP.ViewModel
             try
             {
                 DBModel.GetContext().Rent.Remove(rent);
-                DBModel.GetContext().SaveChangesAsync();
+                DBModel.GetContext().SaveChanges();
 
                 return true;
             }

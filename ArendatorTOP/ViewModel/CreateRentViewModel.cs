@@ -35,6 +35,7 @@ namespace ArendatorTOP.ViewModel
             if (!String.IsNullOrEmpty(SearchStringClient))
             {
                 clients = DBModel.GetContext().Client.Where(p => p.Name.ToLower().Contains(SearchStringClient.ToLower())
+                || p.TitleCompany.ToLower().Contains(SearchStringClient.ToLower())
                 || p.Surname.ToLower().Contains(SearchStringClient.ToLower())
                 || p.Patronimic.ToLower().Contains(SearchStringClient.ToLower())
                 || p.PhoneNumber.ToLower().Contains(SearchStringClient.ToLower())
@@ -126,7 +127,7 @@ namespace ArendatorTOP.ViewModel
             return formOfPayments = DBModel.GetContext().FormOfPayment.ToList();
         }
 
-        public Rent SaveDemonstration(Client client, Employee employee, ObjectRent objectRent, FormOfPayment formOfPayment, DateTime dateStart, DateTime dateEnd) 
+        public Rent SaveRent(Client client, Employee employee, ObjectRent objectRent, FormOfPayment formOfPayment, DateTime dateStart, DateTime dateEnd) 
         {
             Rent rent = new Rent()
             {

@@ -28,10 +28,10 @@
             <Grid Style="{DynamicResource MainBack}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="109"/>
-                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Width="1100">
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Width="1200">
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,0" HorizontalAlignment="Left">
                         <Button x:Name="btnFiltration" Height="24" Margin="5,0,0,0" Background="Transparent" BorderThickness="0" Click="btnFiltration_Click">
                             <Button.Content>
@@ -39,7 +39,7 @@
                             </Button.Content>
                         </Button>
                     </StackPanel>
-                    <StackPanel x:Name="StakPanelFilter" Grid.Row="0" Orientation="Horizontal" Width="1100">
+                    <StackPanel x:Name="StakPanelFilter" Grid.Row="0" Orientation="Horizontal" Width="1200">
                         <StackPanel.Style>
                             <Style TargetType="StackPanel">
                                 <Style.Triggers>
@@ -47,7 +47,7 @@
                                         <DataTrigger.EnterActions>
                                             <BeginStoryboard x:Name="_bS2">
                                                 <Storyboard>
-                                                    <DoubleAnimation Storyboard.TargetProperty="Width" From="0" To="1000" Duration="0:0:0.2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Width" From="0" To="1200" Duration="0:0:0.2"/>
                                                 </Storyboard>
                                             </BeginStoryboard>
                                         </DataTrigger.EnterActions>
@@ -59,7 +59,7 @@
                                         <DataTrigger.EnterActions>
                                             <BeginStoryboard x:Name="_bS1">
                                                 <Storyboard>
-                                                    <DoubleAnimation Storyboard.TargetProperty="Width" From="1000" To="0" Duration="0:0:0.2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Width" From="1200" To="0" Duration="0:0:0.2"/>
                                                 </Storyboard>
                                             </BeginStoryboard>
                                         </DataTrigger.EnterActions>
@@ -72,7 +72,7 @@
                         </StackPanel.Style>
                         <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0">
                             <TextBlock Text="Назначение" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10"/>
-                            <ComboBox ItemsSource="{Binding SelectionFiltersApp, Mode=OneWay}" Style="{DynamicResource myComboBoxStyle}" x:Name="comboType" Width="150" Height="24" Margin="10,0,0,0">
+                            <ComboBox ItemsSource="{Binding SelectionFiltersApp, Mode=OneWay}" Style="{DynamicResource myComboBoxStyle}" x:Name="comboType" Width="150" Height="26" Margin="10,0,0,0">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <CheckBox x:Name="appointmentBox" IsChecked="{Binding IsChecked}" Content="{Binding Appointments.Title}" Checked="appointmentBox_Checked" Unchecked="appointmentBox_Unchecked"/>
@@ -84,26 +84,26 @@
                             <TextBlock Text="Стоимость" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10"/>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="От" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBox x:Name="textStartPrice" Text="{Binding StartPrice, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource RadiusText}" Width="50" Margin="5,0,0,0" Height="24" TextChanged="textStartPrice_TextChanged"/>
+                                <TextBox x:Name="textStartPrice" Text="{Binding StartPrice, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource RadiusText}" Width="50" Margin="5,0,0,0" Height="26" TextChanged="textStartPrice_TextChanged"/>
                                 <TextBlock Text="До" Margin="5,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBox x:Name="textEndPrice" Style="{DynamicResource RadiusText}" Text="{Binding EndPrice, UpdateSourceTrigger=PropertyChanged}" Width="50" Margin="5,0,0,0" TextChanged="textEndPrice_TextChanged"/>
+                                <TextBox x:Name="textEndPrice" Style="{DynamicResource RadiusText}" Text="{Binding EndPrice, UpdateSourceTrigger=PropertyChanged}" Width="50" Height="26"  Margin="5,0,0,0" TextChanged="textEndPrice_TextChanged"/>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0">
                             <TextBlock Text="Площадь" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10"/>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="От" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBox Text="{Binding StartSquare, UpdateSourceTrigger=PropertyChanged}" x:Name="textStartSquare" Style="{DynamicResource RadiusText}" Width="50" Margin="5,0,0,0" Height="24" TextChanged="textStartSquare_TextChanged"/>
+                                <TextBox Text="{Binding StartSquare, UpdateSourceTrigger=PropertyChanged}" x:Name="textStartSquare" Style="{DynamicResource RadiusText}" Width="50" Margin="5,0,0,0" Height="26" TextChanged="textStartSquare_TextChanged"/>
                                 <TextBlock Text="До" Margin="5,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBox Text="{Binding EndSquare, UpdateSourceTrigger=PropertyChanged}" x:Name="textEndSquare" Style="{DynamicResource RadiusText}" Width="50" Margin="5,0,0,0" TextChanged="textEndSquare_TextChanged"/>
+                                <TextBox Text="{Binding EndSquare, UpdateSourceTrigger=PropertyChanged}" x:Name="textEndSquare" Style="{DynamicResource RadiusText}" Width="50" Margin="5,0,0,0" Height="26"  TextChanged="textEndSquare_TextChanged"/>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0">
                             <TextBlock Text="Этаж"/>
-                            <ComboBox Style="{DynamicResource myComboBoxStyle}" Height="23" Margin="0,10,0,0" Width="30" ItemsSource="{Binding SelectionFiltersFloor}">
+                            <ComboBox Style="{DynamicResource myComboBoxStyle}" Height="23" Margin="0,10,0,0" Width="26" ItemsSource="{Binding SelectionFiltersFloor}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <CheckBox x:Name="chekFloor" Content="{Binding Floor.floor}" IsChecked="{Binding IsChecked}" Checked="chekFloor_Checked" Unchecked="chekFloor_Unchecked"/>
+                                        <CheckBox x:Name="chekFloor" Content="{Binding Floor.FloorValue}" IsChecked="{Binding IsChecked}" Checked="chekFloor_Checked" Unchecked="chekFloor_Unchecked"/>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -122,7 +122,7 @@
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="Сортировка:"/>
-                            <ComboBox Style="{DynamicResource myComboBoxStyle}" SelectedIndex="{Binding selectedSortIndex}" x:Name="sortBox" Width="250" Margin="0,10,0,0" SelectionChanged="sortBox_SelectionChanged">
+                            <ComboBox Style="{DynamicResource myComboBoxStyle}" SelectedIndex="{Binding selectedSortIndex}" x:Name="sortBox" Height="26"  Width="250" Margin="0,10,0,0" SelectionChanged="sortBox_SelectionChanged">
                                 <ComboBoxItem Content="Сортировать по цене:(по возрастанию)"/>
                                 <ComboBoxItem Content="Сортировать по цене:(по убыванию)"/>
                                 <ComboBoxItem Content="Сортировать по площади:(по возрастанию)"/>
@@ -134,8 +134,8 @@
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="82">
-                    <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26">
+                    <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
                 </StackPanel>
                 <Border Grid.Row="2" CornerRadius="10">
                     <ListView SelectionMode="Multiple" ItemContainerStyle="{DynamicResource listViewItemStyle}" ItemsSource="{Binding ObjectRents}" x:Name="listObjectRent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=5}">
@@ -231,13 +231,13 @@
                                             </ListBox.ItemContainerStyle>
                                         </ListBox>
                                     </StackPanel>
-                                    <TextBlock Grid.Row="1" Text="{Binding Appointment.Title, StringFormat=Назначение: {0}}" FontSize="16" Margin="5,0,0,0"/>
-                                    <TextBlock Grid.Row="2" Text="{Binding Square, StringFormat=Площадь: {0}}" FontSize="16" Margin="5,0,0,0"/>
-                                    <TextBlock Grid.Row="3" Text="{Binding PriceForOneMeter, StringFormat=Стоимость за кв.метр: {0} руб.}" FontSize="16" Margin="5,0,0,0"/>
-                                    <TextBlock Grid.Row="4" Text="{Binding Floor, StringFormat=Этаж: {0}}" FontSize="16" Margin="5,0,0,0"/>
-                                    <TextBlock Grid.Row="5" Text="{Binding Statement.Title, StringFormat=Состояние: {0}}" FontSize="16" Margin="5,0,0,0"/>
-                                    <Button Grid.Row="6" x:Name="btnDetail" Content="Подробнее" FontSize="16" Style="{DynamicResource Button}" Width="180" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDetail_Click"/>
-                                    <Button Grid.Row="7" x:Name="btnSheme" Content="Посмотреть на схеме" FontSize="16" Style="{DynamicResource Button}" Width="180" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Row="1" Text="{Binding Appointment.Title, StringFormat=Назначение: {0}}" FontSize="20" Margin="5,0,0,0"/>
+                                    <TextBlock Grid.Row="2" Text="{Binding Square, StringFormat=Площадь: {0}}" FontSize="20" Margin="5,0,0,0"/>
+                                    <TextBlock Grid.Row="3" Text="{Binding PriceForOneMeter, StringFormat=Стоимость за кв.метр: {0} руб.}" FontSize="20" Margin="5,0,0,0"/>
+                                    <TextBlock Grid.Row="4" Text="{Binding Floor, StringFormat=Этаж: {0}}" FontSize="20" Margin="5,0,0,0"/>
+                                    <TextBlock Grid.Row="5" Text="{Binding Statement.Title, StringFormat=Состояние: {0}}" FontSize="20" Margin="5,0,0,0"/>
+                                    <Button Grid.Row="6" x:Name="btnDetail" Content="Подробнее" FontSize="20" Style="{DynamicResource Button}" Width="180" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDetail_Click"/>
+                                    <Button Grid.Row="7" x:Name="btnSheme" Content="Посмотреть на схеме" FontSize="20" Style="{DynamicResource Button}" Width="200" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -259,7 +259,7 @@
                 <StackPanel Grid.Row="0" Style="{DynamicResource MainBack}">
                 </StackPanel>
                 <StackPanel Grid.Row="1" Style="{DynamicResource MainBack}">
-                    <TextBlock Text="План помещений" Grid.Row="1" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="План помещений" Grid.Row="1" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
             </Grid>
         </TabItem>

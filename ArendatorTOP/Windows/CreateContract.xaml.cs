@@ -1,4 +1,5 @@
-﻿using ArendatorTOP.ViewModel;
+﻿using ArendatorTOP.Pages;
+using ArendatorTOP.ViewModel;
 using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
@@ -30,11 +31,15 @@ namespace ArendatorTOP.Windows
         /// <summary>
         /// Окно формирования контракта, здесь пока что формируется xaml документ, необходимо преобразовать его в pdf файл и сохранять по определенному пути, также должна быть возможность печати файла!!!
         /// </summary>
+        RentsPage RentsPage;
         Rent Rent;
-        public CreateContract(Rent rent)
+        public CreateContract(Rent rent, RentsPage rentsPage)
         {
             InitializeComponent();
+            RentsPage = rentsPage;
             Rent = rent;
+            (DataContext as CreateContractViewModel).Rent = Rent;
+            (DataContext as CreateContractViewModel).AddInfomation();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -43,18 +48,18 @@ namespace ArendatorTOP.Windows
 
             using (FileStream fs = File.Open(path, FileMode.Create))
             {
-                if (docReader.Document != null)
+                if (docReader.Document != null && docReaderAct.Document != null)
                 {
                     XamlWriter.Save(docReader.Document, fs);
                     MessageBox.Show("Аренда, договор и акт сохранены успешно.");
                 }
-
-                if (docReaderAct.Document != null) 
-                {
-                    XamlWriter.Save(docReaderAct.Document, fs);
-                    MessageBox.Show("Аренда, договор и акт сохранены успешно.");
-                }
             }
+            RentsPage.DataRents.ItemsSource = DBModel.GetContext().Rent.ToList();
+        }
+
+        private void docReader_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

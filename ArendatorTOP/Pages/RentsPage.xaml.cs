@@ -23,11 +23,13 @@ namespace ArendatorTOP.Pages
     public partial class RentsPage : Page
     {
         User User;
-        public RentsPage(User user)
+        Manager Manager;
+        public RentsPage(User user, Manager manager)
         {
             InitializeComponent();
             DataRents.ItemsSource = (DataContext as RentsViewModel).UpdateRents();
             User = user;
+            Manager = manager;
         }
 
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -37,7 +39,7 @@ namespace ArendatorTOP.Pages
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            AddRent addRent = new AddRent(User);
+            AddRent addRent = new AddRent(User, this);
             addRent.Show();
         }
 
@@ -60,6 +62,7 @@ namespace ArendatorTOP.Pages
             if (messageBoxResult == MessageBoxResult.Yes) 
             {
                 (DataContext as RentsViewModel).DeleteRent(rent);
+                (DataContext as RentsViewModel).UpdateRents();
             }
             else 
             {
@@ -99,6 +102,11 @@ namespace ArendatorTOP.Pages
         private void btnObjectRent_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.ContainerFrame.Navigate(new Reports(User));
         }
     }
 }

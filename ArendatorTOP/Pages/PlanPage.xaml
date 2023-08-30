@@ -24,12 +24,12 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="39*"/>
-            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="400"/>
         </Grid.ColumnDefinitions>
-        <ListView Grid.Column="1" SelectionMode="Multiple" Background="White" ItemContainerStyle="{DynamicResource listViewItemStyle}" ItemsSource="{Binding ObjectRentsOnPaln}" SelectedItem="{Binding objectRentPlan, UpdateSourceTrigger=PropertyChanged}" x:Name="listTwoObjectRent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
+        <ListView Grid.Column="1" SelectionMode="Multiple" Background="White" ItemContainerStyle="{DynamicResource listViewItemStyle}" ItemsSource="{Binding ObjectRentsOnPaln}" SelectedItem="{Binding objectRentPlan, UpdateSourceTrigger=PropertyChanged}" x:Name="listTwoObjectRent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="300" Height="480">
+                    <Grid Width="400" Height="480">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="290">
                             </RowDefinition>
@@ -48,7 +48,7 @@
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Vertical" >
                             <!--Область отображения изображений-->
-                            <ListBox x:Name="test" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Padding="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalContentAlignment="Stretch" ItemsSource="{Binding PhotoOR}" SelectedIndex="0" Width="298" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center" MouseMove="test_MouseMove" MouseLeave="test_MouseLeave">
+                            <ListBox x:Name="test" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Padding="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalContentAlignment="Stretch" ItemsSource="{Binding PhotoOR}" SelectedIndex="0" Width="400" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center" MouseMove="test_MouseMove" MouseLeave="test_MouseLeave">
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <Grid></Grid>
@@ -112,12 +112,12 @@
                                 </ListBox.ItemContainerStyle>
                             </ListBox>
                         </StackPanel>
-                        <TextBlock Grid.Row="1" Text="{Binding Appointment.Title, StringFormat=Назначение: {0}}" FontSize="16" Margin="5,0,0,0"/>
-                        <TextBlock Grid.Row="2" Text="{Binding Square, StringFormat=Площадь: {0}}" FontSize="16" Margin="5,0,0,0"/>
-                        <TextBlock Grid.Row="3" Text="{Binding PriceForOneMeter, StringFormat=Стоимость за кв.метр: {0} руб.}" FontSize="16" Margin="5,0,0,0"/>
-                        <TextBlock Grid.Row="4" Text="{Binding Floor, StringFormat=Этаж: {0}}" FontSize="16" Margin="5,0,0,0"/>
-                        <TextBlock Grid.Row="5" Text="{Binding Statement.Title, StringFormat=Состояние: {0}}" FontSize="16" Margin="5,0,0,0"/>
-                        <Button Grid.Row="6" x:Name="btnDetail" Content="Подробнее" FontSize="16" Style="{DynamicResource Button}" Width="180" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="1" Text="{Binding Appointment.Title, StringFormat=Назначение: {0}}" FontSize="20" Margin="5,0,0,0"/>
+                        <TextBlock Grid.Row="2" Text="{Binding Square, StringFormat=Площадь: {0}}" FontSize="20" Margin="5,0,0,0"/>
+                        <TextBlock Grid.Row="3" Text="{Binding PriceForOneMeter, StringFormat=Стоимость за кв.метр: {0} руб.}" FontSize="20" Margin="5,0,0,0"/>
+                        <TextBlock Grid.Row="4" Text="{Binding Floor.FloorValue, StringFormat=Этаж: {0}}" FontSize="20" Margin="5,0,0,0"/>
+                        <TextBlock Grid.Row="5" Text="{Binding Statement.Title, StringFormat=Состояние: {0}}" FontSize="20" Margin="5,0,0,0"/>
+                        <Button Grid.Row="6" x:Name="btnDetail" Content="Подробнее" FontSize="20" Style="{DynamicResource Button}" Width="180" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

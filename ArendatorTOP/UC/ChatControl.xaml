@@ -32,8 +32,8 @@
                                 <DataTrigger.EnterActions>
                                     <BeginStoryboard x:Name="_bS2">
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="Width" From="0" To="350" Duration="0:0:0.2"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Height" From="0" To="400" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Width" From="0" To="400" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Height" From="0" To="450" Duration="0:0:0.2"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.EnterActions>
@@ -45,8 +45,8 @@
                                 <DataTrigger.EnterActions>
                                     <BeginStoryboard x:Name="_bS1">
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="Width" From="350" To="0" Duration="0:0:0.2"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Height" From="400" To="0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Width" From="400" To="0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Height" From="450" To="0" Duration="0:0:0.2"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.EnterActions>
@@ -90,10 +90,10 @@
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
                                 </ListBox>
-                                <ListBox x:Name="listChat" Grid.Row="1" Grid.Column="1" Width="340">
+                                <ListBox x:Name="listChat" Grid.Row="1" Grid.Column="1">
                                 </ListBox>
                                 <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
-                                    <TextBox x:Name="txtContentMessage" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource RadiusText}" Margin="10" Width="250" Height="80"/>
+                                    <TextBox x:Name="txtContentMessage" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource RadiusText}" Margin="10" Width="300" Height="80"/>
                                     <Button x:Name="btnEnterMessage" Width="25" Height="25"  Style="{DynamicResource EnterMessageButton}" Click="btnEnterMessage_Click">
                                         <Button.Background>
                                             <ImageBrush ImageSource="/Resource\Images\EnterMessage.jpg"/>
@@ -106,7 +106,7 @@
                             <ListBox x:Name="listNotification" Grid.Row="1" Grid.Column="1">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding ContentMessage}"/>
+                                        <TextBlock Text="{Binding ContentMessage}" TextWrapping="Wrap"/>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>

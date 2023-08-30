@@ -33,9 +33,10 @@ namespace ArendatorTOP.UC
         /// <summary>
         /// Свойство определящее будет ли показан чат
         /// </summary>
+        private bool? isShowChat = null;
         User User { get; set; }
         bool IsConnect = false;
-        private bool? isShowChat = null;
+        
         public event PropertyChangedEventHandler PropertyChanged;
         List<Employee> Employees { get; set; }
         ServiceChatClient client;
@@ -65,6 +66,7 @@ namespace ArendatorTOP.UC
             ConnectionUser();
             Employees = DBModel.GetContext().Employee.Where(e => e.Id != Id).ToList();
             listEmployee.ItemsSource = Employees;
+            listNotification.ItemsSource = DBModel.GetContext().Message.Where(p => p.IdRecipient == User.Employee.Id).ToList();
         }
 
         void DisconnectUser()

@@ -17,12 +17,13 @@ namespace ArendatorTOP.Converters
             List<int> id = values[0] as List<int>;
             List<double> rents = values[1] as List<double>;
             List<string> ObjectRentTitle = values[2] as List<string>;
-            if (id == null || rents == null || ObjectRentTitle == null) return null;
+            List<decimal> FullPrice = values[3] as List<decimal>;
+            if (id == null || rents == null || ObjectRentTitle == null || FullPrice ==null) return null;
 
             SeriesCollection series = new SeriesCollection();
             for (int i = 0; i < rents.Count; i++)
             {
-                series.Add(new PieSeries { Title = id[i].ToString() + " " + ObjectRentTitle[i], Values = new ChartValues<double> { rents[i] } });
+                series.Add(new PieSeries { Title = id[i].ToString() + " " + ObjectRentTitle[i]+" общая стоимость аренды : " + FullPrice[i] + " руб. ", Values = new ChartValues<double> { rents[i] }});
             }
             return series;
         }

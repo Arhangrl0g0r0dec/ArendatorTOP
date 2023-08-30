@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArendatorTOP"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1250">
+        Title="ArendatorTOP" Height="800" Width="1300">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -32,7 +32,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Welcome to!" FontFamily="Corbel" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="43" Width="187"/>
                 <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="ArendatorTOP"  FontFamily="Corbel" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="43" Width="219"/>
-                <Image Source="\Resource\Images\logo.png" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Margin="0,0,5,0"/>
+                <Image Source="/Resource\Images\logo.png" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Margin="0,0,5,0"/>
             </Grid>
         </Border>
         <Frame x:Name="Container" NavigationUIVisibility="Hidden" Grid.Row="1"/>

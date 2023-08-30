@@ -24,18 +24,19 @@ namespace ArendatorTOP.Windows
         public DocumentView(string path)
         {
             InitializeComponent();
-            using (FileStream fs = File.Open(path, FileMode.Open)) 
+            try
             {
-                try
+                using (FileStream fs = File.Open(path, FileMode.Open))
                 {
-                    FlowDocument flowDocument = XamlReader.Load(fs) as FlowDocument;
-                    docReader.Document = flowDocument;
-                }
-                catch (Exception ex)
-                {
-                    
+                   FlowDocument flowDocument = XamlReader.Load(fs) as FlowDocument;
+                   docReader.Document = flowDocument;
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка!" + ex.ToString());
+            }
+            
         }
     }
 }

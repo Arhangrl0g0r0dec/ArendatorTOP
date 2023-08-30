@@ -28,7 +28,7 @@ namespace ArendatorTOP.ViewModel
             ManagersOfDemonstrations = Demonstrations.Select(p => p.Employee.Name + " " + p.Employee.Surname + " " + p.Employee.Patronimic).ToList();
             DateTimesDemonstrations = Demonstrations.Select(p => p.DateOfDemonstration).Where(p => p.Date == dateTime).ToList();
             TimeSpansDemonstrations = Demonstrations.Select(p => p.TimeOfDemonstration).ToList();
-            ObjectRents = Demonstrations.Select(p => p.Id + " " + p.ObjectRent.Appointment.Title).ToList();
+            ObjectRents = Demonstrations.Select(p => p.ObjectRent.Id + " " + p.ObjectRent.Appointment.Title).ToList();
             return Demonstrations;
         }
     }

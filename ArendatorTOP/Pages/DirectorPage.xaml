@@ -5,10 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ArendatorTOP.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="500" d:DesignWidth="840"
       Title="Director"
-      xmlns:UC="clr-namespace:ArendatorTOP.UC">
+      xmlns:UC="clr-namespace:ArendatorTOP.UC"
+      xmlns:viewmodel="clr-namespace:ArendatorTOP.ViewModel">
 
+    <Page.DataContext>
+        <viewmodel:UserCabinetViewModel/>
+    </Page.DataContext>
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,23 +20,26 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid Panel.ZIndex="0">
+    
+    <Grid Panel.ZIndex="0" Style="{DynamicResource MainBack}">
         <Grid.RowDefinitions>
             <RowDefinition Height="63"/>
             <RowDefinition Height="63"/>
-            <RowDefinition/>
             <RowDefinition Height="53"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="43"/>
             <ColumnDefinition Width="104"/>
             <ColumnDefinition Width="43"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Ellipse Grid.Row="0" Grid.Column="1" Width="100" Height="100" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Ellipse.Fill>
@@ -50,13 +57,9 @@
                 <Image Source="/Resource\Images\Exit.png"/>
             </Button.Content>
         </Button>
-        <TextBlock x:Name="fullName" Text="{Binding FullName}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" FontSize="14" Grid.Column="1" />
-        <TextBlock x:Name="fullPost" Text="{Binding User.Employee.Post.Title}" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" FontSize="14" Grid.Column="1"/>
-        <Button Content="Помещения" Style="{DynamicResource Button4}" Width="140" Height="20" FontSize="14" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" x:Name="btnObjectRents"/>
-        <Button Content="Клиенты" Style="{DynamicResource Button4}" Width="140" Height="20" FontSize="14" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" x:Name="btnClients"/>
-        <Button Content="Документация" Style="{DynamicResource Button4}" Width="140" Height="20" FontSize="14" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" x:Name="btnDocumentation"/>
-        <Button Content="Отчетность" Style="{DynamicResource Button4}" Width="140" Height="20" FontSize="14" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" x:Name="btnDemonstration"/>
-        <Button Content="Аренда" Style="{DynamicResource Button}" Width="140" Height="20" FontSize="14" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" x:Name="btnRents" Click="btnRents_Click" />
-        <Frame Grid.Row="0" Grid.Column="3" x:Name="ContainerFrame" Grid.RowSpan="9" Panel.ZIndex="0"/>
+        <TextBlock x:Name="fullName" Text="{Binding FullName}" Grid.Row="2" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" FontSize="20" Grid.Column="0" Grid.ColumnSpan="3" Width="150" />
+        <TextBlock x:Name="fullPost" Text="{Binding User.Employee.Post.Title}" TextAlignment="Center" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" FontSize="20" Grid.Column="0" Grid.ColumnSpan="3" Width="150"/>
+        <Button Content="Отчетность" Style="{DynamicResource Button4}" Width="140" Height="26" FontSize="20" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" x:Name="btnReport"/>
+        <Frame Grid.Row="0" Grid.Column="3" x:Name="ContainerFrame" Grid.RowSpan="11" Panel.ZIndex="0"/>
     </Grid>
 </Page>

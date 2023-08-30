@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Word;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,22 +9,35 @@ using System.Windows;
 
 namespace ArendatorTOP.ViewModel
 {
-     class CreateContractViewModel : ViewModelBase
+    class CreateContractViewModel : ViewModelBase
     {
         public string NumContract { get; set; }
-        public DateTime DateСonclusion { get; set; }
+        public string DateСonclusion { get; set; }
         public string ArendatorTitle { get; set; }
         public string ArendatorName { get; set; }
         public double Sqare { get; set; }
         public int Floor { get; set; }
-        public DateTime TimeOfRent { get; set; }
+        public string TimeOfRent { get; set; }
         public decimal Bet { get; set; }
         public decimal NDS { get; set; }
-        public decimal PennyForDoNotPay {get; set; }
+        public decimal PennyForDoNotPay { get; set; }
+        public Rent Rent { get; set; }
+    
 
         public CreateContractViewModel() 
         {
             Title = "Создание договора";
+        }
+
+        public void AddInfomation() 
+        {
+            ArendatorTitle = Rent.Client.TitleCompany;
+            ArendatorName = Rent.Client.Name;
+            Sqare = Rent.ObjectRent.Square;
+            Floor = Rent.ObjectRent.Floor.FloorValue;
+            NumContract = DBModel.GetContext().Document.Where(p => p.NumDocument == 1).Count() + 1.ToString();
+            TimeOfRent = Rent.DateEnd.Subtract(Rent.DateStart).ToString();
+            DateСonclusion = DateTime.Today.ToString();
         }
 
         public string CreateContract(Rent rent) 

@@ -37,7 +37,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="380,0,0,0">
-            <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+            <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         </StackPanel>
         <Border Grid.Row="2" CornerRadius="10">
             <DataGrid IsReadOnly="True" CanUserSortColumns="False" ItemsSource="{Binding Clients}" x:Name="dataClients" MinRowHeight="20" AutoGenerateColumns="False">
@@ -49,12 +49,13 @@
                     <DataGridTextColumn Header="ОГРН" Binding="{Binding OGRN}" MaxWidth="100" MinWidth="100"/>
                     <DataGridTextColumn Header="КПП" Binding="{Binding KPP}" MaxWidth="100" MinWidth="100"/>
                     <DataGridTextColumn Header="Mail" Binding="{Binding Mail}" Width="150" MaxWidth="150" MinWidth="100"/>
-                    <DataGridTemplateColumn Header="Адрес" Width="300">
+                    <DataGridTemplateColumn Header="Адрес" Width="500">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock>
                                     <TextBlock.Text>
-                                        <MultiBinding StringFormat=" {0}, {1}, Этаж {2}, Офис {3}, Домофон {4}">
+                                        <MultiBinding StringFormat=" г. {0}, ул.{1} {2}, Этаж {3}, Офис {4}, Домофон {5}">
+                                            <Binding Path="City"></Binding>
                                             <Binding Path="Street"></Binding>
                                             <Binding Path="Home"></Binding>
                                             <Binding Path="Floor"></Binding>

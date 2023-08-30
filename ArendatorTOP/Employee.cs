@@ -25,7 +25,6 @@ namespace ArendatorTOP
             this.Message1 = new HashSet<Message>();
             this.Rent = new HashSet<Rent>();
             this.Report = new HashSet<Report>();
-            this.SentMaterials = new HashSet<SentMaterials>();
         }
     
         public int Id { get; set; }
@@ -54,8 +53,6 @@ namespace ArendatorTOP
         public virtual ICollection<Rent> Rent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Report> Report { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SentMaterials> SentMaterials { get; set; }
         public virtual User User { get; set; }
     }
 }

@@ -12,18 +12,20 @@ namespace ArendatorTOP
     using System;
     using System.Collections.Generic;
     
-    public partial class SentMaterials
+    public partial class SendMaterial
     {
-        public int Id { get; set; }
-        public int IdMaterial { get; set; }
-        public Nullable<int> IdObjectRent { get; set; }
-        public Nullable<int> IdEmployee { get; set; }
-        public string PathToDocument13 { get; set; }
-        public int Count { get; set; }
-        public System.DateTime DateSent { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SendMaterial()
+        {
+            this.SendMat_Material = new HashSet<SendMat_Material>();
+        }
     
-        public virtual Employee Employee { get; set; }
-        public virtual Materials Materials { get; set; }
-        public virtual ObjectRent ObjectRent { get; set; }
+        public int Id { get; set; }
+        public Nullable<int> IdEmployee { get; set; }
+        public System.DateTime DateSend { get; set; }
+        public string PathToTORG13 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SendMat_Material> SendMat_Material { get; set; }
     }
 }

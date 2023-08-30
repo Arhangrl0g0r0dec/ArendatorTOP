@@ -22,6 +22,7 @@ namespace ArendatorTOP
         }
     
         public int Id { get; set; }
+        public string TitleCompany { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Patronimic { get; set; }
@@ -32,6 +33,7 @@ namespace ArendatorTOP
         public string PathToCopyPassport { get; set; }
         public string PathToCopyContractOfDirector { get; set; }
         public string PathToCopyCertificateOfRegistrationOfaLegalEntity { get; set; }
+        public string City { get; set; }
         public string Street { get; set; }
         public string Home { get; set; }
         public string Domophone { get; set; }

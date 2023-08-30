@@ -19,33 +19,34 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid Style="{DynamicResource MainBack}">
+    <Grid Style="{DynamicResource MainBack}" HorizontalAlignment="Center">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="331*"/>
-            <RowDefinition Height="34*"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="33"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Title}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="24" Width="0"/>
+        <Button x:Name="btnReport" Content="Отчетность" Grid.Row="1" HorizontalAlignment="Right"  Style="{DynamicResource Button2}" Width="110" Height="25" Margin="0,0,5,0" Click="btnReport_Click"/>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <StackPanel Orientation="Horizontal" Margin="30,0,0,0" >
                 <TextBlock Text="Поиск" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox x:Name="searchBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource RadiusText}" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="10,0,0,0" TextChanged="searchBox_TextChanged"/>
+                <TextBox x:Name="searchBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource RadiusText}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="10,0,0,0" TextChanged="searchBox_TextChanged"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="30,0,0,0" >
                 <TextBlock Text="Дата начала" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <DatePicker x:Name="DateStartPicker" IsTodayHighlighted="False"  SelectedDate="{Binding DateStart, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0" FirstDayOfWeek="Monday" CalendarClosed="DateStartPicker_CalendarClosed"/>
+                <DatePicker x:Name="DateStartPicker" FontSize="16" IsTodayHighlighted="False"  SelectedDate="{Binding DateStart, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0" FirstDayOfWeek="Monday" CalendarClosed="DateStartPicker_CalendarClosed"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="30,0,0,0" >
                 <TextBlock Text="Дата конца" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <DatePicker x:Name="DateEndPicker" IsTodayHighlighted="False" SelectedDate="{Binding DateEnd, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0" FirstDayOfWeek="Monday" CalendarClosed="DateEndPicker_CalendarClosed"/>
+                <DatePicker FontSize="16" x:Name="DateEndPicker" IsTodayHighlighted="False" SelectedDate="{Binding DateEnd, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0" FirstDayOfWeek="Monday" CalendarClosed="DateEndPicker_CalendarClosed"/>
             </StackPanel>
             <CheckBox Margin="30,36,0,0" x:Name="checkFree" Content="Свободные" HorizontalAlignment="Center" VerticalAlignment="Center" Click="checkFree_Click"/>
             <CheckBox Margin="30,36,0,0" x:Name="checkBusy" Content="Заняты" HorizontalAlignment="Center" VerticalAlignment="Center" Click="checkBusy_Click"/>
         </StackPanel>
-        <TextBlock Grid.Row="1" Text="{Binding Title}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Text="{Binding Title}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="0"/>
         <DataGrid Grid.Row="2" x:Name="DataDemonstration" MinRowHeight="20" ItemsSource="{Binding Demonstrations}" AutoGenerateColumns="False" IsReadOnly="True" CanUserSortColumns="False">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Width="50" MaxWidth="50" Header="Записать">
+                <DataGridTemplateColumn Width="85" Header="Записать">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{DynamicResource ButtonSingUp}" x:Name="btnSingUp" Width="20" Height="25" Margin="5,5,5,5" Click="btnSingUp_Click">
@@ -54,10 +55,10 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Менеджер" Width="200" MinWidth="200">
+                <DataGridTemplateColumn Header="Менеджер" Width="300" MinWidth="200">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock TextAlignment="Center">
+                            <TextBlock TextAlignment="Center" FontSize="20">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat=" {0} {1} {2}">
                                         <Binding Path="Employee.Surname"/>
@@ -69,10 +70,10 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="ФИО посетителя" Width="200" MinWidth="200">
+                <DataGridTemplateColumn Header="ФИО посетителя" Width="300" MinWidth="200">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock TextAlignment="Center">
+                            <TextBlock TextAlignment="Center" FontSize="20">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat=" {0} {1} {2}">
                                         <Binding Path="Surname"/>
@@ -85,11 +86,11 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn MinWidth="120" Header="Номер для связи" Binding="{Binding PhoneNumber}"/>
-                <DataGridTemplateColumn Header="Помещение" Width="180" MinWidth="150">
+                <DataGridTemplateColumn Header="Помещение" Width="355" MinWidth="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Grid.Column="1" Style="{DynamicResource ButtonSingUp}">
-                                <TextBlock Foreground="Black">
+                                <TextBlock Foreground="Black" FontSize="18">
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat=" №{0} {1}">
                                             <Binding Path="ObjectRent.Id"/>
@@ -102,7 +103,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Время" MinWidth="120" Binding="{Binding TimeOfDemonstration}"/>
-                <DataGridTextColumn Header="Дата" MinWidth="120" Binding="{Binding DateOfDemonstration}"/>
+                <DataGridTextColumn Header="Дата" Width="90" Binding="{Binding DateOfDemonstration}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -17,10 +17,11 @@ namespace ArendatorTOP
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ObjectRent()
         {
+            this.DecommissionedMat_Material = new HashSet<DecommissionedMat_Material>();
             this.Demonstration = new HashSet<Demonstration>();
             this.PhotoOR = new HashSet<PhotoOR>();
             this.Rent = new HashSet<Rent>();
-            this.SentMaterials = new HashSet<SentMaterials>();
+            this.SendMat_Material = new HashSet<SendMat_Material>();
         }
     
         public int Id { get; set; }
@@ -31,9 +32,12 @@ namespace ArendatorTOP
         public int IdFloor { get; set; }
         public int IdStatement { get; set; }
         public Nullable<bool> Del { get; set; }
+        public string Description { get; set; }
     
         public virtual Appointment Appointment { get; set; }
         public virtual Control Control { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DecommissionedMat_Material> DecommissionedMat_Material { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Demonstration> Demonstration { get; set; }
         public virtual Floor Floor { get; set; }
@@ -43,6 +47,6 @@ namespace ArendatorTOP
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rent> Rent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SentMaterials> SentMaterials { get; set; }
+        public virtual ICollection<SendMat_Material> SendMat_Material { get; set; }
     }
 }

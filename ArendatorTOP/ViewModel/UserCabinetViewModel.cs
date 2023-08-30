@@ -17,13 +17,6 @@ namespace ArendatorTOP.ViewModel
             Title = "Главная";
             User = AutorizationViewModel.user;
             FullName = User.Employee.Surname + " " + User.Employee.Name;
-            GetFullName();
-        }
-
-        public string GetFullName()
-        {
-            FullName = User.Employee.Surname + " " + User.Employee.Name;
-            return FullName;
         }
     }
 }

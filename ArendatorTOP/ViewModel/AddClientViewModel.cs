@@ -3,6 +3,7 @@ using BitMiracle.Docotic.Pdf;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -15,8 +16,10 @@ using System.Windows.Resources;
 
 namespace ArendatorTOP.ViewModel
 {
-     class AddClientViewModel : ViewModelBase
+    public class AddClientViewModel : ViewModelBase
     {
+        public ObservableCollection<Client> Clients;
+        public string SearchStringClient { get; set; }
         public bool IsEdit { get; set; }
         public string FilePath { get; set; }
         public string Path { get; set; }
@@ -46,6 +49,31 @@ namespace ArendatorTOP.ViewModel
             FilePath = ofd.FileName;
             FileName = ofd.SafeFileName;
             return ConverterToPDF(selectedButton, FilePath);
+        }
+
+        public ObservableCollection<Client> UpdateClientList()
+        {
+            Clients.Clear();
+
+            List<Client> clients = DBModel.GetContext().Client.ToList();
+
+            if (!String.IsNullOrEmpty(SearchStringClient))
+            {
+                clients = DBModel.GetContext().Client.Where(p => p.Name.ToLower().Contains(SearchStringClient.ToLower())
+                || p.Surname.ToLower().Contains(SearchStringClient.ToLower())
+                || p.Patronimic.ToLower().Contains(SearchStringClient.ToLower())
+                || p.PhoneNumber.ToLower().Contains(SearchStringClient.ToLower())
+                || p.INN.ToLower().Contains(SearchStringClient.ToLower())
+                || p.OGRN.ToLower().Contains(SearchStringClient.ToLower())
+                || p.Mail.ToLower().Contains(SearchStringClient.ToLower())
+                || p.KPP.ToLower().Contains(SearchStringClient.ToLower())).ToList();
+            }
+
+            foreach (Client client in clients)
+            {
+                Clients.Add(client);
+            }
+            return Clients;
         }
 
         public bool ConverterToPDF(string selectedButton, string images)
@@ -122,15 +150,17 @@ namespace ArendatorTOP.ViewModel
             }
         }
 
-        public void AddClient(Client client)
+        public bool AddClient(Client client)
         {
             try
             {
                 DBModel.GetContext().Client.Add(client);
                 DBModel.GetContext().SaveChanges();
+                return true;
             }
             catch (Exception ex) 
-            { 
+            {
+                return false;
             }
         }
 

@@ -68,10 +68,17 @@ namespace ArendatorTOP.Windows
         private void listBoxClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             client = (Client)listBoxClients.SelectedItem;
-            nameText.Text = (DataContext as AddDemonstrationViewModel).GetClientName(client);
-            surnameText.Text = (DataContext as AddDemonstrationViewModel).GetClientSurname(client);
-            Patronimic.Text = (DataContext as AddDemonstrationViewModel).GetClientPatronimic(client);
-            PhoneNumberText.Text = (DataContext as AddDemonstrationViewModel).GetClientPhoneNumber(client);
+            if(client != null) 
+            {
+                nameText.Text = (DataContext as AddDemonstrationViewModel).GetClientName(client);
+                surnameText.Text = (DataContext as AddDemonstrationViewModel).GetClientSurname(client);
+                Patronimic.Text = (DataContext as AddDemonstrationViewModel).GetClientPatronimic(client);
+                PhoneNumberText.Text = (DataContext as AddDemonstrationViewModel).GetClientPhoneNumber(client);
+            }
+            else 
+            {
+                MessageBox.Show("Вы не выбрали клиента!");
+            }
         }
 
         private void listBoxOR_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -92,6 +99,7 @@ namespace ArendatorTOP.Windows
                 && !String.IsNullOrEmpty(ObjectRentText.Text)) 
                 {
                     (DataContext as AddDemonstrationViewModel).SaveDemonstration(demonstration, objectRent, client, User, PhoneNumberText.Text);
+                    MessageBox.Show("Заявка на демонстрацию сохранена успешно!");
                     ReloadDemonstrations();
                 }
                 else
@@ -111,6 +119,7 @@ namespace ArendatorTOP.Windows
                     FullName[1] = surnameOfVisitor.Text;
                     FullName[2] = patronimicOfVisitor.Text;
                     (DataContext as AddDemonstrationViewModel).SaveDemonstrationForVisitor(demonstration, objectRent, User, PhoneNumberText.Text, FullName);
+                    MessageBox.Show("Заявка на демонстрацию сохранена успешно!");
                     ReloadDemonstrations();
                 }
                 else
@@ -122,7 +131,6 @@ namespace ArendatorTOP.Windows
 
         private void ReloadDemonstrations()
         {
-            MessageBox.Show("Заявка на демонстрацию сохранена успешно!");
             demonstrationPage.DataDemonstration.ItemsSource = (DataContext as AddDemonstrationViewModel).GetDemonstrations();
             this.Close();
         }

@@ -14,9 +14,9 @@ namespace ArendatorTOP
     
     public partial class SupplyMaterial
     {
+        public int Id { get; set; }
         public int IdSupply { get; set; }
         public int IdMaterial { get; set; }
-        public decimal PriceDilivery { get; set; }
         public decimal Price { get; set; }
         public int Count { get; set; }
     

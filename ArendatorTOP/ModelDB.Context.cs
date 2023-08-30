@@ -25,10 +25,12 @@ namespace ArendatorTOP
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Application_Material> Application_Material { get; set; }
         public virtual DbSet<ApplicationToReception> ApplicationToReception { get; set; }
         public virtual DbSet<Appointment> Appointment { get; set; }
         public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<Control> Control { get; set; }
+        public virtual DbSet<DecommissionedMat_Material> DecommissionedMat_Material { get; set; }
         public virtual DbSet<DecommissionedMaterial> DecommissionedMaterial { get; set; }
         public virtual DbSet<Demonstration> Demonstration { get; set; }
         public virtual DbSet<Document> Document { get; set; }
@@ -41,16 +43,17 @@ namespace ArendatorTOP
         public virtual DbSet<Post> Post { get; set; }
         public virtual DbSet<Rent> Rent { get; set; }
         public virtual DbSet<Report> Report { get; set; }
-        public virtual DbSet<SentMaterials> SentMaterials { get; set; }
+        public virtual DbSet<SendMat_Material> SendMat_Material { get; set; }
+        public virtual DbSet<SendMaterial> SendMaterial { get; set; }
         public virtual DbSet<Statement> Statement { get; set; }
         public virtual DbSet<Supplier> Supplier { get; set; }
         public virtual DbSet<Supply> Supply { get; set; }
+        public virtual DbSet<SupplyMaterial> SupplyMaterial { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TypeOfDocument> TypeOfDocument { get; set; }
         public virtual DbSet<TypeOfMaterial> TypeOfMaterial { get; set; }
         public virtual DbSet<TypeOfReport> TypeOfReport { get; set; }
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<Application_Material> Application_Material { get; set; }
         public virtual DbSet<Message> Message { get; set; }
-        public virtual DbSet<SupplyMaterial> SupplyMaterial { get; set; }
     }
 }

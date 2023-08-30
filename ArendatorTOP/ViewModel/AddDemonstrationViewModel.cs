@@ -23,10 +23,10 @@ namespace ArendatorTOP.ViewModel
         public AddDemonstrationViewModel() 
         {
             Title = "Запись на демонтрацию";
-            SelectionFiltersApp = new ObservableCollection<SelectionFilter>(DBModel.GetContext().Appointment.Select(p => new SelectionFilter() { Appointments = p }));
+            SelectionFiltersApp = new ObservableCollection<SelectionFilter>(DBModel.GetContext().Appointment.Select(p => new SelectionFilter() { Appointments = p }));            
         }
 
-        public ObservableCollection<Client> UpdateClientList() 
+        public ObservableCollection<Client> UpdateClientList()
         {
             Clients.Clear();
 
@@ -35,6 +35,7 @@ namespace ArendatorTOP.ViewModel
             if (!String.IsNullOrEmpty(SearchStringClient)) 
             {
                 clients = DBModel.GetContext().Client.Where(p => p.Name.ToLower().Contains(SearchStringClient.ToLower())
+                || p.TitleCompany.ToLower().Contains(SearchStringClient.ToLower())
                 || p.Surname.ToLower().Contains(SearchStringClient.ToLower())
                 || p.Patronimic.ToLower().Contains(SearchStringClient.ToLower())
                 || p.PhoneNumber.ToLower().Contains(SearchStringClient.ToLower())
@@ -55,6 +56,7 @@ namespace ArendatorTOP.ViewModel
         {
             List<Demonstration> demonstrations = new List<Demonstration>();
             demonstrations = DBModel.GetContext().Demonstration.ToList();
+            demonstrations = demonstrations.OrderByDescending(p => p.DateOfDemonstration).ToList();
             return demonstrations;
         }
         public ObservableCollection<ObjectRent> UpdateObjectRentList() 
@@ -116,6 +118,9 @@ namespace ArendatorTOP.ViewModel
 
         public void SaveDemonstration(Demonstration demonstration ,ObjectRent SelectedObjectRent, Client SelectedClient, User user, string PhoneNumber)
         {
+            demonstration.Name = SelectedClient.Name;
+            demonstration.Surname = SelectedClient.Surname;
+            demonstration.Patronimic = SelectedClient.Patronimic;
             demonstration.ObjectRent = SelectedObjectRent;
             demonstration.Client = SelectedClient;
             demonstration.IsOccupied = true;

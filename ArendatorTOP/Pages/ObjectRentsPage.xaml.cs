@@ -88,16 +88,6 @@ namespace ArendatorTOP.Pages
             (DataContext as ObjectRentViewModel).ObjectRentList();
         }
 
-        private void chekBoxStaytment_Unchecked(object sender, RoutedEventArgs e)
-        {
-            (DataContext as ObjectRentViewModel).ObjectRentList();
-        }
-
-        private void chekBoxStaytment_Checked(object sender, RoutedEventArgs e)
-        {
-            (DataContext as ObjectRentViewModel).ObjectRentList();
-        }
-
         private void chekFloor_Unchecked(object sender, RoutedEventArgs e)
         {
             (DataContext as ObjectRentViewModel).ObjectRentList();
@@ -213,6 +203,16 @@ namespace ArendatorTOP.Pages
             AddObjectRent addObjectRent = new AddObjectRent(objectRent, this);
             addObjectRent.Owner = MainWindow;
             addObjectRent.Show();
+        }
+
+        private void chekState_Checked(object sender, RoutedEventArgs e)
+        {
+            (DataContext as ObjectRentViewModel).ObjectRentList();
+        }
+
+        private void chekState_Unchecked(object sender, RoutedEventArgs e)
+        {
+            (DataContext as ObjectRentViewModel).ObjectRentList();
         }
     }
 }

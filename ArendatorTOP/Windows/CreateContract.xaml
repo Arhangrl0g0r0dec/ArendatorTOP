@@ -29,25 +29,20 @@
         </Grid.RowDefinitions>
         <TabControl Grid.Row="1" Grid.RowSpan="2">
             <TabItem Header="Договор">
-                <FlowDocumentReader Grid.Row="2" Background="White" x:Name="docReader" Margin="0,4,0,0">
+                <FlowDocumentScrollViewer Grid.Row="2" Background="White" x:Name="docReader" Margin="0,4,0,0" Loaded="docReader_Loaded">
                     <FlowDocument Background="White">
                         <Paragraph TextAlignment="Center" Padding="0,0,0,8">
                             <Run>
-                                Договор аренды нежилого помещения №
-                            </Run>
-                            <Run Text="{Binding NumDocument}">
+                                Договор аренды нежилого помещения № 2
                             </Run>
                         </Paragraph>
                         <Paragraph>
-                            <Run Text="г. Ярославль"/>
-                            <Run Text="{Binding DateСonclusion}"/>
+                            <Run Text="г. Ярославль 18.09.23"/>
                         </Paragraph>
                         <Paragraph>
                             <Run Text="ООО ПСК РИТМ"/>
-                            <Run Text=", далее именуемое Арендодатель, в лице Лоскутова Виктора Ломбертовича, действующего на основании Устава, с одной стороны, и "/>
-                            <Run Text="{Binding ArendatorTitle}"/>
-                            <Run Text=", далее именуемое Арендатор в лице "/>
-                            <Run Text="{Binding ArendatorName}"/>
+                            <Run Text=", далее именуемое Арендодатель, в лице Лоскутова Виктора Ломбертовича, действующего на основании Устава, с одной стороны, и ООО Продкутович"/>
+                            <Run Text=", далее именуемое Арендатор в лице Федеров Роман Романович"/>
                             <Run Text=", действующего на основании Устава, с другой стороны, заключили настоящий договор о нижеследующем."/>
                         </Paragraph>
                         <Paragraph TextAlignment="Center">
@@ -55,25 +50,20 @@
                         </Paragraph>
                         <Paragraph>
                             <Run Text="1.1. По настоящему Договору Арендодатель обязуется передать, а Арендатор принять во временное владение и пользование (аренду) нежилое помещение общей площадью "/>
-                            <Run Text="{Binding Square}"/>
-                            <Run Text="квадратных метров, расположенное на "/>
-                            <Run Text="{Binding Floor}"/>
-                            <Run Text="этаже здания, находящегося по адресу: (Адрес)"/>
+                            <Run Text="квадратных метров, расположенное на 1"/>
+                            <Run Text="этаже здания, находящегося по адресу: г.Ярославль, ул.Гагарина 141"/>
                         </Paragraph>
                         <Paragraph>
                             <Run Text="1.2. Помещение принадлежит Арендодателю на праве собственности в соответствии с "/>
-                            <Run Text="Свидетельством о государственной регистрации права № "/>
-                            <Run Text="{Binding NumСertificate}"/>
-                            <Run Text=" от "/>
-                            <Run Text="{Binding DateCertificate}"/>
+                            <Run Text="Свидетельством о государственной регистрации права № 343212324"/>
+                            <Run Text=" от 12.12.2012"/>
                             <Run Text="На момент заключения настоящего Договора помещение не заложено, не арестовано, в споре не состоит, не обременено правами третьих лиц."/>
                         </Paragraph>
                         <Paragraph>
                             <Run Text="1.3. Арендованное Помещение будет использоваться Арендатором для размещения офиса."/>
                         </Paragraph>
                         <Paragraph>
-                            <Run Text="1.4. Настоящий Договор заключается сроком на "/>
-                            <Run Text="{Binding TimeOfRent}"/>
+                            <Run Text="1.4. Настоящий Договор заключается сроком на 12 месяцев"/>
                         </Paragraph>
                         <Paragraph>
                             <Run Text="1.5. Помещение передается по Акту приема-передачи (Приложение № 2 к настоящему Договору, являющееся его неотъемлемой частью)."/>
@@ -151,7 +141,7 @@
                             <Run Text="3.1. Арендная плата состоит из постоянной и переменной частей."/>
                         </Paragraph>
                         <Paragraph>
-                            <Run Text="3.2. Постоянная часть арендной платы составляет "/>
+                            <Run Text="3.2. Постоянная часть арендной платы составляет 10200"/>
                             <Run Text="{Binding Bet}"/>
                             <Run Text="рублей, включая НДС "/>
                             <Run Text="{Binding NDS}"/>
@@ -334,21 +324,21 @@
                                     <TableCell>
                                         <Paragraph>
                                             <Run Text="ООО ПСК РИТМ"/>
-                                            <Run Text="Проезд Подвойского 33"/>
+                                            <Run Text="г. Ярославль, Проезд Подвойского 33"/>
                                             <Run Text="ИНН 298749843759"/>
                                             <Run Text="КПП 290847589437"/>
-                                            <Run Text="р.с 920348592034"/>
+                                            <Run Text="Лицевой счет: 920348592034"/>
                                         </Paragraph>
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell>
                                         <Paragraph>
-                                            <Run Text="{Binding TitleCompany}"/>
-                                            <Run Text="{Binding Address}"/>
-                                            <Run Text="{Binding INN}"/>
-                                            <Run Text="{Binding KPP}"/>
-                                            <Run Text="{Binding BankRequisits}"/>
+                                            <Run Text="ООО Продуктович"/>
+                                            <Run Text="г. Ярославль, ул. Волкова 33"/>
+                                            <Run Text="12355675574"/>
+                                            <Run Text="98765432454"/>
+                                            <Run Text="Лицевой счет: 7293649523756"/>
                                         </Paragraph>
                                     </TableCell>
                                 </TableRow>
@@ -367,38 +357,38 @@
                             </TableRowGroup>
                         </Table>
                     </FlowDocument>
-                </FlowDocumentReader>
+                </FlowDocumentScrollViewer>
             </TabItem>
             <TabItem Header="Акт">
                 <FlowDocumentReader Grid.Row="2" Background="White" x:Name="docReaderAct" Margin="0,4,0,0">
                     <FlowDocument Background="White">
                         <Paragraph TextAlignment="Center">
-                            <Run Text="АКТ №"/>
+                            <Run Text="АКТ № 2"/>
                             <Run Text="{Binding ActNum}"/>
                         </Paragraph>
                         <Paragraph TextAlignment="Center">
                             <Run Text="ПРИЕМА-ПЕРЕДАЧИ В АРЕНДУ НЕЖИЛОГО ПОМЕЩЕНИЯ (ЗДАНИЯ), РАСПОЛОЖЕННОГО ПО АДРЕСУ:"/>
                             <Run Text="город Ярославль, улица Победы, д. 30"/>
-                            <Run Text=" от "/>
+                            <Run Text=" от 18.09.2023"/>
                             <Run Text="{Binding DateAct}"/>
                         </Paragraph>
                         <Paragraph>
                             <Run Text="Мы ниежеподписавшиеся, представитель Балансодержателя"/>
                         </Paragraph>
                         <Paragraph>
-                            <Run Text="{Binding TitleOrganisation}"/>
+                            <Run Text="ООО ПСК РИТМ" />
                         </Paragraph>
                         <Paragraph>
                             <Run Text="в лице"/>
                         </Paragraph>
                         <Paragraph>
-                            <Run Text="{Binding NameLandlord}"/>
+                            <Run Text="Николаев Илья Александрович"/>
                         </Paragraph>
                         <Paragraph>
                             <Run Text="и Арендатора"/>
                         </Paragraph>
                         <Paragraph>
-                            <Run Text="{Binding ArendatorName}"/>
+                            <Run Text="Романов Василий Федерович"/>
                         </Paragraph>
                         <Paragraph>
                             <Run Text="Составили настоящий акт о следующем:"/>
@@ -407,17 +397,17 @@
                             <ListItem>
                                 <Paragraph>
                                     <Run Text="на основании договора аренды № "/>
-                                    <Run Text="{Binding NumContract}"/>
-                                    <Run Text=" от "/>
-                                    <Run Text="{Binding DateСonclusion}"/>
+                                    <Run Text="2"/>
+                                    <Run Text=" от 18.09.2023"/>
+                                    <Run Text=""/>
                                     <Run Text="Благосодержатель передает Арендатору во временное пользование нежилое помещение по адресу город Ярославль, улица Победы, д. 30"/>
                                     <Run Text="площадью "/>
-                                    <Run Text="{Binding Sqare}"/>
+                                    <Run Text="40"/>
                                     <Run Text="кв. м., балансовой стоимостью "/>
-                                    <Run Text="{Binding Bet}"/>
+                                    <Run Text="16000"/>
                                     <Run Text="тыс. руб. согласно техническому паспорту БТИ "/>
-                                    <Run Text="{Binding NumPassport}"/>
-                                    <Run Text="{Binding DatePassport}"/>
+                                    <Run Text="273698"/>
+                                    <Run Text="12.12.2012"/>
                                     <Run Text=";"/>
                                 </Paragraph>
                             </ListItem>
@@ -496,8 +486,8 @@
                 </FlowDocumentReader>
             </TabItem>
         </TabControl>
-        <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Height="22" Width="152"/>
-        <Button x:Name="btnAdditionalAgreement" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Сформировать допсоглашение" Style="{DynamicResource Button2}" Height="18" Width="165" Margin="0,0,5,10"/>
-        <Button Grid.Row="3" HorizontalAlignment="Center" x:Name="btnSave" VerticalAlignment="Center" Content="Сохранить" Style="{DynamicResource Button}" Width="80" Click="btnSave_Click" Height="18"/>
+        <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+        <Button x:Name="btnAdditionalAgreement" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Сформировать допсоглашение" Style="{DynamicResource Button2}"  Margin="0,0,5,10"/>
+        <Button Grid.Row="3" HorizontalAlignment="Center" x:Name="btnSave" VerticalAlignment="Center" Content="Сохранить" Style="{DynamicResource Button}" Width="100" Click="btnSave_Click" Height="26"/>
     </Grid>
 </Window>

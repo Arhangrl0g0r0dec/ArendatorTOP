@@ -36,11 +36,11 @@
                 <CheckBox Visibility="Visible" x:Name="chekBoxActive"  Content="Скрытые" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" Click="chekBoxActive_Click"/>
             </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="380,0,0,0">
-            <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         </StackPanel>
-        <StackPanel Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0">
-            <Button Style="{DynamicResource Button3}" x:Name="btnAdd" Content="Добавить" Click="btnAdd_Click"/>
+        <StackPanel Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20,0,10,0">
+            <Button Style="{DynamicResource Button3}" x:Name="btnAdd" Content="Добавить" Click="btnAdd_Click" HorizontalAlignment="Right"/>
         </StackPanel>
         <Border Grid.Row="2" CornerRadius="10">
             <DataGrid IsReadOnly="True" CanUserSortColumns="False" ItemsSource="{Binding Clients}" x:Name="dataClients" MinRowHeight="20" AutoGenerateColumns="False">
@@ -54,19 +54,21 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}" MaxWidth="100" MinWidth="100"/>
-                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" MaxWidth="100" MinWidth="100"/>
-                    <DataGridTextColumn Header="Отчество" Binding="{Binding Patronimic}" MaxWidth="100" MinWidth="100"/>
-                    <DataGridTextColumn Header="ИНН" Binding="{Binding INN}" MaxWidth="100" MinWidth="100"/>
-                    <DataGridTextColumn Header="ОГРН" Binding="{Binding OGRN}" MaxWidth="100" MinWidth="100"/>
-                    <DataGridTextColumn Header="КПП" Binding="{Binding KPP}" MaxWidth="100" MinWidth="100"/>
-                    <DataGridTextColumn Header="Mail" Binding="{Binding Mail}" Width="150" MaxWidth="150" MinWidth="100"/>
-                    <DataGridTemplateColumn Header="Адрес" Width="300">
+                    <DataGridTextColumn Header="Название" Binding="{Binding TitleCompany}" MaxWidth="200" MinWidth="150"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}" MaxWidth="200" MinWidth="150"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" MaxWidth="200" MinWidth="150"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding Patronimic}" MaxWidth="200" MinWidth="150"/>
+                    <DataGridTextColumn Header="ИНН" Binding="{Binding INN}" MaxWidth="200" MinWidth="150"/>
+                    <DataGridTextColumn Header="ОГРН" Binding="{Binding OGRN}" MaxWidth="200" MinWidth="150"/>
+                    <DataGridTextColumn Header="КПП" Binding="{Binding KPP}" MaxWidth="200" MinWidth="150"/>
+                    <DataGridTextColumn Header="Mail" Binding="{Binding Mail}" MaxWidth="200" MinWidth="150"/>
+                    <DataGridTemplateColumn Header="Адрес" Width="500">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock>
                                     <TextBlock.Text>
-                                        <MultiBinding StringFormat=" {0}, {1}, Этаж {2}, Офис {3}, Домофон {4}">
+                                        <MultiBinding StringFormat=" город {0}, ул. {1} {2}, Этаж {3}, Офис {4}, Домофон {5}">
+                                            <Binding Path="City"></Binding>
                                             <Binding Path="Street"></Binding>
                                             <Binding Path="Home"></Binding>
                                             <Binding Path="Floor"></Binding>
@@ -78,17 +80,17 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Редактировать" MaxWidth="150" MinWidth="150">
+                    <DataGridTemplateColumn Header="Редактировать" MaxWidth="210" MinWidth="150">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Style="{DynamicResource Button}" x:Name="btnEdit" Width="120" Height="25" Content="Редактировать" Click="btnEdit_Click"/>
+                                <Button Style="{DynamicResource Button}" x:Name="btnEdit" Width="160" Height="26" Content="Редактировать" Click="btnEdit_Click"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Демонстрации" Width="200" MaxWidth="200" MinWidth="200">
+                    <DataGridTemplateColumn Header="Демонстрации" Width="310" MaxWidth="250" MinWidth="200">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Style="{DynamicResource Button2}" x:Name="btnEdit" Width="150" Height="25"  Content="Имеющиеся демонстрации"/>
+                                <Button Style="{DynamicResource Button2}" x:Name="btnEdit" Height="26"  Content="Имеющиеся демонстрации"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

@@ -65,19 +65,26 @@ namespace ArendatorTOP.Windows
                 {
                     MessageBox.Show("Ошибка! Проверьте все ли данные о помещении заполнены соответствующими значениями!");
                 }
-                ObjectRents.listObjectRent.ItemsSource = DBModel.GetContext().ObjectRent.ToList();
+                ObjectRents.listObjectRent.ItemsSource = DBModel.GetContext().ObjectRent.Where(p => p.Del == false).ToList();
             }
             catch (FormatException ex)
             {
                 MessageBox.Show("Ошибка! Проверьте все ли данные о помещении заполнены соответствующими значениями!" + ex.ToString());
             }
         }
-
+        /// <summary>
+        /// событие добавления фото, для добавления фото используется OpenFileDialog, File, 
+        /// при помощи которых происходит работа с файловой системой
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddImage_Click(object sender, RoutedEventArgs e)
         {
             string pathTo = "Архив\\Помещения";
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+
             if (openFileDialog.ShowDialog() == true)
             {
                 string pathImage = pathTo +"\\" + DateTime.Now.Ticks.ToString() + ".jpg";
